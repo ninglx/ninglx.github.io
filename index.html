@@ -194,6 +194,264 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="前后端全菜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">flex布局space-between最后一行展示问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-29 15:31:21 / 修改时间：15:35:34" itemprop="dateCreated datePublished" datetime="2022-12-29T15:31:21+08:00">2022-12-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="在使用-flex-进行布局时涉及多个元素遍历渲染，-要使用-space-between-时会发现：-最后一行元素数不满一行个数时会平均分布开，-而不会从左到右排列，-不符合一般样式要求"><a href="#在使用-flex-进行布局时涉及多个元素遍历渲染，-要使用-space-between-时会发现：-最后一行元素数不满一行个数时会平均分布开，-而不会从左到右排列，-不符合一般样式要求" class="headerlink" title="在使用 flex 进行布局时涉及多个元素遍历渲染， 要使用 space-between 时会发现： 最后一行元素数不满一行个数时会平均分布开， 而不会从左到右排列， 不符合一般样式要求"></a>在使用 <code>flex</code> 进行布局时涉及多个元素遍历渲染， 要使用 <code>space-between</code> 时会发现： 最后一行元素数不满一行个数时会平均分布开， 而不会从左到右排列， 不符合一般样式要求</h3><hr>
+<p><strong>可以使用下面的办法解决</strong></p>
+<ul>
+<li><code>wells</code> 为一个长度若干的数组 遍历取得每个元素并渲染<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;wells&quot;</span>&gt;</span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;well&#x27;</span> <span class="attr">v-for</span>=<span class="string">&quot;(well, index) in wells&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">	&lt;!-- 下面这一行 重点 --&gt;</span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;list&quot;</span> </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">		<span class="attr">v-for</span>=<span class="string">&quot;item in (5 - wells.length % 5)&quot;</span> </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">		<span class="attr">v-if</span>=<span class="string">&quot;wells.length % 5 &gt; 0&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">	&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wells</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">justify-content</span>: space-between;</span><br><span class="line">	<span class="attribute">flex-flow</span>: row wrap;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">	<span class="selector-class">.well</span>&#123;</span><br><span class="line">		<span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">18%</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.list</span> &#123;</span><br><span class="line">		<span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">		<span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">18%</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="前后端全菜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/29/el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">el-table-column数据过长多行省略处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-29 15:26:19 / 修改时间：15:29:19" itemprop="dateCreated datePublished" datetime="2022-12-29T15:26:19+08:00">2022-12-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="场景：在使用-el-table-时会遇到表格某行数据过长的情况"><a href="#场景：在使用-el-table-时会遇到表格某行数据过长的情况" class="headerlink" title="场景：在使用 el-table 时会遇到表格某行数据过长的情况"></a>场景：在使用 el-table 时会遇到表格某行数据过长的情况</h3><ul>
+<li>一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容</li>
+<li>还有一种是特殊需求：需要 <strong>多行展示后</strong> 再进行省略显示。 以下是处理方式：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column</span><br><span class="line">	property=<span class="string">&quot;Date&quot;</span></span><br><span class="line">	label=<span class="string">&quot;Date&quot;</span>&gt;</span><br><span class="line">	<span class="comment">// 这里 template 的作用是 模拟 tooltip 的作用</span></span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">:title</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">v-html</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">class</span>=<span class="string">&quot;title-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/deep/ <span class="selector-class">.el-table</span> <span class="selector-class">.cell</span> &#123;</span><br><span class="line">	<span class="attribute">word-break</span>: break-word ; // 避免一个单词被换行断开为两部分</span><br><span class="line">	<span class="attribute">overflow</span>:hidden;</span><br><span class="line">	<span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">	<span class="attribute">display</span>:-webkit-box;</span><br><span class="line">	-webkit-box-orient:vertical;</span><br><span class="line">	-webkit-line-clamp:<span class="number">2</span>; // 此处是<span class="number">2</span>行的末尾再省略展示， 想要几行后再省略展示 就写几</span><br><span class="line">	<span class="attribute">max-height</span>: <span class="number">48px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="前后端全菜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/" class="post-title-link" itemprop="url">echarts鼠标首次悬浮经过页面闪动</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-27 17:52:12 / 修改时间：17:59:54" itemprop="dateCreated datePublished" datetime="2022-12-27T17:52:12+08:00">2022-12-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-："><a href="#使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-：" class="headerlink" title="使用 echarts 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 tooltip 超出屏幕边界导致的，可以通过以下办法解决 ："></a>使用 <code>echarts</code> 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 <code>tooltip</code> 超出屏幕边界导致的，可以通过以下办法解决 ：</h3><h3 id="tooltip-options-添加以下属性："><a href="#tooltip-options-添加以下属性：" class="headerlink" title="tooltip options 添加以下属性："></a><code>tooltip options</code> 添加以下属性：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">tooltip</span>:&#123;</span><br><span class="line">		<span class="attr">transitionDuration</span>: <span class="number">0</span>,</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/27/vue%E8%B7%AF%E7%94%B1%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="前后端全菜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/27/vue%E8%B7%AF%E7%94%B1%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">vue路由重复点击报错</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-27 17:13:44 / 修改时间：17:19:35" itemprop="dateCreated datePublished" datetime="2022-12-27T17:13:44+08:00">2022-12-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="通过-router-push-的方式跳转路由时，路由重复点击会报错"><a href="#通过-router-push-的方式跳转路由时，路由重复点击会报错" class="headerlink" title="通过 $router.push() 的方式跳转路由时，路由重复点击会报错"></a>通过 $router.push() 的方式跳转路由时，路由重复点击会报错</h3><p><b>解决办法</b>：</p>
+<ol>
+<li>在 <code>router</code> 的 <code>index.js</code> 文件中 <code>use router</code> 之前加入以下代码 : <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//router/index.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Router</span> <span class="keyword">from</span> <span class="string">&quot;vue-router&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> originalPush = <span class="title class_">Router</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">push</span></span><br><span class="line"><span class="title class_">Router</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">push</span> = <span class="keyword">function</span> <span class="title function_">push</span>(<span class="params">location</span>) &#123;</span><br><span class="line">   <span class="keyword">return</span> originalPush.<span class="title function_">call</span>(<span class="variable language_">this</span>, location).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在使用 <code>$router.push()</code> 时 <code>catch</code> 一下 <code>err</code> : <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -630,323 +888,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="前后端全菜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/" class="post-title-link" itemprop="url">记录一下好用的Js技巧（新手向大佬勿喷）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-20 10:01:30" itemprop="dateCreated datePublished" datetime="2022-04-20T10:01:30+08:00">2022-04-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-07 16:57:51" itemprop="dateModified" datetime="2022-05-07T16:57:51+08:00">2022-05-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="从数组中删除重复项"><a href="#从数组中删除重复项" class="headerlink" title="从数组中删除重复项"></a>从数组中删除重复项</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deletedArr = [...<span class="keyword">new</span> <span class="title class_">Set</span>(arr)]</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="前后端全菜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">Gis二次开发相关文件处理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-18 16:30:45 / 修改时间：18:25:03" itemprop="dateCreated datePublished" datetime="2022-04-18T16:30:45+08:00">2022-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Gis%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">Gis相关</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><font color=red>注意：首先需要进行geoserver环境搭建（需要在 tomcat 中 geoserver 包里的 web.xml 文件中进行跨域处理）及相关依赖引入</font></p>
-<h5 id="shp-文件处理（解析文件并展示）"><a href="#shp-文件处理（解析文件并展示）" class="headerlink" title=".shp 文件处理（解析文件并展示）"></a>.shp 文件处理（解析文件并展示）</h5><h6 id="后端接收前端发送的-file-文件流，通过-GeoServer-发布，并返回一个-geojson-格式数据的-url"><a href="#后端接收前端发送的-file-文件流，通过-GeoServer-发布，并返回一个-geojson-格式数据的-url" class="headerlink" title="后端接收前端发送的 file 文件流，通过 GeoServer 发布，并返回一个 geojson 格式数据的 url"></a>后端接收前端发送的 file 文件流，通过 GeoServer 发布，并返回一个 geojson 格式数据的 url</h6><p><strong>主要代码：</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="前后端全菜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/" class="post-title-link" itemprop="url">Js实现网页时钟（备用）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-18 15:46:39" itemprop="dateCreated datePublished" datetime="2022-04-18T15:46:39+08:00">2022-04-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-19 17:58:22" itemprop="dateModified" datetime="2022-04-19T17:58:22+08:00">2022-04-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="js定时器实现一个网页时钟，直接贴代码（Vue框架环境）"><a href="#js定时器实现一个网页时钟，直接贴代码（Vue框架环境）" class="headerlink" title="js定时器实现一个网页时钟，直接贴代码（Vue框架环境）"></a>js定时器实现一个网页时钟，直接贴代码（Vue框架环境）</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-sjzt&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-xs&quot;</span>&gt;</span>&#123;&#123; dateTime &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-nyr&quot;</span>&gt;</span>&#123;&#123; yearTime &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="前后端全菜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Vue中clearInterval失效问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-18 14:58:02 / 修改时间：15:32:05" itemprop="dateCreated datePublished" datetime="2022-04-18T14:58:02+08:00">2022-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费"><a href="#使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费" class="headerlink" title="使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费"></a>使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费</h5><h5 id="首先是setInterval和clearInterval的基本用法"><a href="#首先是setInterval和clearInterval的基本用法" class="headerlink" title="首先是setInterval和clearInterval的基本用法"></a>首先是<strong>setInterval</strong>和<strong>clearInterval</strong>的基本用法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="comment">// 每 1s 调用一次</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do once...&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">beforeDestroy</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer) <span class="comment">// 清除定时器 myTimer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1014,7 +959,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1027,7 +972,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
