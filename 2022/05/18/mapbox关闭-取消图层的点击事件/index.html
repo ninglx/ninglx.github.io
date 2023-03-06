@@ -23,18 +23,19 @@
   <meta name="description" content="mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可123map.on(&amp;#x27;click&amp;#x27;,&amp;#x27;layerId&amp;#x27;,function(e)&amp;#123;  console.log(e)&amp;#125;) 👇 1234567function myClick(e)&amp;#123;  console.log(e)&amp;#125;&#x2F;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mapbox关闭&#x2F;取消图层的点击事件">
-<meta property="og:url" content="http://ninglx.github.io/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:url" content="http://ninglx.github.io/2022/05/18/Mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Ning">
 <meta property="og:description" content="mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可123map.on(&amp;#x27;click&amp;#x27;,&amp;#x27;layerId&amp;#x27;,function(e)&amp;#123;  console.log(e)&amp;#125;) 👇 1234567function myClick(e)&amp;#123;  console.log(e)&amp;#125;&#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-18T01:20:57.000Z">
-<meta property="article:modified_time" content="2022-05-18T01:31:45.512Z">
+<meta property="article:modified_time" content="2023-03-06T12:38:58.067Z">
 <meta property="article:author" content="Ning lx">
-<meta property="article:tag" content="javascript">
 <meta property="article:tag" content="Gis开发">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Mapbox">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ninglx.github.io/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
+<link rel="canonical" href="http://ninglx.github.io/2022/05/18/Mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -199,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/Mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -221,17 +222,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-18 09:20:57 / 修改时间：09:31:45" itemprop="dateCreated datePublished" datetime="2022-05-18T09:20:57+08:00">2022-05-18</time>
+              <time title="创建时间：2022-05-18 09:20:57" itemprop="dateCreated datePublished" datetime="2022-05-18T09:20:57+08:00">2022-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:38:58" itemprop="dateModified" datetime="2023-03-06T20:38:58+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Gis%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">Gis相关</span></a>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
                 </span>
             </span>
 
@@ -266,8 +273,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
               <a href="/tags/Gis%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> Gis开发</a>
+              <a href="/tags/Javascript/" rel="tag"><i class="fa fa-tag"></i> Javascript</a>
+              <a href="/tags/Mapbox/" rel="tag"><i class="fa fa-tag"></i> Mapbox</a>
           </div>
 
         
@@ -276,11 +284,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" rel="prev" title="elementUI修改messageBox弹框样式">
+    <a href="/2022/05/18/ElementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" rel="prev" title="elementUI修改messageBox弹框样式">
       <i class="fa fa-chevron-left"></i> elementUI修改messageBox弹框样式
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" rel="next" title="antVL7可视化开发问题">
+    <a href="/2022/06/02/AntVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" rel="next" title="antVL7可视化开发问题">
       antVL7可视化开发问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -362,20 +370,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -417,8 +425,8 @@
         
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

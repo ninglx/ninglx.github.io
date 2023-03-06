@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -208,7 +208,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">flex布局space-between最后一行展示问题</a>
+            <a href="/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/" class="post-title-link" itemprop="url">flvjs视频流播放组件封装(&断线重连)</a>
         </h2>
 
         <div class="post-meta">
@@ -219,7 +219,99 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-12-29 15:31:21 / 修改时间：15:35:34" itemprop="dateCreated datePublished" datetime="2022-12-29T15:31:21+08:00">2022-12-29</time>
+              <time title="创建时间：2023-03-06 20:15:40 / 修改时间：20:35:35" itemprop="dateCreated datePublished" datetime="2023-03-06T20:15:40+08:00">2023-03-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用"><a href="#最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用" class="headerlink" title="最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用"></a>最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用</h5><hr>
+<p><strong>项目基于 Vue 框架进行开发</strong></p>
+<ul>
+<li>上代码</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;cameraVideo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">video</span> <span class="attr">class</span>=<span class="string">&quot;videoControl&quot;</span> <span class="attr">muted</span> <span class="attr">ref</span>=<span class="string">&quot;myCameraVideoPlayer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;cameraVideo&quot;</span>,</span><br><span class="line">  <span class="attr">props</span>: [<span class="string">&quot;videoData&quot;</span>,<span class="string">&#x27;autoPlay&#x27;</span>],</span><br><span class="line">  <span class="attr">watch</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="title function_">loadVideo</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;data alive&quot;</span>, <span class="variable language_">this</span>.<span class="property">videoData</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span> &amp;&amp; <span class="variable language_">this</span>.<span class="title function_">destroy</span>();</span><br><span class="line">			<span class="comment">// props 中的 videoData 为视频流url</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span> = flvjs.<span class="title function_">createPlayer</span>(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;flv&quot;</span>,</span><br><span class="line">        <span class="attr">isLive</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">url</span>: <span class="variable language_">this</span>.<span class="property">videoData</span>,</span><br><span class="line">        <span class="attr">hasAudio</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">hasVideo</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">cors</span>: <span class="literal">true</span>, <span class="comment">// 是否跨域</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">attachMediaElement</span>(<span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">myCameraVideoPlayer</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">load</span>();</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">bindEvents</span>();</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">startVideo</span>();</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">bindEvents</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">//视频出错后销毁重新创建</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(flvjs);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">on</span>(flvjs.<span class="property">Events</span>.<span class="property">ERROR</span>, <span class="variable language_">this</span>.<span class="property">handleErr</span>);</span><br><span class="line">      <span class="comment">// this.player.on(&quot;loading_complete&quot;, this.handleErr);</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">on</span>(flvjs.<span class="property">Events</span>.<span class="property">LOADING_COMPLETE</span>, <span class="variable language_">this</span>.<span class="property">handleErr</span>);</span><br><span class="line">      <span class="comment">// this.player.on(flvjs.Events.RECOVERED_EARLY_EOF, this.handleErr);</span></span><br><span class="line">      <span class="comment">// this.player.on(&quot;media_info&quot;, this.destroy);</span></span><br><span class="line">      <span class="comment">// this.player.on(&quot;metadata_arrived&quot;, this.destroy);</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">handleErr</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// console.log(&quot;errorType:&quot;, errorType);</span></span><br><span class="line">      <span class="comment">// console.log(&quot;errorDetail:&quot;, errorDetail);</span></span><br><span class="line">      <span class="comment">// console.log(&quot;errorInfo:&quot;, errorInfo);</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">player</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">pause</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">unload</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">detachMediaElement</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">destroy</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">loadVideo</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">startVideo</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">player</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">play</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">pause</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">player</span> &amp;&amp; <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">pause</span>();</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">destroy</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">player</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">pause</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">unload</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">detachMediaElement</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span>.<span class="title function_">destroy</span>();</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">player</span> = <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">supported</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">player</span>: <span class="literal">null</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// console.log(this.videoData, 2);\</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">player</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">supported</span> = flvjs.<span class="title function_">isSupported</span>();</span><br><span class="line">		<span class="comment">// 因为业务需求，封装时autoPlay 的含义为：true 引用组件了即刻加载视频； false 则可以后续refs使用子组件方法load加载播放视频</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">this</span>.<span class="property">autoPlay</span>)&#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">loadVideo</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">beforeDestroy</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;beforeDestroy&quot;</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">destroy</span>();</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;less&quot; scoped&gt;</span><br><span class="line"><span class="selector-class">.cameraVideo</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="selector-class">.videoControl</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/Flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="前后端全菜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/29/Flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">flex布局space-between最后一行展示问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-29 15:31:21" itemprop="dateCreated datePublished" datetime="2022-12-29T15:31:21+08:00">2022-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:35:14" itemprop="dateModified" datetime="2023-03-06T20:35:14+08:00">2023-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
             </span>
 
           
@@ -258,7 +350,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -272,7 +364,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/29/el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">el-table-column数据过长多行省略处理</a>
+            <a href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">el-table-column数据过长多行省略处理</a>
         </h2>
 
         <div class="post-meta">
@@ -281,9 +373,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-29 15:26:19 / 修改时间：15:29:19" itemprop="dateCreated datePublished" datetime="2022-12-29T15:26:19+08:00">2022-12-29</time>
+              <time title="创建时间：2022-12-29 15:26:19" itemprop="dateCreated datePublished" datetime="2022-12-29T15:26:19+08:00">2022-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:34:23" itemprop="dateModified" datetime="2023-03-06T20:34:23+08:00">2023-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
             </span>
 
           
@@ -321,7 +428,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/27/Echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -335,7 +442,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/" class="post-title-link" itemprop="url">echarts鼠标首次悬浮经过页面闪动</a>
+            <a href="/2022/12/27/Echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/" class="post-title-link" itemprop="url">echarts鼠标首次悬浮经过页面闪动</a>
         </h2>
 
         <div class="post-meta">
@@ -344,10 +451,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-27 17:52:12 / 修改时间：17:59:54" itemprop="dateCreated datePublished" datetime="2022-12-27T17:52:12+08:00">2022-12-27</time>
+              <time title="创建时间：2022-12-27 17:52:12" itemprop="dateCreated datePublished" datetime="2022-12-27T17:52:12+08:00">2022-12-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:33:38" itemprop="dateModified" datetime="2023-03-06T20:33:38+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -412,9 +525,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-27 17:13:44 / 修改时间：17:19:35" itemprop="dateCreated datePublished" datetime="2022-12-27T17:13:44+08:00">2022-12-27</time>
+              <time title="创建时间：2022-12-27 17:13:44" itemprop="dateCreated datePublished" datetime="2022-12-27T17:13:44+08:00">2022-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:39:38" itemprop="dateModified" datetime="2023-03-06T20:39:38+08:00">2023-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
             </span>
 
           
@@ -452,7 +580,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/06/02/AntVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -466,7 +594,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">antVL7可视化开发问题</a>
+            <a href="/2022/06/02/AntVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">antVL7可视化开发问题</a>
         </h2>
 
         <div class="post-meta">
@@ -475,10 +603,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-06-02 15:59:26 / 修改时间：16:53:50" itemprop="dateCreated datePublished" datetime="2022-06-02T15:59:26+08:00">2022-06-02</time>
+              <time title="创建时间：2022-06-02 15:59:26" itemprop="dateCreated datePublished" datetime="2022-06-02T15:59:26+08:00">2022-06-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:16:18" itemprop="dateModified" datetime="2023-03-06T20:16:18+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -536,7 +670,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/Mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -550,7 +684,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">mapbox关闭/取消图层的点击事件</a>
+            <a href="/2022/05/18/Mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">mapbox关闭/取消图层的点击事件</a>
         </h2>
 
         <div class="post-meta">
@@ -559,17 +693,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-18 09:20:57 / 修改时间：09:31:45" itemprop="dateCreated datePublished" datetime="2022-05-18T09:20:57+08:00">2022-05-18</time>
+              <time title="创建时间：2022-05-18 09:20:57" itemprop="dateCreated datePublished" datetime="2022-05-18T09:20:57+08:00">2022-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:38:58" itemprop="dateModified" datetime="2023-03-06T20:38:58+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Gis%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">Gis相关</span></a>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
                 </span>
             </span>
 
@@ -606,7 +746,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/ElementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -620,7 +760,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">elementUI修改messageBox弹框样式</a>
+            <a href="/2022/05/18/ElementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">elementUI修改messageBox弹框样式</a>
         </h2>
 
         <div class="post-meta">
@@ -629,10 +769,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-18 08:52:23 / 修改时间：09:32:10" itemprop="dateCreated datePublished" datetime="2022-05-18T08:52:23+08:00">2022-05-18</time>
+              <time title="创建时间：2022-05-18 08:52:23" itemprop="dateCreated datePublished" datetime="2022-05-18T08:52:23+08:00">2022-05-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:34:35" itemprop="dateModified" datetime="2023-03-06T20:34:35+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -697,10 +843,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-05-07 16:33:27 / 修改时间：16:47:36" itemprop="dateCreated datePublished" datetime="2022-05-07T16:33:27+08:00">2022-05-07</time>
+              <time title="创建时间：2022-05-07 16:33:27" itemprop="dateCreated datePublished" datetime="2022-05-07T16:33:27+08:00">2022-05-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:32:18" itemprop="dateModified" datetime="2023-03-06T20:32:18+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -765,10 +917,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-04-28 09:41:42 / 修改时间：10:07:39" itemprop="dateCreated datePublished" datetime="2022-04-28T09:41:42+08:00">2022-04-28</time>
+              <time title="创建时间：2022-04-28 09:41:42" itemprop="dateCreated datePublished" datetime="2022-04-28T09:41:42+08:00">2022-04-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:33:02" itemprop="dateModified" datetime="2023-03-06T20:33:02+08:00">2023-03-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -794,81 +952,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="前后端全菜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">谷歌浏览器滚动条样式优化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-21 17:16:53 / 修改时间：17:20:52" itemprop="dateCreated datePublished" datetime="2022-04-21T17:16:53+08:00">2022-04-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下："><a href="#众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下：" class="headerlink" title="众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下："></a>众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下：</h6>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -959,20 +1042,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1014,8 +1097,8 @@
         
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
