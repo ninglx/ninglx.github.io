@@ -194,6 +194,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="前后端全菜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">记录Promise.all用法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 16:33:27" itemprop="dateCreated datePublished" datetime="2022-05-07T16:33:27+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 20:32:18" itemprop="dateModified" datetime="2023-03-06T20:32:18+08:00">2023-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h6 id="场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据"><a href="#场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据" class="headerlink" title="场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据"></a>场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据</h6><h6 id="使用方法示例："><a href="#使用方法示例：" class="headerlink" title="使用方法示例："></a>使用方法示例：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newNum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个耗时请求 返回第一个数据</span></span><br><span class="line"><span class="keyword">var</span> firstSlow = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟一个耗时请求</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/xxx&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">2</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 第二个耗时请求 返回第二个数据</span></span><br><span class="line"><span class="keyword">var</span> secondSlow = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟一个耗时请求</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/yyy&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">3</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 使用promise.all()等待以上两个请求返回数据后执行某些操作</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([firstSlow,secondSlow]).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">res</span>)&#123; <span class="comment">// 此处的 res 值应为 [2, 3]</span></span><br><span class="line">  <span class="comment">// 拿到以上两个请求返回的数据进行处理</span></span><br><span class="line">  newNum = res[<span class="number">0</span>] + res[<span class="number">1</span>]</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(newNum) <span class="comment">// newNum = 5</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,87 +1002,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/11/ElementUI-Vue%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="前后端全菜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/11/ElementUI-Vue%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/" class="post-title-link" itemprop="url">ElementVue分页组件二次封装</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-11 15:36:30" itemprop="dateCreated datePublished" datetime="2022-04-11T15:36:30+08:00">2022-04-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-06 20:34:55" itemprop="dateModified" datetime="2023-03-06T20:34:55+08:00">2023-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Vue-Element-分页组件二次封装-免除了繁琐的事件编写-使用更方便"><a href="#Vue-Element-分页组件二次封装-免除了繁琐的事件编写-使用更方便" class="headerlink" title="Vue Element 分页组件二次封装 免除了繁琐的事件编写 使用更方便"></a>Vue Element 分页组件二次封装 免除了繁琐的事件编写 使用更方便</h2><h3 id="组件（复制粘贴即可用）"><a href="#组件（复制粘贴即可用）" class="headerlink" title="组件（复制粘贴即可用）"></a>组件（复制粘贴即可用）</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/11/ElementUI-Vue%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1080,7 +1073,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
