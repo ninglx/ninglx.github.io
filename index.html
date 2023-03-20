@@ -197,6 +197,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="进击的菜鸡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" class="post-title-link" itemprop="url">基于websocket使用mapbox结合threebox实现车辆实时轨迹展示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-20 15:23:18 / 修改时间：16:09:01" itemprop="dateCreated datePublished" datetime="2023-03-20T15:23:18+08:00">2023-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs，但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"><a href="#最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs，但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下" class="headerlink" title="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs，但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"></a>最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs，但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下</h5><hr>
+<ol>
+<li>引入所需的 js 库<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// mapboxgl</span></span><br><span class="line"> &lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;xxx/mapbox-gl.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/mapbox-gl.css&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="comment">// threebox</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;xxx/threebox/threebox.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/threebox/threebox.css&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="comment">// turf</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./turf/turf.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -912,80 +989,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">elementUI修改messageBox弹框样式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-18 08:52:23" itemprop="dateCreated datePublished" datetime="2022-05-18T08:52:23+08:00">2022-05-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-06 20:34:35" itemprop="dateModified" datetime="2023-03-06T20:34:35+08:00">2023-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="elementUI-messageBox-组件自定义样式方法：添加属性’customClass’"><a href="#elementUI-messageBox-组件自定义样式方法：添加属性’customClass’" class="headerlink" title="elementUI messageBox 组件自定义样式方法：添加属性’customClass’"></a>elementUI messageBox 组件自定义样式方法：添加属性’customClass’</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.$confirm(<span class="string">&#x27;确认？&#x27;</span>,<span class="string">&#x27;告警&#x27;</span>,&#123;</span><br><span class="line">  <span class="attr">confirmButtonText</span>: <span class="string">&#x27;确定&#x27;</span>,</span><br><span class="line">  <span class="attr">cancelButtonText</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;warning&#x27;</span>,</span><br><span class="line">  <span class="attr">customClass</span>: <span class="string">&#x27;myBox&#x27;</span>  <span class="comment">// 👈</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// do some </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h6 id="注意-放-customClass-的-style-不能加-scoped"><a href="#注意-放-customClass-的-style-不能加-scoped" class="headerlink" title="注意 放 customClass 的 style 不能加 scoped"></a>注意 放 customClass 的 style 不能加 scoped</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line"><span class="selector-class">.myBox</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: green;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1057,7 +1060,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1070,7 +1073,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
