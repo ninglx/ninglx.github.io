@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"ninglx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="如果同一变量有多个条件123if(a &#x3D;&#x3D; 1 || b &#x3D;&#x3D; 2 || c &#x3D;&#x3D; 3)&amp;#123;  &#x2F;&#x2F; do something&amp;#125;  👇shorter👇">
+  <meta name="description" content="cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：一般常用的插值有两种，一种是连续值插值SampleProperty，即给个时间段和一个状态区间，cesium会在区间内自己做平滑处理；一种是枚举值插值TimeIntervalCollectionProperty，即一个时间段对应一个状态，不会做平滑插值。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Js简写优化之路">
-<meta property="og:url" content="http://ninglx.github.io/2022/04/12/Js%E7%AE%80%E5%86%99%E4%BC%98%E5%8C%96%E4%B9%8B%E8%B7%AF/index.html">
+<meta property="og:title" content="记一次Cesium的property插值用法">
+<meta property="og:url" content="http://ninglx.github.io/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="Ning">
-<meta property="og:description" content="如果同一变量有多个条件123if(a &#x3D;&#x3D; 1 || b &#x3D;&#x3D; 2 || c &#x3D;&#x3D; 3)&amp;#123;  &#x2F;&#x2F; do something&amp;#125;  👇shorter👇">
+<meta property="og:description" content="cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：一般常用的插值有两种，一种是连续值插值SampleProperty，即给个时间段和一个状态区间，cesium会在区间内自己做平滑处理；一种是枚举值插值TimeIntervalCollectionProperty，即一个时间段对应一个状态，不会做平滑插值。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-12T03:07:28.000Z">
-<meta property="article:modified_time" content="2023-03-06T12:36:44.302Z">
+<meta property="article:published_time" content="2023-04-23T08:51:21.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:38:07.369Z">
 <meta property="article:author" content="Ning lx">
+<meta property="article:tag" content="Cesium">
 <meta property="article:tag" content="Javascript">
-<meta property="article:tag" content="语法优化">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ninglx.github.io/2022/04/12/Js%E7%AE%80%E5%86%99%E4%BC%98%E5%8C%96%E4%B9%8B%E8%B7%AF/">
+<link rel="canonical" href="http://ninglx.github.io/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Js简写优化之路 | Ning</title>
+  <title>记一次Cesium的property插值用法 | Ning</title>
   
 
 
@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/12/Js%E7%AE%80%E5%86%99%E4%BC%98%E5%8C%96%E4%B9%8B%E8%B7%AF/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -215,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Js简写优化之路
+          记一次Cesium的property插值用法
         </h1>
 
         <div class="post-meta">
@@ -224,16 +224,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-04-12 11:07:28" itemprop="dateCreated datePublished" datetime="2022-04-12T11:07:28+08:00">2022-04-12</time>
+              <time title="创建时间：2023-04-23 16:51:21 / 修改时间：17:38:07" itemprop="dateCreated datePublished" datetime="2023-04-23T16:51:21+08:00">2023-04-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-06 20:36:44" itemprop="dateModified" datetime="2023-03-06T20:36:44+08:00">2023-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -262,34 +256,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h5 id="如果同一变量有多个条件"><a href="#如果同一变量有多个条件" class="headerlink" title="如果同一变量有多个条件"></a>如果同一变量有多个条件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a == <span class="number">1</span> || b == <span class="number">2</span> || c == <span class="number">3</span>)&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："><a href="#cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：" class="headerlink" title="cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："></a><code>cesium</code> 中描述 <code>entity</code> 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：</h4><p><strong>一般常用的插值有两种，一种是连续值插值<code>SampleProperty</code>，即给个时间段和一个状态区间，<code>cesium</code>会在区间内自己做平滑处理；<br>一种是枚举值插值<code>TimeIntervalCollectionProperty</code>，即一个时间段对应一个状态，不会做平滑插值。</strong></p>
+<p><em>假设现在有一个entity：</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myEntity = vie.<span class="property">entities</span>.<span class="title function_">add</span>(&#123;</span><br><span class="line">  <span class="attr">id</span>: options.<span class="property">id</span>,</span><br><span class="line">  <span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">`gltf/car.gltf`</span>,</span><br><span class="line">    <span class="attr">scale</span>: <span class="number">0.8</span>,</span><br><span class="line">    <span class="attr">minimumPixelSize</span>: <span class="number">32</span>,</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Cesium</span>.<span class="property">Color</span>.<span class="title function_">fromCssColorString</span>(<span class="string">&#x27;#ff0&#x27;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>👇shorter👇</p>
+<p>以下的<code>source</code>都是若干个 <code>&#123;时间，对应值组成的对象&#125;</code> 组成的数组list</p>
 <span id="more"></span>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].<span class="title function_">includes</span>(a))&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="简单-if-判断使用三元表达式代替"><a href="#简单-if-判断使用三元表达式代替" class="headerlink" title="简单 if 判断使用三元表达式代替"></a>简单 if 判断使用三元表达式代替</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bool</span><br><span class="line"><span class="keyword">if</span>(a == <span class="number">1</span>)&#123;</span><br><span class="line">  bool = <span class="literal">true</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  bool = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>SampleProperty</code>用法：</li>
+</ol>
+<p><em>首先是特殊的<code>SampledProperty</code>，使用<code>SampledPositionProperty</code>，方便设置entity的位置</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> propertyPosition = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">SampledPositionProperty</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> source) &#123;</span><br><span class="line">  <span class="keyword">let</span> time = <span class="title class_">Cesium</span>.<span class="property">JulianDate</span>.<span class="title function_">fromDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(item.<span class="property">timeStamp</span>));</span><br><span class="line">  <span class="keyword">let</span> position = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromDegrees</span>(item.<span class="property">longitude</span>, item.<span class="property">latitude</span>, -<span class="number">1</span>);</span><br><span class="line">  <span class="comment">// 为每个 timeStamp 添加 经纬度位置信息，以实现entity平滑移动</span></span><br><span class="line">  propertyPosition.<span class="title function_">addSample</span>(time, position);</span><br><span class="line">&#125;</span><br><span class="line">myEntity.<span class="property">position</span> = propertyPosition</span><br></pre></td></tr></table></figure>
 
-<p>👇shorter👇</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bool = a == <span class="number">1</span> ? <span class="literal">true</span> : <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p><em>其次是普通的<code>SampledProperty</code>，可以随意设置自定义的number值，平滑线性处理</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> customProperty = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">SampledProperty</span>(<span class="title class_">Number</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; source.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> time = <span class="title class_">Cesium</span>.<span class="property">JulianDate</span>.<span class="title function_">fromDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(source[i].<span class="property">timeStamp</span>));</span><br><span class="line">  customProperty.<span class="title function_">addSample</span>(time, source[i].<span class="property">speed</span>)</span><br><span class="line">&#125;</span><br><span class="line">myEntity.<span class="property">customProperty</span> = customProperty</span><br></pre></td></tr></table></figure>
 
-<h5 id="是否为空检查-简写"><a href="#是否为空检查-简写" class="headerlink" title="是否为空检查 简写"></a>是否为空检查 简写</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="keyword">if</span>(a != <span class="string">&#x27;&#x27;</span> &amp;&amp; a != <span class="literal">null</span> &amp;&amp; a != <span class="literal">undefined</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do some&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><code>TimeIntervalCollectionProperty</code>用法：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> property = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">TimeIntervalCollectionProperty</span>(<span class="title class_">Number</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; source.<span class="property">length</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="comment">// 为每个时间段添加一个值属性 （timeInterval试了下用fromDate不生效，只能用Iso8601转，后续再研究下为啥到底可不可以）</span></span><br><span class="line">  property.<span class="property">intervals</span>.<span class="title function_">addInterval</span>(</span><br><span class="line">    <span class="title class_">Cesium</span>.<span class="property">TimeInterval</span>.<span class="title function_">fromIso8601</span>(&#123;</span><br><span class="line">      <span class="attr">iso8601</span>: <span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(source[i].timeStamp).toISOString()&#125;</span>/<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>(source[i + <span class="number">1</span>].timeStamp).toISOString()&#125;</span>`</span>,</span><br><span class="line">      <span class="attr">isStartIncluded</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">isStopIncluded</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">data</span>: source[i].<span class="property">courseAngle</span></span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">myEntity.<span class="property">timeIntervalProperty</span> = property</span><br></pre></td></tr></table></figure>
 
-<p>👇shorter👇</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a</span><br><span class="line">a &amp;&amp; <span class="title function_">dosome</span>()</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dosome</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do some&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>上述各种<code>property</code>赋值给<code>entity</code>后，监听<code>clock</code>时间变化取到对应的值，即可进行对应业务逻辑的实现</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">viewer.<span class="property">clock</span>.<span class="property">onTick</span>.<span class="title function_">addEventListener</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// let getProperty = myEntity.customProperty.getValue(viewer.clock.currentTime)</span></span><br><span class="line">  <span class="comment">// let getProperty = myEntity.timeIntervalProperty.getValue(viewer.clock.currentTime)</span></span><br><span class="line">  <span class="keyword">let</span> getProperty = myEntity.<span class="property">position</span>.<span class="title function_">getValue</span>(viewer.<span class="property">clock</span>.<span class="property">currentTime</span>)</span><br><span class="line">  <span class="comment">// todo</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h5 id="检查某变量是否有值，若无则设默认值"><a href="#检查某变量是否有值，若无则设默认值" class="headerlink" title="检查某变量是否有值，若无则设默认值"></a>检查某变量是否有值，若无则设默认值</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="keyword">if</span>(a == <span class="literal">null</span> || a == <span class="literal">undefined</span> || a == <span class="string">&#x27;&#x27;</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="string">&#x27;default&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>👇shorter👇</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = a || <span class="string">&#x27;default&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="常用-array-find-使用场景-有一个对象数组并且我们想要根据对象属性查找特定对象时-只返回符合条件的第一个"><a href="#常用-array-find-使用场景-有一个对象数组并且我们想要根据对象属性查找特定对象时-只返回符合条件的第一个" class="headerlink" title="(常用) array.find() 使用场景 有一个对象数组并且我们想要根据对象属性查找特定对象时(只返回符合条件的第一个)"></a>(常用) array.find() 使用场景 有一个对象数组并且我们想要根据对象属性查找特定对象时(只返回符合条件的第一个)</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = []</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">findFromArr</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; data.<span class="property">length</span>; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (data[i].<span class="property">type</span> === <span class="string">&quot;test1&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>👇shorter👇</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = []</span><br><span class="line">findSingle = data.<span class="title function_">find</span>(</span><br><span class="line">  <span class="function">(<span class="params">data</span>) =&gt;</span> data.<span class="property">type</span> === <span class="string">&quot;test1&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 待续。。。</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><em>至于混合的property：<code>CompositeProperty</code><br>，即把上述两种property混合到一个property的用法，实现部分时间段线性变化，部分时间段跳跃枚举变化，理论上提供了对应的api，是可以实现的，由于暂时没用到，不做记录，后续遇到再研究。。。</em></p>
 
     </div>
 
@@ -319,8 +312,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
+              <a href="/tags/Cesium/" rel="tag"><i class="fa fa-tag"></i> Cesium</a>
               <a href="/tags/Javascript/" rel="tag"><i class="fa fa-tag"></i> Javascript</a>
-              <a href="/tags/%E8%AF%AD%E6%B3%95%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 语法优化</a>
           </div>
 
         
@@ -329,13 +322,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/11/ElementUI-Vue%E5%88%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/" rel="prev" title="ElementVue分页组件二次封装">
-      <i class="fa fa-chevron-left"></i> ElementVue分页组件二次封装
+    <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" rel="prev" title="基于websocket使用mapbox结合threebox实现车辆实时轨迹展示">
+      <i class="fa fa-chevron-left"></i> 基于websocket使用mapbox结合threebox实现车辆实时轨迹展示
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/04/12/Json%E4%B8%B2%E4%B8%ADkey%E5%80%BC%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next" title="Json串中key值改为指定字符串">
-      Json串中key值改为指定字符串 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -399,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%90%8C%E4%B8%80%E5%8F%98%E9%87%8F%E6%9C%89%E5%A4%9A%E4%B8%AA%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">如果同一变量有多个条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%80%E5%8D%95-if-%E5%88%A4%E6%96%AD%E4%BD%BF%E7%94%A8%E4%B8%89%E5%85%83%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A3%E6%9B%BF"><span class="nav-number">2.</span> <span class="nav-text">简单 if 判断使用三元表达式代替</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA%E6%A3%80%E6%9F%A5-%E7%AE%80%E5%86%99"><span class="nav-number">3.</span> <span class="nav-text">是否为空检查 简写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%9F%90%E5%8F%98%E9%87%8F%E6%98%AF%E5%90%A6%E6%9C%89%E5%80%BC%EF%BC%8C%E8%8B%A5%E6%97%A0%E5%88%99%E8%AE%BE%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">检查某变量是否有值，若无则设默认值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8-array-find-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF-%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E5%B9%B6%E4%B8%94%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A%E5%AF%B9%E8%B1%A1%E6%97%B6-%E5%8F%AA%E8%BF%94%E5%9B%9E%E7%AC%A6%E5%90%88%E6%9D%A1%E4%BB%B6%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA"><span class="nav-number">5.</span> <span class="nav-text">(常用) array.find() 使用场景 有一个对象数组并且我们想要根据对象属性查找特定对象时(只返回符合条件的第一个)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#cesium-%E4%B8%AD%E6%8F%8F%E8%BF%B0-entity-%E9%9A%8F%E6%97%B6%E9%97%B4%E5%8A%A8%E6%80%81%E5%8F%98%E5%8C%96%E6%97%B6%EF%BC%8C%E5%BF%85%E7%84%B6%E8%A6%81%E7%94%A8%E5%88%B0-property-%E6%8F%92%E5%80%BC%EF%BC%8C%E6%9D%A5%E5%AF%B9%E5%BA%94%E6%97%B6%E9%97%B4%E5%92%8C%E5%AE%9E%E4%BD%93%E7%9A%84%E7%8A%B6%E6%80%81%EF%BC%8C%E6%9C%80%E8%BF%91%E6%9C%89%E7%94%A8%E5%88%B0%E8%BF%99%E4%B8%AA%E5%B1%9E%E6%80%A7%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
