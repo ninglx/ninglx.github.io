@@ -197,6 +197,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="进击的菜鸡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">antVL7可视化开发问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-02 15:59:26" itemprop="dateCreated datePublished" datetime="2022-06-02T15:59:26+08:00">2022-06-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-07 20:49:32" itemprop="dateModified" datetime="2023-03-07T20:49:32+08:00">2023-03-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="前一阵子在使用antVL7进行地图可视化开发时遇到一些问题，这里总结记录一下"><a href="#前一阵子在使用antVL7进行地图可视化开发时遇到一些问题，这里总结记录一下" class="headerlink" title="前一阵子在使用antVL7进行地图可视化开发时遇到一些问题，这里总结记录一下"></a>前一阵子在使用antVL7进行地图可视化开发时遇到一些问题，这里总结记录一下</h5><h6 id="经典热力图展示问题"><a href="#经典热力图展示问题" class="headerlink" title="经典热力图展示问题"></a>经典热力图展示问题</h6><blockquote>
+<p>首先是基本用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myHeatmapLayer = <span class="keyword">new</span> <span class="title class_">HeatmapLayer</span>()</span><br><span class="line">  .<span class="title function_">source</span>(data)</span><br><span class="line">  .<span class="title function_">shape</span>(<span class="string">&#x27;heatmap&#x27;</span>)</span><br><span class="line">  .<span class="title function_">size</span>(<span class="string">&#x27;demonum&#x27;</span>, [<span class="number">0</span>, <span class="number">1.0</span>])</span><br><span class="line">  .<span class="title function_">style</span>(&#123;</span><br><span class="line">    <span class="comment">// 具体色带，热力图最小半径等配置，可以自行去官网查看</span></span><br><span class="line">    ......</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>上述代码 data 是一个由多个 feature 点构成的 geojson 格式数据；<br>其中 demonum 是上述数据中 feature 属性即 <code>feature.properties.demonum</code> 字段大小（必须为数字类型，可以遍历使用<code>Number()</code>操作）<br>由于有多个 feature, 所以热力图 将根据每个 feature 中的 demonum 字段大小作为热力值进行绘制
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -908,87 +992,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/" class="post-title-link" itemprop="url">Js异步改同步（按顺序执行）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-13 17:00:42" itemprop="dateCreated datePublished" datetime="2022-04-13T17:00:42+08:00">2022-04-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-06 20:37:25" itemprop="dateModified" datetime="2023-03-06T20:37:25+08:00">2023-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1060,7 +1063,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
