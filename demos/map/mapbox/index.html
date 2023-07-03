@@ -89,6 +89,14 @@
 					<el-button style="width:calc(50% - 8px)" size="mini" @click="clearGeojson(true)">清除</el-button>
 				</div>
 			</div>
+			<div class="panelItem">
+				<el-input type="textarea" :rows="2" class="panelItem" size="mini" placeholder="输入合法的 raster tile url"
+					v-model="rasterLayerUrl"></el-input>
+				<div class="panelItem">
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="addRasterLayer">添加栅格瓦片</el-button>
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="removeRasterLayer">移除</el-button>
+				</div>
+			</div>
 		</div>
 		<div class="drawResult">
 			<el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果" type="textarea" :rows="6"
@@ -102,10 +110,35 @@
 			el: '#app',
 			data: function () {
 				return {
-					visible: false, lnglatStr: '', drawResultText: '', styleValue: '', drawGeojsonValue: ''
+					visible: false, lnglatStr: '', drawResultText: '', styleValue: '', drawGeojsonValue: '', rasterLayerUrl: '',
 				}
 			},
 			methods: {
+				addRasterLayer() {
+					if (!map.getLayer('customRaster-layer')) {
+						let raster = {
+							"id": 'customRaster-layer',
+							"type": "raster",
+							"source": {
+								"type": "raster",
+								"tiles": [this.rasterLayerUrl],
+								"tileSize": 256
+							}
+						}
+						map.addLayer(raster);
+					} else {
+						this.$notify.warning({
+							title: '请先移除已存在栅格图层！'
+						});
+					}
+				},
+				removeRasterLayer() {
+					if (map.getLayer('customRaster-layer')) {
+						map.removeLayer('customRaster-layer')
+						map.removeSource('customRaster-layer')
+					}
+					this.rasterLayerUrl = ''
+				},
 				clearGeojson(reset) {
 					if (map.getLayer('customSource-layer')) {
 						map.removeLayer('customSource-layer')
@@ -153,11 +186,11 @@
 								map.addLayer(
 									{
 										id: "customSource-layer",
-										type: "cricle",
+										type: "circle",
 										source: "customSource",
 										paint: {
 											'circle-color': 'red',
-											'circle-radius': 2
+											'circle-radius': 10
 										},
 									},
 								)
