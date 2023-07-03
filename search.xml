@@ -150,6 +150,20 @@
       </tags>
   </entry>
   <entry>
+    <title>Js异步改同步（按顺序执行）</title>
+    <url>/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/</url>
+    <content><![CDATA[<h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5><span id="more"></span>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">val flag = <span class="string">&#x27;before&#x27;</span></span><br><span class="line">val slowFun = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; <span class="comment">// 返回一个 promise 对象</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      flag = <span class="string">&#x27;changed&#x27;</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;slowFun done&#x27;</span>)</span><br><span class="line">      <span class="title function_">resolve</span>() <span class="comment">// 标志此方法完成</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="number">2000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAll</span>(<span class="params"></span>)&#123; <span class="comment">// async 关键字指明是一个同步方法</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">slowFun</span>() <span class="comment">// await 即等待slowFun执行完成</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(flag)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;have waited slowFun for 2s&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">doAll</span>() <span class="comment">// 执行测试</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>异步同步</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Js简写优化之路</title>
     <url>/2022/04/12/Js%E7%AE%80%E5%86%99%E4%BC%98%E5%8C%96%E4%B9%8B%E8%B7%AF/</url>
     <content><![CDATA[<h5 id="如果同一变量有多个条件"><a href="#如果同一变量有多个条件" class="headerlink" title="如果同一变量有多个条件"></a>如果同一变量有多个条件</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(a == <span class="number">1</span> || b == <span class="number">2</span> || c == <span class="number">3</span>)&#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -187,20 +201,6 @@
       <tags>
         <tag>Javascript</tag>
         <tag>语法优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Js异步改同步（按顺序执行）</title>
-    <url>/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/</url>
-    <content><![CDATA[<h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5><span id="more"></span>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">val flag = <span class="string">&#x27;before&#x27;</span></span><br><span class="line">val slowFun = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; <span class="comment">// 返回一个 promise 对象</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      flag = <span class="string">&#x27;changed&#x27;</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;slowFun done&#x27;</span>)</span><br><span class="line">      <span class="title function_">resolve</span>() <span class="comment">// 标志此方法完成</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="number">2000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAll</span>(<span class="params"></span>)&#123; <span class="comment">// async 关键字指明是一个同步方法</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">slowFun</span>() <span class="comment">// await 即等待slowFun执行完成</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(flag)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;have waited slowFun for 2s&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">doAll</span>() <span class="comment">// 执行测试</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>异步同步</tag>
       </tags>
   </entry>
   <entry>
@@ -473,31 +473,6 @@
       </tags>
   </entry>
   <entry>
-    <title>记录Promise.all用法</title>
-    <url>/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<h6 id="场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据"><a href="#场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据" class="headerlink" title="场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据"></a>场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据</h6><h6 id="使用方法示例："><a href="#使用方法示例：" class="headerlink" title="使用方法示例："></a>使用方法示例：</h6><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newNum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个耗时请求 返回第一个数据</span></span><br><span class="line"><span class="keyword">var</span> firstSlow = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟一个耗时请求</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/xxx&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">2</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 第二个耗时请求 返回第二个数据</span></span><br><span class="line"><span class="keyword">var</span> secondSlow = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟一个耗时请求</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/yyy&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">3</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 使用promise.all()等待以上两个请求返回数据后执行某些操作</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([firstSlow,secondSlow]).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">res</span>)&#123; <span class="comment">// 此处的 res 值应为 [2, 3]</span></span><br><span class="line">  <span class="comment">// 拿到以上两个请求返回的数据进行处理</span></span><br><span class="line">  newNum = res[<span class="number">0</span>] + res[<span class="number">1</span>]</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(newNum) <span class="comment">// newNum = 5</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>异步同步</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谷歌浏览器滚动条样式优化</title>
-    <url>/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h6 id="众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下："><a href="#众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下：" class="headerlink" title="众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下："></a>众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下：</h6><span id="more"></span>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*滚动条样式：谷歌浏览器下*/</span></span><br><span class="line">::-webkit-scrollbar&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的轨道*/</span></span><br><span class="line">::-webkit-scrollbar-track&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的滑块按钮*/</span></span><br><span class="line">::-webkit-scrollbar-thumb&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#e4e7ed</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的上下两端的按钮*/</span></span><br><span class="line">::-webkit-scrollbar-button&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#B0AEDA</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>记录一下好用的Js技巧（新手向大佬勿喷）</title>
     <url>/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/</url>
     <content><![CDATA[<h6 id="从数组中删除重复项"><a href="#从数组中删除重复项" class="headerlink" title="从数组中删除重复项"></a>从数组中删除重复项</h6><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> deletedArr = [...<span class="keyword">new</span> <span class="title class_">Set</span>(arr)]</span><br></pre></td></tr></table></figure>
@@ -524,6 +499,31 @@
       <tags>
         <tag>Javascript</tag>
         <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录Promise.all用法</title>
+    <url>/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<h6 id="场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据"><a href="#场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据" class="headerlink" title="场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据"></a>场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据</h6><h6 id="使用方法示例："><a href="#使用方法示例：" class="headerlink" title="使用方法示例："></a>使用方法示例：</h6><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> newNum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个耗时请求 返回第一个数据</span></span><br><span class="line"><span class="keyword">var</span> firstSlow = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟一个耗时请求</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/xxx&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">2</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 第二个耗时请求 返回第二个数据</span></span><br><span class="line"><span class="keyword">var</span> secondSlow = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 模拟一个耗时请求</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">axios</span>.<span class="title function_">get</span>(<span class="string">&#x27;/yyy&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="number">3</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 使用promise.all()等待以上两个请求返回数据后执行某些操作</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([firstSlow,secondSlow]).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">res</span>)&#123; <span class="comment">// 此处的 res 值应为 [2, 3]</span></span><br><span class="line">  <span class="comment">// 拿到以上两个请求返回的数据进行处理</span></span><br><span class="line">  newNum = res[<span class="number">0</span>] + res[<span class="number">1</span>]</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(newNum) <span class="comment">// newNum = 5</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>异步同步</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谷歌浏览器滚动条样式优化</title>
+    <url>/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h6 id="众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下："><a href="#众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下：" class="headerlink" title="众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下："></a>众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下：</h6><span id="more"></span>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*滚动条样式：谷歌浏览器下*/</span></span><br><span class="line">::-webkit-scrollbar&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的轨道*/</span></span><br><span class="line">::-webkit-scrollbar-track&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的滑块按钮*/</span></span><br><span class="line">::-webkit-scrollbar-thumb&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#e4e7ed</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的上下两端的按钮*/</span></span><br><span class="line">::-webkit-scrollbar-button&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#B0AEDA</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Css</tag>
       </tags>
   </entry>
   <entry>
