@@ -117,22 +117,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Json串中key值改为指定字符串</title>
-    <url>/2022/04/12/Json%E4%B8%B2%E4%B8%ADkey%E5%80%BC%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h5 id="JSON串中key值改为指定字符串"><a href="#JSON串中key值改为指定字符串" class="headerlink" title="JSON串中key值改为指定字符串"></a>JSON串中key值改为指定字符串</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">objDemo[newKey] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>等同于👇</p>
-<span id="more"></span>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">objDemo</span>:&#123;</span><br><span class="line">  <span class="attr">newKey</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Js实现网页时钟（备用）</title>
     <url>/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/</url>
     <content><![CDATA[<h6 id="js定时器实现一个网页时钟，直接贴代码（Vue框架环境）"><a href="#js定时器实现一个网页时钟，直接贴代码（Vue框架环境）" class="headerlink" title="js定时器实现一个网页时钟，直接贴代码（Vue框架环境）"></a>js定时器实现一个网页时钟，直接贴代码（Vue框架环境）</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-sjzt&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-xs&quot;</span>&gt;</span>&#123;&#123; dateTime &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-nyr&quot;</span>&gt;</span>&#123;&#123; yearTime &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -146,6 +130,22 @@
       </categories>
       <tags>
         <tag>Vue</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Json串中key值改为指定字符串</title>
+    <url>/2022/04/12/Json%E4%B8%B2%E4%B8%ADkey%E5%80%BC%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h5 id="JSON串中key值改为指定字符串"><a href="#JSON串中key值改为指定字符串" class="headerlink" title="JSON串中key值改为指定字符串"></a>JSON串中key值改为指定字符串</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">objDemo[newKey] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>等同于👇</p>
+<span id="more"></span>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">objDemo</span>:&#123;</span><br><span class="line">  <span class="attr">newKey</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
         <tag>Javascript</tag>
       </tags>
   </entry>
@@ -204,26 +204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>NodeJs换镜像源</title>
-    <url>/2022/04/11/NodeJs%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90/</url>
-    <content><![CDATA[<h3 id="nodejs-换源"><a href="#nodejs-换源" class="headerlink" title="nodejs 换源"></a>nodejs 换源</h3><p>get命令查看registry</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
-
-<p>nodejs原版registry为</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">http</span>:<span class="comment">//registry.npmjs.org</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>用set换为淘宝镜像：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm config set registry <span class="attr">http</span>:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>NodeJs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue中clearInterval失效问题</title>
     <url>/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h5 id="使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费"><a href="#使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费" class="headerlink" title="使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费"></a>使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费</h5><h5 id="首先是setInterval和clearInterval的基本用法"><a href="#首先是setInterval和clearInterval的基本用法" class="headerlink" title="首先是setInterval和clearInterval的基本用法"></a>首先是<strong>setInterval</strong>和<strong>clearInterval</strong>的基本用法</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="comment">// 每 1s 调用一次</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do once...&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">beforeDestroy</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer) <span class="comment">// 清除定时器 myTimer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -268,6 +248,26 @@
         <tag>Vue</tag>
         <tag>Javascript</tag>
         <tag>地图可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NodeJs换镜像源</title>
+    <url>/2022/04/11/NodeJs%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90/</url>
+    <content><![CDATA[<h3 id="nodejs-换源"><a href="#nodejs-换源" class="headerlink" title="nodejs 换源"></a>nodejs 换源</h3><p>get命令查看registry</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
+
+<p>nodejs原版registry为</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">http</span>:<span class="comment">//registry.npmjs.org</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>用set换为淘宝镜像：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">npm config set registry <span class="attr">http</span>:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>NodeJs</tag>
       </tags>
   </entry>
   <entry>
@@ -365,22 +365,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用protobuf进行前后端数据交互</title>
-    <url>/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/</url>
-    <content><![CDATA[<h5 id="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"><a href="#在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理" class="headerlink" title="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下:比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞 – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"></a>在前后端交互过程中，一般采用<code>json</code>作为通信协议，不过在特殊情况下:<br/>比如最近项目中要求<span style='color:green'><code>websocket</code>短时间内频繁由后台推送大量数据</span>给前端，由于网络原因很容易阻塞<br/> – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择<code>protobuf</code>作为通信协议，先把数据进行序列化再发送…接收…处理</h5><ol>
-<li>首先是前后端协商定义数据格式  &#x3D;&gt; 最终后端语言定义并产出<code>.proto</code>文件供前后端使用<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 首先加载proto实体，确定解析的标准</span></span><br><span class="line"><span class="keyword">let</span> model, requestModel;</span><br><span class="line"><span class="keyword">var</span> protobuf = <span class="built_in">require</span>(<span class="string">&quot;protobufjs&quot;</span>);</span><br><span class="line">protobuf.<span class="title function_">load</span>(<span class="string">&quot;../example.proto&quot;</span>, <span class="keyword">function</span> (<span class="params">event, root</span>) &#123;</span><br><span class="line">  model = root.<span class="title function_">lookupType</span>(<span class="string">&quot;com.modelName&quot;</span>);</span><br><span class="line">  requestModel = root.<span class="title function_">lookupType</span>(<span class="string">&#x27;com.requestModelName&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>前端序列化<code>json</code> &amp;&amp; 发送<code>proto</code>数据<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> payload = &#123;<span class="attr">param1</span>:<span class="string">&#x27;paramData&#x27;</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> errMsg = requestModel.<span class="title function_">verify</span>(payload);</span><br><span class="line"><span class="keyword">if</span> (errMsg)</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> fail === <span class="string">&quot;function&quot;</span>)</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line"><span class="comment">// Create a new message</span></span><br><span class="line"><span class="keyword">let</span> message = <span class="title class_">RequestDataType</span>.<span class="title function_">create</span>(payload); <span class="comment">// or use .fromObject if conversion is necessary</span></span><br><span class="line"><span class="comment">// Encode a message to an Uint8Array (browser) or Buffer (node)</span></span><br><span class="line"><span class="keyword">let</span> buffer = <span class="title class_">RequestDataType</span>.<span class="title function_">encode</span>(message).<span class="title function_">finish</span>();</span><br><span class="line"><span class="comment">// buffer 即为需要发送的数据包</span></span><br></pre></td></tr></table></figure></li>
-<li>前端解析接收到的<code>proto</code>数据<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里意思是模拟接收数据的回调</span></span><br><span class="line">xxx.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">  <span class="comment">// 假设res.data为接收到的数据包</span></span><br><span class="line">  reader.<span class="title function_">readAsArrayBuffer</span>(res.<span class="property">data</span>);</span><br><span class="line">  reader.<span class="property">onload</span> =<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> buf = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(e.<span class="property">target</span>.<span class="property">result</span>);</span><br><span class="line">    <span class="comment">// realData即为解析后的数据</span></span><br><span class="line">    <span class="keyword">let</span> realData = model.<span class="title function_">decode</span>(buf);</span><br><span class="line">    <span class="comment">// todo...根据返回的realData进行业务逻辑处理</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端展示文件流图片</title>
     <url>/2022/04/11/%E5%89%8D%E7%AB%AF%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E6%B5%81%E5%9B%BE%E7%89%87/</url>
     <content><![CDATA[<h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><span id="more"></span>
@@ -392,22 +376,6 @@
       <tags>
         <tag>Vue</tag>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>原生HTML-table表格，超出内容鼠标悬浮展示</title>
-    <url>/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/</url>
-    <content><![CDATA[<h6 id="最近项目上遇到一个需求是地图上的-popup-弹窗里需要做个分页表格，所以这里只能用原生-html-js-来实现，又因为-popup-宽度非常有限，所以过长的-cell-需要用…隐藏，鼠标悬浮展示完整内容，纯-html-css-即可实现"><a href="#最近项目上遇到一个需求是地图上的-popup-弹窗里需要做个分页表格，所以这里只能用原生-html-js-来实现，又因为-popup-宽度非常有限，所以过长的-cell-需要用…隐藏，鼠标悬浮展示完整内容，纯-html-css-即可实现" class="headerlink" title="最近项目上遇到一个需求是地图上的 popup 弹窗里需要做个分页表格，所以这里只能用原生 html js 来实现，又因为 popup 宽度非常有限，所以过长的 cell 需要用…隐藏，鼠标悬浮展示完整内容，纯 html + css 即可实现"></a>最近项目上遇到一个需求是地图上的 popup 弹窗里需要做个分页表格，所以这里只能用原生 html js 来实现，又因为 popup 宽度非常有限，所以过长的 cell 需要用…隐藏，鼠标悬浮展示完整内容，纯 html + css 即可实现</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&#x27;moreTable&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">titel</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h6 id="👆-title-可以保证鼠标悬浮展示内容，可以通过遍历-table-tr-td-加上这个属性，必须保证-title-文字和内容区相同"><a href="#👆-title-可以保证鼠标悬浮展示内容，可以通过遍历-table-tr-td-加上这个属性，必须保证-title-文字和内容区相同" class="headerlink" title="👆 title 可以保证鼠标悬浮展示内容，可以通过遍历 table tr td 加上这个属性，必须保证 title 文字和内容区相同"></a>👆 title 可以保证鼠标悬浮展示内容，可以通过遍历 table tr td 加上这个属性，必须保证 title 文字和内容区相同</h6><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.moreTable</span>&#123;</span><br><span class="line">  <span class="attribute">table-layout</span>: fixed;</span><br><span class="line">  <span class="attribute">word-break</span>: break-all;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tableCell</span>&#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden; // 超出区域隐藏</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;  // 文本超出区域...展示</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;  // 不换行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="end…"><a href="#end…" class="headerlink" title="end…"></a>end…</h6>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Css</tag>
       </tags>
   </entry>
   <entry>
@@ -431,6 +399,38 @@
         <tag>Mapbox</tag>
         <tag>Threejs</tag>
         <tag>Websocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原生HTML-table表格，超出内容鼠标悬浮展示</title>
+    <url>/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/</url>
+    <content><![CDATA[<h6 id="最近项目上遇到一个需求是地图上的-popup-弹窗里需要做个分页表格，所以这里只能用原生-html-js-来实现，又因为-popup-宽度非常有限，所以过长的-cell-需要用…隐藏，鼠标悬浮展示完整内容，纯-html-css-即可实现"><a href="#最近项目上遇到一个需求是地图上的-popup-弹窗里需要做个分页表格，所以这里只能用原生-html-js-来实现，又因为-popup-宽度非常有限，所以过长的-cell-需要用…隐藏，鼠标悬浮展示完整内容，纯-html-css-即可实现" class="headerlink" title="最近项目上遇到一个需求是地图上的 popup 弹窗里需要做个分页表格，所以这里只能用原生 html js 来实现，又因为 popup 宽度非常有限，所以过长的 cell 需要用…隐藏，鼠标悬浮展示完整内容，纯 html + css 即可实现"></a>最近项目上遇到一个需求是地图上的 popup 弹窗里需要做个分页表格，所以这里只能用原生 html js 来实现，又因为 popup 宽度非常有限，所以过长的 cell 需要用…隐藏，鼠标悬浮展示完整内容，纯 html + css 即可实现</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&#x27;moreTable&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">titel</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h6 id="👆-title-可以保证鼠标悬浮展示内容，可以通过遍历-table-tr-td-加上这个属性，必须保证-title-文字和内容区相同"><a href="#👆-title-可以保证鼠标悬浮展示内容，可以通过遍历-table-tr-td-加上这个属性，必须保证-title-文字和内容区相同" class="headerlink" title="👆 title 可以保证鼠标悬浮展示内容，可以通过遍历 table tr td 加上这个属性，必须保证 title 文字和内容区相同"></a>👆 title 可以保证鼠标悬浮展示内容，可以通过遍历 table tr td 加上这个属性，必须保证 title 文字和内容区相同</h6><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.moreTable</span>&#123;</span><br><span class="line">  <span class="attribute">table-layout</span>: fixed;</span><br><span class="line">  <span class="attribute">word-break</span>: break-all;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.tableCell</span>&#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden; // 超出区域隐藏</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;  // 文本超出区域...展示</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;  // 不换行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="end…"><a href="#end…" class="headerlink" title="end…"></a>end…</h6>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用protobuf进行前后端数据交互</title>
+    <url>/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/</url>
+    <content><![CDATA[<h5 id="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"><a href="#在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理" class="headerlink" title="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下:比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞 – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"></a>在前后端交互过程中，一般采用<code>json</code>作为通信协议，不过在特殊情况下:<br/>比如最近项目中要求<span style='color:green'><code>websocket</code>短时间内频繁由后台推送大量数据</span>给前端，由于网络原因很容易阻塞<br/> – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择<code>protobuf</code>作为通信协议，先把数据进行序列化再发送…接收…处理</h5><ol>
+<li>首先是前后端协商定义数据格式  &#x3D;&gt; 最终后端语言定义并产出<code>.proto</code>文件供前后端使用<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 首先加载proto实体，确定解析的标准</span></span><br><span class="line"><span class="keyword">let</span> model, requestModel;</span><br><span class="line"><span class="keyword">var</span> protobuf = <span class="built_in">require</span>(<span class="string">&quot;protobufjs&quot;</span>);</span><br><span class="line">protobuf.<span class="title function_">load</span>(<span class="string">&quot;../example.proto&quot;</span>, <span class="keyword">function</span> (<span class="params">event, root</span>) &#123;</span><br><span class="line">  model = root.<span class="title function_">lookupType</span>(<span class="string">&quot;com.modelName&quot;</span>);</span><br><span class="line">  requestModel = root.<span class="title function_">lookupType</span>(<span class="string">&#x27;com.requestModelName&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>前端序列化<code>json</code> &amp;&amp; 发送<code>proto</code>数据<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> payload = &#123;<span class="attr">param1</span>:<span class="string">&#x27;paramData&#x27;</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> errMsg = requestModel.<span class="title function_">verify</span>(payload);</span><br><span class="line"><span class="keyword">if</span> (errMsg)</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> fail === <span class="string">&quot;function&quot;</span>)</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line"><span class="comment">// Create a new message</span></span><br><span class="line"><span class="keyword">let</span> message = <span class="title class_">RequestDataType</span>.<span class="title function_">create</span>(payload); <span class="comment">// or use .fromObject if conversion is necessary</span></span><br><span class="line"><span class="comment">// Encode a message to an Uint8Array (browser) or Buffer (node)</span></span><br><span class="line"><span class="keyword">let</span> buffer = <span class="title class_">RequestDataType</span>.<span class="title function_">encode</span>(message).<span class="title function_">finish</span>();</span><br><span class="line"><span class="comment">// buffer 即为需要发送的数据包</span></span><br></pre></td></tr></table></figure></li>
+<li>前端解析接收到的<code>proto</code>数据<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里意思是模拟接收数据的回调</span></span><br><span class="line">xxx.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">  <span class="comment">// 假设res.data为接收到的数据包</span></span><br><span class="line">  reader.<span class="title function_">readAsArrayBuffer</span>(res.<span class="property">data</span>);</span><br><span class="line">  reader.<span class="property">onload</span> =<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> buf = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(e.<span class="property">target</span>.<span class="property">result</span>);</span><br><span class="line">    <span class="comment">// realData即为解析后的数据</span></span><br><span class="line">    <span class="keyword">let</span> realData = model.<span class="title function_">decode</span>(buf);</span><br><span class="line">    <span class="comment">// todo...根据返回的realData进行业务逻辑处理</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>

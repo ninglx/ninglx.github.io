@@ -9,6 +9,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.2/mapbox-gl-draw.js'></script>
+	<script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.2/mapbox-gl-draw.css'
 		type='text/css' />
 </head>
@@ -31,7 +32,7 @@
 
 		.ctrlPanel {
 			position: absolute;
-			border-radius: 8px;
+			border-radius: 4px;
 			left: 10px;
 			top: 10px;
 			padding: 8px;
@@ -41,11 +42,10 @@
 			border: 1px solid rgba(255, 255, 255, 0.18);
 			box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
 			-webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-			border-radius: 12px;
-			-webkit-border-radius: 12px;
+			-webkit-border-radius: 4px;
 			color: rgba(255, 255, 255, 0.75);
 			width: 280px;
-			height: 500px;
+			/* height: 500px; */
 		}
 
 		.panelItem {
@@ -57,6 +57,18 @@
 			display: flex;
 			justify-content: space-between;
 		}
+
+		.drawResult {
+			position: absolute;
+			border-radius: 4px;
+			right: 70px;
+			top: 10px;
+			padding: 8px;
+			background-color: rgba(255, 255, 255, 1);
+			color: rgba(255, 255, 255, 0.75);
+			width: 300px;
+			/* height: 200px; */
+		}
 	</style>
 	<div id="app">
 		<div id="map"></div>
@@ -66,21 +78,22 @@
 				<el-button class="panelItem" size="mini" @click="locate">定位</el-button>
 			</div>
 			<div class="panelItem">
-				<el-input class="panelItem" size="mini" placeholder="输入合法的 mapbox style" v-model="lnglatStr"></el-input>
-				<el-button class="panelItem" size="mini" @click="locate">替换 Style</el-button>
+				<el-input class="panelItem" size="mini" placeholder="输入合法的 styleUrl" v-model="styleValue"></el-input>
+				<el-button class="panelItem" size="mini" @click="replaceStyle">替换 Style</el-button>
 			</div>
 			<div class="panelItem">
-				<el-input class="panelItem" size="mini" placeholder="输入合法的 geojson 数据" v-model="lnglatStr"></el-input>
-				<el-button class="panelItem" size="mini" @click="locate">绘制</el-button>
+				<el-input type="textarea" :rows="6" class="panelItem" size="mini" placeholder="输入合法的 features 数据 (参考右侧生成数据格式)"
+					v-model="drawGeojsonValue"></el-input>
+				<div class="panelItem">
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="drawGeojson">绘制</el-button>
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="clearGeojson(true)">清除</el-button>
+				</div>
 			</div>
-
-			<!-- <div class="panelItem mybuttons">
-				<el-button size="mini" @click="drawPoint">画点</el-button>
-				<el-button size="mini" @click="drawLine">画线</el-button>
-				<el-button size="mini" @click="drawPolygon">画面</el-button>
-				<el-button size="mini" @click="clearDraw">清除</el-button>
-			</div> -->
-
+		</div>
+		<div class="drawResult">
+			<el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果" type="textarea" :rows="6"
+				v-model="drawResultText"></el-input>
+			<el-button style="float:right" size="mini" @click="copyResult">复制</el-button>
 		</div>
 	</div>
 	<script>
@@ -89,36 +102,105 @@
 			el: '#app',
 			data: function () {
 				return {
-					visible: false, lnglatStr: ''
+					visible: false, lnglatStr: '', drawResultText: '', styleValue: '', drawGeojsonValue: ''
 				}
 			},
 			methods: {
-				drawPoint() {
-
+				clearGeojson(reset) {
+					if (map.getLayer('customSource-layer')) {
+						map.removeLayer('customSource-layer')
+						map.removeSource('customSource')
+					}
+					reset && (this.drawGeojsonValue = '')
 				},
-				drawLine() {
-
+				drawGeojson() {
+					this.clearGeojson()
+					if (this.drawGeojsonValue) {
+						let data = turf.featureCollection(JSON.parse(this.drawGeojsonValue))
+						if (map.getSource('customSource')) {
+							map.getSource('customSource').setData(data)
+						} else {
+							map.addSource('customSource', {
+								type: "geojson",
+								data: data,
+							})
+							if (data.features[0].geometry.type === 'LineString') {
+								map.addLayer(
+									{
+										id: "customSource-layer",
+										type: "line",
+										source: "customSource",
+										paint: {
+											'line-color': 'red',
+											'line-width': 2
+										},
+									},
+								)
+							}
+							if (data.features[0].geometry.type === 'Polygon') {
+								map.addLayer(
+									{
+										id: "customSource-layer",
+										type: "fill",
+										source: "customSource",
+										paint: {
+											'fill-color': 'rgba(243, 15, 53,0.5)',
+										},
+									},
+								)
+							}
+							if (data.features[0].geometry.type === 'Point') {
+								map.addLayer(
+									{
+										id: "customSource-layer",
+										type: "cricle",
+										source: "customSource",
+										paint: {
+											'circle-color': 'red',
+											'circle-radius': 2
+										},
+									},
+								)
+							}
+						}
+					}
 				},
-				drawPolygon() {
-
-				},
-				clearDraw() {
-
+				replaceStyle() {
+					try {
+						map.setStyle(this.styleValue);
+					} catch (error) {
+						this.$notify.error({
+							title: '输入非法！',
+							message: error
+						});
+					}
 				},
 				locate(e) {
 					console.log(e);
 					try {
 						let point = this.lnglatStr.split(',')
 						map.flyTo({
-							center: point
+							center: point,
+							zoom: 18,
 						})
 					} catch (error) {
-						this.$notify({
+						this.$notify.error({
 							title: '输入非法！',
 							message: error
 						});
 					}
 				},
+				copyResult() {
+					const input = document.createElement('input')
+					input.setAttribute('readonly', 'readonly')
+					input.setAttribute('value', this.drawResultText)
+					document.body.appendChild(input)
+					input.setSelectionRange(0, 9999)
+					input.select()
+					document.execCommand('copy')
+					document.body.removeChild(input)
+					this.$notify.success({ title: '复制成功！' })
+				}
 			},
 			mounted() {
 				mapboxgl.accessToken = 'pk.eyJ1IjoibmluZ2x4IiwiYSI6ImNsYnlnM2s2ODBnNmIzcHBpbzY5aDh3bHAifQ.hQL4zLjBss5i4x-zuFp9tg';
@@ -144,8 +226,17 @@
 					})
 				})
 				map.on('style.load', () => {
-
 				})
+				map.on('draw.create', (event) => {
+					let geojson = JSON.stringify(event.features)
+					this.drawResultText = geojson
+				});
+
+				// 监听 draw.update 事件
+				map.on('draw.update', (event) => {
+					let geojson = JSON.stringify(event.features)
+					this.drawResultText = geojson
+				});
 			}
 		})
 
