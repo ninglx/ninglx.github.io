@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"ninglx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="cesium             mapbox                   .cardInner{     width:100%;     height:100%;     display:flex;     white-space:wrap;     justify-content: space-evenly; } .mycont">
+  <meta name="description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.ctrlPanel { 			pos">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Demos(点击跳转)">
-<meta property="og:url" content="http://ninglx.github.io/demos/index.html">
+<meta property="og:title" content="Ning">
+<meta property="og:url" content="http://ninglx.github.io/demos/edit/mapbox/index.html">
 <meta property="og:site_name" content="Ning">
-<meta property="og:description" content="cesium             mapbox                   .cardInner{     width:100%;     height:100%;     display:flex;     white-space:wrap;     justify-content: space-evenly; } .mycont">
+<meta property="og:description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.ctrlPanel { 			pos">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-30T07:30:48.000Z">
-<meta property="article:modified_time" content="2023-06-30T08:23:41.482Z">
+<meta property="article:published_time" content="2023-07-04T09:50:10.015Z">
+<meta property="article:modified_time" content="2023-07-04T09:50:10.015Z">
 <meta property="article:author" content="Ning lx">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ninglx.github.io/demos/">
+<link rel="canonical" href="http://ninglx.github.io/demos/edit/mapbox/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>Demos(点击跳转) | Ning
+  <title> | Ning
 </title>
   
 
@@ -220,11 +220,18 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Demos(点击跳转)
+<h1 class="post-title" itemprop="name headline">
 </h1>
 
 <div class="post-meta">
   
+  <ul class="breadcrumb">
+          
+            <li><a href="/demos/">DEMOS</a></li>
+            <li><a href="/demos/edit/">EDIT</a></li>
+          <li>MAPBOX</li>
+        
+  </ul>
 
 </div>
 
@@ -234,71 +241,337 @@
       
       
       <div class="post-body">
-          <div class='mycontainer'>
-    <div class="mycard">
-        <div class='cardInner'>
-            <div class='link'><a class='mya' target='_blank' href='http://ninglx.github.io/demos/map/cesium/index.html'>cesium</a></div>
-            <div class='link'><a class='mya' target='_blank' href='http://ninglx.github.io/demos/map/mapbox/index.html'>mapbox</a>
-        </div>
-    </div>
-</div>
+          <!DOCTYPE html>
+<html lang="en">
 
+<head>
+	<meta charset="utf-8">
+	<script src="./libs/vue.js"></script>
+	<script src="./libs/element-ui.js"></script>
+	<script src="./libs/mapbox-gl-draw.js"></script>
+	<script src="./libs/mapbox-gl.js"></script>
+	<script src="./libs/turf.min.js"></script>
+	<link rel='stylesheet' href="./libs/mapbox-gl-draw.css" type='text/css' />
+	<link rel='stylesheet' href="./libs/mapbox-gl.css" />
+	<link rel='stylesheet' href="./libs/theme-chalk_index.css" />
+</head>
 
-<style>
-.cardInner{
-    width:100%;
-    height:100%;
-    display:flex;
-    white-space:wrap;
-    justify-content: space-evenly;
-}
-.mycontainer{
-    height:700px;
-    padding: 10px;
-}
-.mycard {
-    box-sizing:border-box;
- width: 100%;
- height: 100%;
- border-radius: 50px;
- padding: 40px;
- background: #e0e0e0;
- box-shadow: 20px 20px 60px #bebebe,
-            -20px -20px 60px #ffffff;
-}
-.link {
- width: 170px;
- height: 60px;
- margin-right:50px;
- display:flex;
- justify-content:center;
- align-items:center;
- font-size: 18px;
- background: #fff;
- border: none;
- border-radius: 50px;
- color: #000;
- outline: none;
- cursor: pointer;
- transition: all 0.4s;
-}
+<body>
+	<style>
+		html,
+		body,
+		#app {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			position: relative;
+		}
 
-.link:hover {
- box-shadow: inset 0 0 0 4px #ef476f, 
-              inset 0 0 0 8px #ffd166, 
-              inset 0 0 0 12px #06d6a0,
-              inset 0 0 0 16px #118ab2;
- background: white;
- color: #fff;
-}
-</style>
+		#map {
+			width: 99%;
+			height: 99%;
+		}
 
+		.ctrlPanel {
+			position: absolute;
+			border-radius: 4px;
+			left: 10px;
+			top: 10px;
+			padding: 8px;
+			background-color: rgba(255, 255, 255, 0.25);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+			-webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+			-webkit-border-radius: 4px;
+			color: rgba(255, 255, 255, 0.75);
+			width: 280px;
+			/* height: 500px; */
+		}
+
+		.panelItem {
+			margin-bottom: 5px;
+			width: 100%;
+		}
+
+		.mybuttons {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.drawResult {
+			position: absolute;
+			border-radius: 4px;
+			right: 70px;
+			top: 10px;
+			padding: 8px;
+			background-color: rgba(255, 255, 255, 1);
+			color: rgba(255, 255, 255, 0.75);
+			width: 300px;
+			/* height: 200px; */
+		}
+	</style>
+	<div id="app">
+		<div id="map"></div>
+		<div class="ctrlPanel">
+			<div class="panelItem">
+				<el-input class="panelItem" size="mini" placeholder="输入经纬度 用英文逗号,隔开" v-model="lnglatStr"></el-input>
+				<el-button class="panelItem" size="mini" @click="locate">定位</el-button>
+			</div>
+			<el-divider></el-divider>
+			<div class="panelItem">
+				<el-input class="panelItem" size="mini" placeholder="输入合法的 styleUrl" v-model="styleValue"></el-input>
+				<el-button class="panelItem" size="mini" @click="replaceStyle">替换 Style</el-button>
+			</div>
+			<el-divider></el-divider>
+			<div class="panelItem">
+				<el-input type="textarea" :rows="6" class="panelItem" size="mini" placeholder="输入合法的 features 数据 (参考右侧生成数据格式)"
+					v-model="drawGeojsonValue"></el-input>
+				<div class="panelItem">
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="drawGeojson">绘制</el-button>
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="clearGeojson(true)">清除</el-button>
+				</div>
+			</div>
+			<el-divider></el-divider>
+			<div class="panelItem">
+				<el-input type="textarea" :rows="2" class="panelItem" size="mini" placeholder="输入合法的 raster tile url"
+					v-model="rasterLayerUrl"></el-input>
+				<div class="panelItem">
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="addRasterLayer">添加栅格Raster</el-button>
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="removeRasterLayer"> 移除</el - button>
+				</div>
+			</div>
+			<el-divider></el-divider>
+			<div class="panelItem">
+				<el-input type="textarea" :rows="2" class="panelItem" size="mini" placeholder="输入合法的 vector tile url"
+					v-model="vectorTileUrl"></el-input>
+				<el-input class="panelItem" placeholder="输入 vector 的对应 source-layer" v-model="vectorSourceLayer"></el-input>
+				<div class="panelItem">
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="addVectorLayer">添加矢量Vector</el-button>
+					<el-button style="width:calc(50% - 8px)" size="mini" @click="removeVectorLayer"> 移除</el - button>
+				</div>
+			</div>
+		</div>
+		<div class="drawResult">
+			<el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果" type="textarea" :rows="6"
+				v-model="drawResultText"></el-input>
+			<el-button style="float:right" size="mini" @click="copyResult"> 复制</el - button>
+		</div>
+	</div>
+	<script>
+		let map = null
+		new Vue({
+			el: '#app',
+			data: function () {
+				return {
+					visible: false, lnglatStr: '', drawResultText: '', styleValue: '', drawGeojsonValue: '', rasterLayerUrl: '', vectorTileUrl: '', vectorSourceLayer: '',
+				}
+			},
+			methods: {
+				addVectorLayer() {
+					if (!map.getSource("vectorSource")) {
+						map.addSource("vectorSource", {
+							type: "vector",
+							tiles: [
+								this.vectorTileUrl,
+							],
+						});
+					}
+					if (!map.getLayer("vectorLayer")) {
+						map.addLayer({
+							id: "vectorLayer",
+							type: "circle",
+							source: "vectorSource",
+							"source-layer": this.vectorSourceLayer,
+							paint: {
+								'circle-color': 'red',
+								'circle-radius': 2
+							}
+						});
+					}
+				},
+				removeVectorLayer() {
+					map.getLayer("vectorLayer") && map.removeLayer("vectorLayer");
+					map.getSource("vectorSource") && map.removeSource("vectorSource");
+				},
+				addRasterLayer() {
+					if (!map.getLayer('customRaster-layer')) {
+						let raster = {
+							"id": 'customRaster-layer',
+							"type": "raster",
+							"source": {
+								"type": "raster",
+								"tiles": [this.rasterLayerUrl],
+								"tileSize": 256
+							}
+						}
+						map.addLayer(raster);
+					} else {
+						this.$notify.warning({
+							title: '请先移除已存在栅格图层！'
+						});
+					}
+				},
+				removeRasterLayer() {
+					if (map.getLayer('customRaster-layer')) {
+						map.removeLayer('customRaster-layer')
+						map.removeSource('customRaster-layer')
+					}
+					this.rasterLayerUrl = ''
+				},
+				clearGeojson(reset) {
+					if (map.getLayer('customSource-layer')) {
+						map.removeLayer('customSource-layer')
+						map.removeSource('customSource')
+					}
+					reset && (this.drawGeojsonValue = '')
+				},
+				drawGeojson() {
+					this.clearGeojson()
+					if (this.drawGeojsonValue) {
+						let data = turf.featureCollection(JSON.parse(this.drawGeojsonValue))
+						if (map.getSource('customSource')) {
+							map.getSource('customSource').setData(data)
+						} else {
+							map.addSource('customSource', {
+								type: "geojson",
+								data: data,
+							})
+							if (data.features[0].geometry.type === 'LineString') {
+								map.addLayer(
+									{
+										id: "customSource-layer",
+										type: "line",
+										source: "customSource",
+										paint: {
+											'line-color': 'red',
+											'line-width': 2
+										},
+									},
+								)
+							}
+							if (data.features[0].geometry.type === 'Polygon') {
+								map.addLayer(
+									{
+										id: "customSource-layer",
+										type: "fill",
+										source: "customSource",
+										paint: {
+											'fill-color': 'rgba(243, 15, 53,0.5)',
+										},
+									},
+								)
+							}
+							if (data.features[0].geometry.type === 'Point') {
+								map.addLayer(
+									{
+										id: "customSource-layer",
+										type: "circle",
+										source: "customSource",
+										paint: {
+											'circle-color': 'red',
+											'circle-radius': 10
+										},
+									},
+								)
+							}
+						}
+					}
+				},
+				replaceStyle() {
+					try {
+						map.setStyle(this.styleValue);
+					} catch (error) {
+						this.$notify.error({
+							title: '输入非法！',
+							message: error
+						});
+					}
+				},
+				locate(e) {
+					console.log(e);
+					try {
+						let point = this.lnglatStr.split(',')
+						map.flyTo({
+							center: point,
+							zoom: 18,
+						})
+					} catch (error) {
+						this.$notify.error({
+							title: '输入非法！',
+							message: error
+						});
+					}
+				},
+				copyResult() {
+					const input = document.createElement('input')
+					input.setAttribute('readonly', 'readonly')
+					input.setAttribute('value', this.drawResultText)
+					document.body.appendChild(input)
+					input.setSelectionRange(0, 9999)
+					input.select()
+					document.execCommand('copy')
+					document.body.removeChild(input)
+					this.$notify.success({ title: '复制成功！' })
+				}
+			},
+			mounted() {
+				mapboxgl.accessToken = 'pk.eyJ1IjoibmluZ2x4IiwiYSI6ImNsYnlnM2s2ODBnNmIzcHBpbzY5aDh3bHAifQ.hQL4zLjBss5i4x-zuFp9tg';
+				map = new mapboxgl.Map({
+					container: 'map', // container ID
+					style: 'mapbox://styles/mapbox/dark-v11', // style URL
+					center: [110.70727046509603, 33.05124063231834], // starting position [lng, lat]
+					zoom: 2, // starting zoom
+				});
+				var draw = new MapboxDraw({
+					displayControlsDefault: false,
+					controls: {
+						polygon: true,
+						line_string: true,
+						point: true,
+						trash: true
+					}
+				});
+				map.addControl(draw);
+				map.on('load', () => {
+					map.on('click', (e) => {
+						console.log(e.lngLat)
+					})
+				})
+				map.on('style.load', () => {
+				})
+				map.on('draw.create', (event) => {
+					let geojson = JSON.stringify(event.features)
+					this.drawResultText = geojson
+				});
+
+				// 监听 draw.update 事件
+				map.on('draw.update', (event) => {
+					let geojson = JSON.stringify(event.features)
+					this.drawResultText = geojson
+				});
+			}
+		})
+
+	</script>
+	</div>
+</body>
+
+</html>
       </div>
       
       
       
     </div>
     
+  <ul class="breadcrumb">
+          
+            <li><a href="/demos/">DEMOS</a></li>
+            <li><a href="/demos/edit/">EDIT</a></li>
+          <li>MAPBOX</li>
+        
+  </ul>
 
     
     
@@ -536,6 +809,7 @@
 
 
 
+  <script src="//code.tidio.co/rfttcfk28n2v1j6qfd0kfkycw7o5u47f.js"></script>
 
 
 
