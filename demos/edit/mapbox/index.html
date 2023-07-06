@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"ninglx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.ctrlPanel { 			pos">
+  <meta name="description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.rightTopButtons {">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ning">
 <meta property="og:url" content="http://ninglx.github.io/demos/edit/mapbox/index.html">
 <meta property="og:site_name" content="Ning">
-<meta property="og:description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.ctrlPanel { 			pos">
+<meta property="og:description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.rightTopButtons {">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-04T09:50:10.015Z">
-<meta property="article:modified_time" content="2023-07-04T09:50:10.015Z">
+<meta property="article:published_time" content="2023-07-06T06:18:47.422Z">
+<meta property="article:modified_time" content="2023-07-06T06:18:47.422Z">
 <meta property="article:author" content="Ning lx">
 <meta name="twitter:card" content="summary">
 
@@ -267,6 +267,11 @@
 			height: 99%;
 		}
 
+		.rightTopButtons {
+			display: flex;
+			justify-content: space-between;
+		}
+
 		.ctrlPanel {
 			position: absolute;
 			border-radius: 4px;
@@ -312,20 +317,20 @@
 		<div class="ctrlPanel">
 			<div class="panelItem">
 				<el-input class="panelItem" size="mini" placeholder="输入经纬度 用英文逗号,隔开" v-model="lnglatStr"></el-input>
-				<el-button class="panelItem" size="mini" @click="locate">定位</el-button>
+				<el-button type="primary" class="panelItem" size="mini" @click="locate">定位</el-button>
 			</div>
 			<el-divider></el-divider>
 			<div class="panelItem">
 				<el-input class="panelItem" size="mini" placeholder="输入合法的 styleUrl" v-model="styleValue"></el-input>
-				<el-button class="panelItem" size="mini" @click="replaceStyle">替换 Style</el-button>
+				<el-button type="primary" class="panelItem" size="mini" @click="replaceStyle">替换 Style</el-button>
 			</div>
 			<el-divider></el-divider>
 			<div class="panelItem">
 				<el-input type="textarea" :rows="6" class="panelItem" size="mini" placeholder="输入合法的 features 数据 (参考右侧生成数据格式)"
 					v-model="drawGeojsonValue"></el-input>
 				<div class="panelItem">
-					<el-button style="width:calc(50% - 8px)" size="mini" @click="drawGeojson">绘制</el-button>
-					<el-button style="width:calc(50% - 8px)" size="mini" @click="clearGeojson(true)">清除</el-button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="drawGeojson">绘制</el-button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="clearGeojson(true)">清除</el-button>
 				</div>
 			</div>
 			<el-divider></el-divider>
@@ -333,8 +338,9 @@
 				<el-input type="textarea" :rows="2" class="panelItem" size="mini" placeholder="输入合法的 raster tile url"
 					v-model="rasterLayerUrl"></el-input>
 				<div class="panelItem">
-					<el-button style="width:calc(50% - 8px)" size="mini" @click="addRasterLayer">添加栅格Raster</el-button>
-					<el-button style="width:calc(50% - 8px)" size="mini" @click="removeRasterLayer"> 移除</el - button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini"
+						@click="addRasterLayer">添加栅格Raster</el-button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="removeRasterLayer"> 移除</el-button>
 				</div>
 			</div>
 			<el-divider></el-divider>
@@ -343,15 +349,22 @@
 					v-model="vectorTileUrl"></el-input>
 				<el-input class="panelItem" placeholder="输入 vector 的对应 source-layer" v-model="vectorSourceLayer"></el-input>
 				<div class="panelItem">
-					<el-button style="width:calc(50% - 8px)" size="mini" @click="addVectorLayer">添加矢量Vector</el-button>
-					<el-button style="width:calc(50% - 8px)" size="mini" @click="removeVectorLayer"> 移除</el - button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini"
+						@click="addVectorLayer">添加矢量Vector</el-button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="removeVectorLayer"> 移除</el -
+							button>
 				</div>
 			</div>
 		</div>
 		<div class="drawResult">
 			<el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果" type="textarea" :rows="6"
 				v-model="drawResultText"></el-input>
-			<el-button style="float:right" size="mini" @click="copyResult"> 复制</el - button>
+			<div class="rightTopButtons">
+				<el-button type="primary" size="mini" @click="removeTerrain">删除地形</el-button>
+				<el-button type="primary" size="mini" @click="addTerrain">添加地形</el-button>
+				<el-button type="primary" size="mini" @click="copyResult"> 复制</el-button>
+			</div>
+
 		</div>
 	</div>
 	<script>
@@ -364,6 +377,14 @@
 				}
 			},
 			methods: {
+				// 添加地形
+				addTerrain() {
+					map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+				},
+				// 删除地形
+				removeTerrain() {
+					map.setTerrain(null);
+				},
 				addVectorLayer() {
 					if (!map.getSource("vectorSource")) {
 						map.addSource("vectorSource", {
@@ -515,7 +536,7 @@
 				mapboxgl.accessToken = 'pk.eyJ1IjoibmluZ2x4IiwiYSI6ImNsYnlnM2s2ODBnNmIzcHBpbzY5aDh3bHAifQ.hQL4zLjBss5i4x-zuFp9tg';
 				map = new mapboxgl.Map({
 					container: 'map', // container ID
-					style: 'mapbox://styles/mapbox/dark-v11', // style URL
+					style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
 					center: [110.70727046509603, 33.05124063231834], // starting position [lng, lat]
 					zoom: 2, // starting zoom
 				});
@@ -532,9 +553,29 @@
 				map.on('load', () => {
 					map.on('click', (e) => {
 						console.log(e.lngLat)
+						console.log(map.getCenter());
+						console.log(map.getBearing());
+						console.log(map.getZoom());
+						console.log(map.getPitch());
 					})
+					setTimeout(() => {
+						map.flyTo({
+							center: [116.15090301724723, 40.006045007062],
+							bearing: -73.60786512235785,
+							zoom: 14.754889002122209,
+							pitch: 70.99850391694255
+						})
+					}, 2000)
 				})
 				map.on('style.load', () => {
+					map.addSource('mapbox-dem', {
+						'type': 'raster-dem',
+						'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+						'tileSize': 512,
+						'maxzoom': 14
+					});
+					// add the DEM source as a terrain layer with exaggerated height
+					this.addTerrain()
 				})
 				map.on('draw.create', (event) => {
 					let geojson = JSON.stringify(event.features)
@@ -774,6 +815,7 @@
   </div>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -804,7 +846,6 @@
 
 
 
-  <script src="//code.tidio.co/rfttcfk28n2v1j6qfd0kfkycw7o5u47f.js"></script>
 
 
 

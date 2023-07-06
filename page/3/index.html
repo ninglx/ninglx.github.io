@@ -986,6 +986,7 @@
   </div>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -1016,7 +1017,6 @@
 
 
 
-  <script src="//code.tidio.co/rfttcfk28n2v1j6qfd0kfkycw7o5u47f.js"></script>
 
 
 
@@ -1027,6 +1027,16 @@
   
 
   
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://ninglx.github.io/page/3/',]
+      });
+      });
+  </script>
 
 
 </body>
