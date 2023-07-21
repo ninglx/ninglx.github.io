@@ -6,6 +6,7 @@
   <!-- Include the CesiumJS JavaScript and CSS files -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
 </head>
 
 <body>
@@ -26,26 +27,48 @@
     // 设置时钟当前时间
     viewer.clock.currentTime = start.clone();
     viewer.clock.onTick.addEventListener(() => {
-      console.log(111);
-      console.log(entities.entity1.position);
+      // console.log(111);
+      // console.log(entities.entity1.position);
     })
 
-    // 第一帧
-    solveData({
-      time: convertDate(initTime, 0),
-      locations: [{ name: 'entity1' }, { name: 'entity2' }]
-    })
-    viewer.camera.setView({
-      destination: Cesium.Cartesian3.fromDegrees(Math.random() * 0.1 + 100, Math.random() * 0.1 + 30, 90000)
-    });
-    // 模拟 websocket 每过5s接收一次数据 -> addSample
-    setInterval(() => {
-      let receiveData = {
-        time: convertDate(initTime, 5 * receiveTime),
-        locations: [{ name: 'entity1' }, { name: 'entity2' }]
+
+
+    let center = [133, 22]; // 中心点
+    var pt = turf.point(center);
+    var distance = 50; // 半径
+    let circlePoints = [];
+    let lineWidth = 3; // 线宽
+    let height = 0; // 圆环所在高度
+    for (let i = -180; i <= 180; i++) {
+      let destination = turf.rhumbDestination(pt, distance, i);
+      console.log(destination)
+      circlePoints.push(new Cesium.Cartesian3.fromDegrees(destination.geometry.coordinates[0], destination.geometry.coordinates[1], height));
+    }
+    var polyline = viewer.entities.add({
+      polyline: {
+        positions: circlePoints,
+        width: lineWidth,
+        material: Cesium.Color.YELLOW
       }
-      solveData(receiveData)
-    }, 5000)
+    });
+    viewer.zoomTo(polyline)
+
+    // 第一帧
+    // solveData({
+    //   time: convertDate(initTime, 0),
+    //   locations: [{ name: 'entity1' }, { name: 'entity2' }]
+    // })
+    // viewer.camera.setView({
+    //   destination: Cesium.Cartesian3.fromDegrees(Math.random() * 0.1 + 100, Math.random() * 0.1 + 30, 90000)
+    // });
+    // // 模拟 websocket 每过5s接收一次数据 -> addSample
+    // setInterval(() => {
+    //   let receiveData = {
+    //     time: convertDate(initTime, 5 * receiveTime),
+    //     locations: [{ name: 'entity1' }, { name: 'entity2' }]
+    //   }
+    //   solveData(receiveData)
+    // }, 5000)
 
     // 处理一帧数据
     function solveData(receiveData) {
