@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -203,6 +203,80 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="进击的菜鸡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Cesium加载3dtileset并修改位置/偏移位置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-23 16:44:03 / 修改时间：16:55:58" itemprop="dateCreated datePublished" datetime="2024-02-23T16:44:03+08:00">2024-02-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>在使用<code>cesium</code>进行开发时，有时需要加载一些外部的<code>3dtile</code>模型，由于模型制作者对模型的世界坐标可能只是随意赋值的，这时我们加载了后还需要对模型进行一定的<strong>偏移</strong>（<strong>包括经纬度和高度</strong>），以下是代码实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tileset = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">Cesium3DTileset</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 托管tilesetjson根文件的 url 以及一些参数。。。</span></span><br><span class="line">&#125;); </span><br><span class="line">tileset.<span class="property">readyPromise</span>.<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//计算tileset的绑定范围</span></span><br><span class="line">  <span class="keyword">let</span> boundingSphere = tileset.<span class="property">boundingSphere</span>;</span><br><span class="line">  <span class="comment">//计算中心点位置</span></span><br><span class="line">  <span class="keyword">let</span> cartographic = <span class="title class_">Cesium</span>.<span class="property">Cartographic</span>.<span class="title function_">fromCartesian</span>(</span><br><span class="line">    boundingSphere.<span class="property">center</span></span><br><span class="line">  );</span><br><span class="line">  <span class="comment">//计算中心点位置的地表坐标</span></span><br><span class="line">  <span class="keyword">let</span> surface = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromRadians</span>(</span><br><span class="line">    cartographic.<span class="property">longitude</span>,</span><br><span class="line">    cartographic.<span class="property">latitude</span>,</span><br><span class="line">    <span class="number">0.0</span></span><br><span class="line">  );</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;tileset自身center : &quot;</span>, [</span><br><span class="line">    <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">longitude</span>),</span><br><span class="line">    <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">latitude</span>),</span><br><span class="line">  ]);</span><br><span class="line">  <span class="comment">// 偏移tileset到指定位置</span></span><br><span class="line">  <span class="keyword">const</span> heightOffset = <span class="number">100</span>; <span class="comment">// 高度偏移 正上负下</span></span><br><span class="line">  <span class="keyword">const</span> xOffset = <span class="number">100</span>; <span class="comment">// 经度偏移量 正负</span></span><br><span class="line">  <span class="keyword">const</span> yOffset = <span class="number">100</span>; <span class="comment">// 纬度偏移量 正负</span></span><br><span class="line">  <span class="keyword">let</span> x = <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">longitude</span>);</span><br><span class="line">  <span class="keyword">let</span> y = <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">latitude</span>);</span><br><span class="line">  <span class="keyword">let</span> offset = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromRadians</span>(</span><br><span class="line">    xOffset</span><br><span class="line">      ? <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toRadians</span>(x + xOffset)</span><br><span class="line">      : cartographic.<span class="property">longitude</span>,</span><br><span class="line">    yOffset</span><br><span class="line">      ? <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toRadians</span>(y + yOffset)</span><br><span class="line">      : cartographic.<span class="property">latitude</span>,</span><br><span class="line">    heightOffset</span><br><span class="line">  ); <span class="comment">// 进行经纬度和高度偏移</span></span><br><span class="line">  <span class="keyword">let</span> translation = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">subtract</span>(</span><br><span class="line">    offset,</span><br><span class="line">    surface,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">Cartesian3</span>()</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">//tileset.modelMatrix转换</span></span><br><span class="line">  tileset.<span class="property">modelMatrix</span> = <span class="title class_">Cesium</span>.<span class="property">Matrix4</span>.<span class="title function_">fromTranslation</span>(translation);</span><br><span class="line">&#125;);</span><br><span class="line">viewer.<span class="property">scene</span>.<span class="property">primitives</span>.<span class="title function_">add</span>(tileset); <span class="comment">// 加载...</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果要根据指定经纬度偏移，对<strong>进行经纬度和高度偏移</strong>部分代码进行适当修改即可~~~</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -938,80 +1012,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/" class="post-title-link" itemprop="url">echarts鼠标首次悬浮经过页面闪动</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-27 17:52:12" itemprop="dateCreated datePublished" datetime="2022-12-27T17:52:12+08:00">2022-12-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-06 20:33:38" itemprop="dateModified" datetime="2023-03-06T20:33:38+08:00">2023-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-："><a href="#使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-：" class="headerlink" title="使用 echarts 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 tooltip 超出屏幕边界导致的，可以通过以下办法解决 ："></a>使用 <code>echarts</code> 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 <code>tooltip</code> 超出屏幕边界导致的，可以通过以下办法解决 ：</h3><h3 id="tooltip-options-添加以下属性："><a href="#tooltip-options-添加以下属性：" class="headerlink" title="tooltip options 添加以下属性："></a><code>tooltip options</code> 添加以下属性：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">tooltip</span>:&#123;</span><br><span class="line">		<span class="attr">transitionDuration</span>: <span class="number">0</span>,</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1083,7 +1083,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1142,7 +1142,7 @@
 <div class="copyright">
   
   &copy; 2022 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
