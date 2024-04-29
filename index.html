@@ -137,7 +137,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -203,6 +203,159 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="进击的菜鸡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/" class="post-title-link" itemprop="url">记录一下常用比较好用的css</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-29 13:26:45 / 修改时间：13:40:30" itemprop="dateCreated datePublished" datetime="2024-04-29T13:26:45+08:00">2024-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h6 id="首先，在工作中秉着能用-css-完成的就不用切图的原则，一些略微特殊的样式还是尽量使用-css-展示以提高页面展示效率，以下是一些常用的属性："><a href="#首先，在工作中秉着能用-css-完成的就不用切图的原则，一些略微特殊的样式还是尽量使用-css-展示以提高页面展示效率，以下是一些常用的属性：" class="headerlink" title="首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性："></a>首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性：</h6><ol>
+<li><p>边框渐变（结合边框渐变可以完成比较常见的渐变分割条等效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 边框渐变 */</span></span><br><span class="line"><span class="comment">/* 渐变方向有多种方式表示 角度 例如90deg 方向 例如to right */</span></span><br><span class="line"><span class="comment">/* 实际使用可以选择顺手的 （方向的可以有更为复杂的组合写法 详见mdn官网 */</span></span><br><span class="line"><span class="attribute">border-width</span>: <span class="number">1px</span>;</span><br><span class="line"><span class="attribute">border-style</span>: solid;</span><br><span class="line"><span class="attribute">border-image-source</span>: <span class="built_in">linear-gradient</span>(<span class="number">90deg</span>, <span class="number">#269cd7</span>, <span class="number">#0090ea</span>);</span><br><span class="line"><span class="attribute">border-image-slice</span>: <span class="number">1</span>; <span class="comment">/* 填充整个边框宽度 */</span></span><br><span class="line"><span class="attribute">border-image-repeat</span>: stretch; <span class="comment">/* 根据需要选择 repeat、stretch 或 round 等重复方式 */</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>背景色渐变</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 渐变方向与上面的边框渐变同理 */</span></span><br><span class="line"><span class="comment">/* 首先是 side by side 的渐变 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(to right, <span class="number">#0d80d7</span>, <span class="number">#04477b</span>);</span><br><span class="line"><span class="comment">/* 其次是中心渐变 （可以结合div的不同排布 实现热力图展示 */</span></span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(<span class="built_in">rgba</span>(<span class="number">237</span>, <span class="number">34</span>, <span class="number">44</span>,<span class="number">0.6</span>), transparent, transparent);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多个子元素斑马等样式展示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 涉及到多个子元素不同样式则要用到 nth-child 伪类 */</span></span><br><span class="line"><span class="comment">/* 老是记不清偶数和奇数怎么表示 -.-|  偶数even 奇数odd */</span></span><br><span class="line"><span class="comment">/* 奇数子元素 */</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(odd) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#133260</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 偶数子元素 */</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(even) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#112b4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>… … 待更新 … …</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="进击的菜鸡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">vue2/3使用highcharts时3d类图表3d效果不生效问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-18 08:55:26 / 修改时间：09:28:19" itemprop="dateCreated datePublished" datetime="2024-04-18T08:55:26+08:00">2024-04-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法"><a href="#在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法" class="headerlink" title="在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 Highcharts 来满足开发需求。  在这里记录一下其基本用法"></a>在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 <code>Highcharts</code> 来满足开发需求。 <br/> 在这里记录一下其基本用法</h5><ul>
+<li>首先安装 <code>npm install highcharts-vue</code></li>
+<li>在展示组件&#x2F;页面里引入，<b>!!!注意后两行，这里是关键，只有引入3d库才能支持3d图表!!!</b><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Chart</span>&#125; <span class="keyword">from</span> <span class="string">&quot;highcharts-vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts <span class="keyword">from</span> <span class="string">&quot;highcharts&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts3d <span class="keyword">from</span> <span class="string">&quot;highcharts/highcharts-3d&quot;</span>;</span><br><span class="line"><span class="title function_">highcharts3d</span>(highcharts);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Chart</span> <span class="attr">:options</span>=<span class="string">&quot;chartOptions&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Chart</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>这时就可以使用 <code>chartOptions</code> 参照官方文档开始配置属性项了</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -847,175 +1000,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">flex布局space-between最后一行展示问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-29 15:31:21" itemprop="dateCreated datePublished" datetime="2022-12-29T15:31:21+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-07 20:48:48" itemprop="dateModified" datetime="2023-03-07T20:48:48+08:00">2023-03-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="在使用-flex-进行布局时涉及多个元素遍历渲染，-要使用-space-between-时会发现：-最后一行元素数不满一行个数时会平均分布开，-而不会从左到右排列，-不符合一般样式要求"><a href="#在使用-flex-进行布局时涉及多个元素遍历渲染，-要使用-space-between-时会发现：-最后一行元素数不满一行个数时会平均分布开，-而不会从左到右排列，-不符合一般样式要求" class="headerlink" title="在使用 flex 进行布局时涉及多个元素遍历渲染， 要使用 space-between 时会发现： 最后一行元素数不满一行个数时会平均分布开， 而不会从左到右排列， 不符合一般样式要求"></a>在使用 <code>flex</code> 进行布局时涉及多个元素遍历渲染， 要使用 <code>space-between</code> 时会发现： 最后一行元素数不满一行个数时会平均分布开， 而不会从左到右排列， 不符合一般样式要求</h3><hr>
-<p><strong>可以使用下面的办法解决</strong>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">el-table-column数据过长多行省略处理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-29 15:26:19" itemprop="dateCreated datePublished" datetime="2022-12-29T15:26:19+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-07 20:49:05" itemprop="dateModified" datetime="2023-03-07T20:49:05+08:00">2023-03-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="场景：在使用-el-table-时会遇到表格某行数据过长的情况"><a href="#场景：在使用-el-table-时会遇到表格某行数据过长的情况" class="headerlink" title="场景：在使用 el-table 时会遇到表格某行数据过长的情况"></a>场景：在使用 el-table 时会遇到表格某行数据过长的情况</h3><ul>
-<li>一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容</li>
-<li>还有一种是特殊需求：需要 <strong>多行展示后</strong> 再进行省略显示。 以下是处理方式：
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1083,7 +1071,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1096,7 +1084,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

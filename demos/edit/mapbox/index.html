@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"ninglx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.rightTopButton">
+  <meta name="description" content="html, 	body, 	#app { 		height: 100%; 		width: 100%; 		overflow: hidden; 		position: relative; 	}  	#map { 		width: 99%; 		height: 99%; 	}  	.rightTopButtons { 		display: f">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ning">
 <meta property="og:url" content="http://ninglx.github.io/demos/edit/mapbox/index.html">
 <meta property="og:site_name" content="Ning">
-<meta property="og:description" content="html, 		body, 		#app { 			height: 100%; 			width: 100%; 			overflow: hidden; 			position: relative; 		}  		#map { 			width: 99%; 			height: 99%; 		}  		.rightTopButton">
+<meta property="og:description" content="html, 	body, 	#app { 		height: 100%; 		width: 100%; 		overflow: hidden; 		position: relative; 	}  	#map { 		width: 99%; 		height: 99%; 	}  	.rightTopButtons { 		display: f">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-13T02:00:59.443Z">
-<meta property="article:modified_time" content="2023-12-13T02:00:59.443Z">
+<meta property="article:published_time" content="2024-03-22T07:36:17.923Z">
+<meta property="article:modified_time" content="2024-03-22T07:36:17.923Z">
 <meta property="article:author" content="Ning lx">
 <meta name="twitter:card" content="summary">
 
@@ -140,7 +140,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -150,7 +150,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -252,112 +252,111 @@
 	<link rel='stylesheet' href="./libs/theme-chalk_index.css" />
 	<link rel='stylesheet' href="./libs/threebox/threebox.css" />
 </head>
+<style>
+	html,
+	body,
+	#app {
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+	}
 
+	#map {
+		width: 99%;
+		height: 99%;
+	}
+
+	.rightTopButtons {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.ctrlPanel {
+		position: absolute;
+		border-radius: 4px;
+		left: 10px;
+		top: 10px;
+		padding: 8px;
+		background-color: rgba(255, 255, 255, 0.25);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+		-webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+		-webkit-border-radius: 4px;
+		color: rgba(255, 255, 255, 0.75);
+		width: 280px;
+		/* height: 500px; */
+	}
+
+	.panelItem {
+		margin-bottom: 5px;
+		width: 100%;
+	}
+
+	.mybuttons {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.drawResult {
+		position: absolute;
+		border-radius: 4px;
+		right: 70px;
+		top: 10px;
+		padding: 8px;
+		background-color: rgba(255, 255, 255, 1);
+		color: rgba(255, 255, 255, 0.75);
+		width: 300px;
+		/* height: 200px; */
+	}
+
+	.el-slider {
+		padding-right: 5px;
+		width: calc(58% - 36px);
+	}
+
+	.slider-box {
+		position: absolute;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		padding: 8px 34px;
+		background-color: rgba(255, 255, 255, 0.25);
+		border-radius: 34px;
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+		-webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+		width: 455px;
+		height: 48px;
+		left: 50%;
+		bottom: 15px;
+		transform: translateX(-50%);
+	}
+
+	.slider-text {
+		color: white;
+		display: inline-block;
+		width: 90px;
+		text-align: center;
+	}
+
+	.ctrl-select {
+		width: 120px;
+	}
+
+	.play-icon {
+		font-size: 22px;
+		color: white;
+		cursor: pointer;
+		margin-right: 20px;
+		font-weight: 700;
+	}
+</style>
 <body>
-	<style>
-		html,
-		body,
-		#app {
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-			position: relative;
-		}
-
-		#map {
-			width: 99%;
-			height: 99%;
-		}
-
-		.rightTopButtons {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.ctrlPanel {
-			position: absolute;
-			border-radius: 4px;
-			left: 10px;
-			top: 10px;
-			padding: 8px;
-			background-color: rgba(255, 255, 255, 0.25);
-			backdrop-filter: blur(6px);
-			-webkit-backdrop-filter: blur(6px);
-			border: 1px solid rgba(255, 255, 255, 0.18);
-			box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-			-webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-			-webkit-border-radius: 4px;
-			color: rgba(255, 255, 255, 0.75);
-			width: 280px;
-			/* height: 500px; */
-		}
-
-		.panelItem {
-			margin-bottom: 5px;
-			width: 100%;
-		}
-
-		.mybuttons {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.drawResult {
-			position: absolute;
-			border-radius: 4px;
-			right: 70px;
-			top: 10px;
-			padding: 8px;
-			background-color: rgba(255, 255, 255, 1);
-			color: rgba(255, 255, 255, 0.75);
-			width: 300px;
-			/* height: 200px; */
-		}
-
-		.el-slider {
-			padding-right: 5px;
-			width: calc(58% - 36px);
-		}
-
-		.slider-box {
-			position: absolute;
-			z-index: 1;
-			display: flex;
-			align-items: center;
-			padding: 8px 34px;
-			background-color: rgba(255, 255, 255, 0.25);
-			border-radius: 34px;
-			backdrop-filter: blur(6px);
-			-webkit-backdrop-filter: blur(6px);
-			border: 1px solid rgba(255, 255, 255, 0.18);
-			box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-			-webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-			width: 455px;
-			height: 48px;
-			left: 50%;
-			bottom: 15px;
-			transform: translateX(-50%);
-		}
-
-		.slider-text {
-			color: white;
-			display: inline-block;
-			width: 90px;
-			text-align: center;
-		}
-
-		.ctrl-select {
-			width: 120px;
-		}
-
-		.play-icon {
-			font-size: 22px;
-			color: white;
-			cursor: pointer;
-			margin-right: 20px;
-			font-weight: 700;
-		}
-	</style>
 	<div id="app">
 		<div id="map"></div>
 		<div class="ctrlPanel">
@@ -397,8 +396,7 @@
 				<div class="panelItem">
 					<el-button type="primary" style="width:calc(50% - 8px)" size="mini"
 						@click="addVectorLayer">添加矢量Vector</el-button>
-					<el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="removeVectorLayer"> 移除</el -
-							button>
+					<el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="removeVectorLayer"> 移除</el-button>
 				</div>
 			</div>
 			<el-divider></el-divider>
@@ -457,8 +455,7 @@
 			methods: {
 				handleTimeChange(value) {
 					if (value) {
-						const time = Math.floor(value);
-						this.currentTime = time;
+						this.currentTime = Math.floor(value);
 						this.timeTo(value);
 					}
 				},
@@ -869,7 +866,7 @@
 					center: [110.70727046509603, 33.05124063231834], // starting position [lng, lat]
 					zoom: 2, // starting zoom
 				});
-				var draw = new MapboxDraw({
+				let draw = new MapboxDraw({
 					displayControlsDefault: false,
 					controls: {
 						polygon: true,
@@ -1003,7 +1000,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1016,7 +1013,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
