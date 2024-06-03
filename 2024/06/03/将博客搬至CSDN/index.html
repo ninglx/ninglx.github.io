@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"ninglx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="场景：在使用 el-table 时会遇到表格某行数据过长的情况 一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容 还有一种是特殊需求：需要 多行展示后 再进行省略显示。 以下是处理方式：">
+  <meta name="description" content="将博客搬至CSDN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="el-table-column数据过长多行省略处理">
-<meta property="og:url" content="http://ninglx.github.io/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/index.html">
+<meta property="og:title" content="将博客搬至CSDN">
+<meta property="og:url" content="http://ninglx.github.io/2024/06/03/%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN/index.html">
 <meta property="og:site_name" content="Ning">
-<meta property="og:description" content="场景：在使用 el-table 时会遇到表格某行数据过长的情况 一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容 还有一种是特殊需求：需要 多行展示后 再进行省略显示。 以下是处理方式：">
+<meta property="og:description" content="将博客搬至CSDN">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-29T07:26:19.000Z">
-<meta property="article:modified_time" content="2023-03-07T12:49:05.597Z">
+<meta property="article:published_time" content="2024-06-03T00:43:27.472Z">
+<meta property="article:modified_time" content="2024-06-03T00:42:56.951Z">
 <meta property="article:author" content="Ning lx">
-<meta property="article:tag" content="ElementUI">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ninglx.github.io/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
+<link rel="canonical" href="http://ninglx.github.io/2024/06/03/%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>el-table-column数据过长多行省略处理 | Ning</title>
+  <title>将博客搬至CSDN | Ning</title>
   
 
 
@@ -211,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/06/03/%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avator.jpg">
@@ -224,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          el-table-column数据过长多行省略处理
+          将博客搬至CSDN
         </h1>
 
         <div class="post-meta">
@@ -233,24 +232,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-12-29 15:26:19" itemprop="dateCreated datePublished" datetime="2022-12-29T15:26:19+08:00">2022-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-07 20:49:05" itemprop="dateModified" datetime="2023-03-07T20:49:05+08:00">2023-03-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
+              <time title="创建时间：2024-06-03 08:43:27 / 修改时间：08:42:56" itemprop="dateCreated datePublished" datetime="2024-06-03T08:43:27+08:00">2024-06-03</time>
             </span>
 
           
@@ -271,12 +255,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="场景：在使用-el-table-时会遇到表格某行数据过长的情况"><a href="#场景：在使用-el-table-时会遇到表格某行数据过长的情况" class="headerlink" title="场景：在使用 el-table 时会遇到表格某行数据过长的情况"></a>场景：在使用 el-table 时会遇到表格某行数据过长的情况</h3><ul>
-<li>一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容</li>
-<li>还有一种是特殊需求：需要 <strong>多行展示后</strong> 再进行省略显示。 以下是处理方式：<span id="more"></span><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column</span><br><span class="line">	property=<span class="string">&quot;Date&quot;</span></span><br><span class="line">	label=<span class="string">&quot;Date&quot;</span>&gt;</span><br><span class="line">	<span class="comment">// 这里 template 的作用是 模拟 tooltip 的作用</span></span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">:title</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">v-html</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">class</span>=<span class="string">&quot;title-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/deep/ <span class="selector-class">.el-table</span> <span class="selector-class">.cell</span> &#123;</span><br><span class="line">	<span class="attribute">word-break</span>: break-word ; // 避免一个单词被换行断开为两部分</span><br><span class="line">	<span class="attribute">overflow</span>:hidden;</span><br><span class="line">	<span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">	<span class="attribute">display</span>:-webkit-box;</span><br><span class="line">	-webkit-box-orient:vertical;</span><br><span class="line">	-webkit-line-clamp:<span class="number">2</span>; // 此处是<span class="number">2</span>行的末尾再省略展示， 想要几行后再省略展示 就写几</span><br><span class="line">	<span class="attribute">max-height</span>: <span class="number">48px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+        <h4 id="将博客搬至CSDN"><a href="#将博客搬至CSDN" class="headerlink" title="将博客搬至CSDN"></a>将博客搬至CSDN</h4>
     </div>
 
     
@@ -303,10 +282,6 @@
 
 
       <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/ElementUI/" rel="tag"><i class="fa fa-tag"></i> ElementUI</a>
-          </div>
 
         
 
@@ -314,13 +289,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/" rel="prev" title="echarts鼠标首次悬浮经过页面闪动">
-      <i class="fa fa-chevron-left"></i> echarts鼠标首次悬浮经过页面闪动
+    <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/" rel="prev" title="记录一下常用比较好用的css">
+      <i class="fa fa-chevron-left"></i> 记录一下常用比较好用的css
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" rel="next" title="flex布局space-between最后一行展示问题">
-      flex布局space-between最后一行展示问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -384,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%9C%A8%E4%BD%BF%E7%94%A8-el-table-%E6%97%B6%E4%BC%9A%E9%81%87%E5%88%B0%E8%A1%A8%E6%A0%BC%E6%9F%90%E8%A1%8C%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">场景：在使用 el-table 时会遇到表格某行数据过长的情况</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%90%AC%E8%87%B3CSDN"><span class="nav-number">1.</span> <span class="nav-text">将博客搬至CSDN</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
