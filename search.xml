@@ -667,4 +667,25 @@
         <tag>Css</tag>
       </tags>
   </entry>
+  <entry>
+    <title>vue3vite中不支持require后的平替写法</title>
+    <url>/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/</url>
+    <content><![CDATA[<h4 id="当开发框架从-vue2-升级到-vue3-vite-后-或者-项目要从-v2-升级到-v3-vite，一些使用-require-的动态路径引入的资源会报错"><a href="#当开发框架从-vue2-升级到-vue3-vite-后-或者-项目要从-v2-升级到-v3-vite，一些使用-require-的动态路径引入的资源会报错" class="headerlink" title="当开发框架从 vue2 升级到 vue3 + vite 后 或者 项目要从 v2 升级到 v3 + vite，一些使用 require 的动态路径引入的资源会报错"></a>当开发框架从 <code>vue2</code> 升级到 <code>vue3 + vite</code> 后 或者 项目要从 <code>v2</code> 升级到 <code>v3 + vite</code>，一些使用 <code>require</code> 的<font color='#ea7b7b'>动态路径</font>引入的资源会报错<br></h4><h4 id="这一般是因为-vue3-vite-不支持-commonjs-写法，可以安装一些插件来支持，但我个人更倾向于使用-v3-的解决方案："><a href="#这一般是因为-vue3-vite-不支持-commonjs-写法，可以安装一些插件来支持，但我个人更倾向于使用-v3-的解决方案：" class="headerlink" title="这一般是因为 vue3 vite 不支持 commonjs 写法，可以安装一些插件来支持，但我个人更倾向于使用 v3 的解决方案："></a>这一般是因为 <code>vue3</code> <code>vite</code> 不支持 <code>commonjs</code> 写法，可以安装一些插件来支持，但我个人更倾向于使用 <code>v3</code> 的解决方案：<br></h4><ul>
+<li><p>这是之前的写法</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;require(`/path/$&#123;aPath&#125;.png&#x27;)`/&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> aPath = <span class="string">&#x27;imgName&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理成 <code>v3</code> 支持的写法 👇</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;getImgUrl(&#x27;imgName&#x27;)&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">getImgUrl</span> = (<span class="params">name</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;/path/&#x27;</span> + name + <span class="string">&#x27;.png&#x27;</span>, <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>).<span class="property">href</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
 </search>
