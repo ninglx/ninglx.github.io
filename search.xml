@@ -66,6 +66,22 @@
       </tags>
   </entry>
   <entry>
+    <title>el-table-column数据过长多行省略处理</title>
+    <url>/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h3 id="场景：在使用-el-table-时会遇到表格某行数据过长的情况"><a href="#场景：在使用-el-table-时会遇到表格某行数据过长的情况" class="headerlink" title="场景：在使用 el-table 时会遇到表格某行数据过长的情况"></a>场景：在使用 el-table 时会遇到表格某行数据过长的情况</h3><ul>
+<li>一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容</li>
+<li>还有一种是特殊需求：需要 <strong>多行展示后</strong> 再进行省略显示。 以下是处理方式：<span id="more"></span><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column</span><br><span class="line">	property=<span class="string">&quot;Date&quot;</span></span><br><span class="line">	label=<span class="string">&quot;Date&quot;</span>&gt;</span><br><span class="line">	<span class="comment">// 这里 template 的作用是 模拟 tooltip 的作用</span></span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">:title</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">v-html</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">class</span>=<span class="string">&quot;title-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">/deep/ <span class="selector-class">.el-table</span> <span class="selector-class">.cell</span> &#123;</span><br><span class="line">	<span class="attribute">word-break</span>: break-word ; // 避免一个单词被换行断开为两部分</span><br><span class="line">	<span class="attribute">overflow</span>:hidden;</span><br><span class="line">	<span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">	<span class="attribute">display</span>:-webkit-box;</span><br><span class="line">	-webkit-box-orient:vertical;</span><br><span class="line">	-webkit-line-clamp:<span class="number">2</span>; // 此处是<span class="number">2</span>行的末尾再省略展示， 想要几行后再省略展示 就写几</span><br><span class="line">	<span class="attribute">max-height</span>: <span class="number">48px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>ElementUI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cesium自定义popup封装使用</title>
     <url>/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h5 id="前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件-来介绍一些关于这个entity的详细信息。"><a href="#前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件-来介绍一些关于这个entity的详细信息。" class="headerlink" title="前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件 来介绍一些关于这个entity的详细信息。"></a>前几天项目中有个需求是基于<code>Vue</code>框架使用<code>CesiumJS</code>库，需要创建里面<code>gltf</code>模型对应的<code>Popup</code>弹窗组件 来介绍一些关于这个<code>entity</code>的详细信息。<br/></h5><ul>
@@ -98,22 +114,6 @@
       </tags>
   </entry>
   <entry>
-    <title>el-table-column数据过长多行省略处理</title>
-    <url>/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<h3 id="场景：在使用-el-table-时会遇到表格某行数据过长的情况"><a href="#场景：在使用-el-table-时会遇到表格某行数据过长的情况" class="headerlink" title="场景：在使用 el-table 时会遇到表格某行数据过长的情况"></a>场景：在使用 el-table 时会遇到表格某行数据过长的情况</h3><ul>
-<li>一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容</li>
-<li>还有一种是特殊需求：需要 <strong>多行展示后</strong> 再进行省略显示。 以下是处理方式：<span id="more"></span><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;el-table-column</span><br><span class="line">	property=<span class="string">&quot;Date&quot;</span></span><br><span class="line">	label=<span class="string">&quot;Date&quot;</span>&gt;</span><br><span class="line">	<span class="comment">// 这里 template 的作用是 模拟 tooltip 的作用</span></span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">:title</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">v-html</span>=<span class="string">&quot;scope.row.Date&quot;</span> <span class="attr">class</span>=<span class="string">&quot;title-tips&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">	<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
-  <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">/deep/ <span class="selector-class">.el-table</span> <span class="selector-class">.cell</span> &#123;</span><br><span class="line">	<span class="attribute">word-break</span>: break-word ; // 避免一个单词被换行断开为两部分</span><br><span class="line">	<span class="attribute">overflow</span>:hidden;</span><br><span class="line">	<span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">	<span class="attribute">display</span>:-webkit-box;</span><br><span class="line">	-webkit-box-orient:vertical;</span><br><span class="line">	-webkit-line-clamp:<span class="number">2</span>; // 此处是<span class="number">2</span>行的末尾再省略展示， 想要几行后再省略展示 就写几</span><br><span class="line">	<span class="attribute">max-height</span>: <span class="number">48px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>ElementUI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>flvjs视频流播放组件封装(&amp;断线重连)</title>
     <url>/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/</url>
     <content><![CDATA[<h5 id="最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用"><a href="#最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用" class="headerlink" title="最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用"></a>最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用</h5><hr>
@@ -133,6 +133,22 @@
         <tag>Vue</tag>
         <tag>视频播放</tag>
         <tag>Flvjs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Json串中key值改为指定字符串</title>
+    <url>/2022/04/12/Json%E4%B8%B2%E4%B8%ADkey%E5%80%BC%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h5 id="JSON串中key值改为指定字符串"><a href="#JSON串中key值改为指定字符串" class="headerlink" title="JSON串中key值改为指定字符串"></a>JSON串中key值改为指定字符串</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">objDemo[newKey] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>等同于👇</p>
+<span id="more"></span>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">objDemo</span>:&#123;</span><br><span class="line">  <span class="attr">newKey</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -176,36 +192,6 @@
       </categories>
       <tags>
         <tag>Gis开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Json串中key值改为指定字符串</title>
-    <url>/2022/04/12/Json%E4%B8%B2%E4%B8%ADkey%E5%80%BC%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h5 id="JSON串中key值改为指定字符串"><a href="#JSON串中key值改为指定字符串" class="headerlink" title="JSON串中key值改为指定字符串"></a>JSON串中key值改为指定字符串</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">objDemo[newKey] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>等同于👇</p>
-<span id="more"></span>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">objDemo</span>:&#123;</span><br><span class="line">  <span class="attr">newKey</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Js异步改同步（按顺序执行）</title>
-    <url>/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/</url>
-    <content><![CDATA[<h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5><span id="more"></span>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">val flag = <span class="string">&#x27;before&#x27;</span></span><br><span class="line">val slowFun = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; <span class="comment">// 返回一个 promise 对象</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      flag = <span class="string">&#x27;changed&#x27;</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;slowFun done&#x27;</span>)</span><br><span class="line">      <span class="title function_">resolve</span>() <span class="comment">// 标志此方法完成</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="number">2000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAll</span>(<span class="params"></span>)&#123; <span class="comment">// async 关键字指明是一个同步方法</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">slowFun</span>() <span class="comment">// await 即等待slowFun执行完成</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(flag)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;have waited slowFun for 2s&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">doAll</span>() <span class="comment">// 执行测试</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>异步同步</tag>
       </tags>
   </entry>
   <entry>
@@ -266,6 +252,23 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue中clearInterval失效问题</title>
+    <url>/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h5 id="使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费"><a href="#使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费" class="headerlink" title="使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费"></a>使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费</h5><h5 id="首先是setInterval和clearInterval的基本用法"><a href="#首先是setInterval和clearInterval的基本用法" class="headerlink" title="首先是setInterval和clearInterval的基本用法"></a>首先是<strong>setInterval</strong>和<strong>clearInterval</strong>的基本用法</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="comment">// 每 1s 调用一次</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do once...&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">beforeDestroy</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer) <span class="comment">// 清除定时器 myTimer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h5 id="在-Vue-中，有时会发现-clearInterval-执行后定时器并没有被清除，可以使用下面方法试试"><a href="#在-Vue-中，有时会发现-clearInterval-执行后定时器并没有被清除，可以使用下面方法试试" class="headerlink" title="在 Vue 中，有时会发现 clearInterval 执行后定时器并没有被清除，可以使用下面方法试试"></a>在 Vue 中，有时会发现 clearInterval 执行后定时器并没有被清除，可以使用下面方法试试</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// do someting...</span></span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"><span class="variable language_">this</span>.$once(<span class="string">&#x27;hook:beforeDestroy&#x27;</span>,<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="修改为上面的方法之后-clearInterval-就生效了，具体原因不明"><a href="#修改为上面的方法之后-clearInterval-就生效了，具体原因不明" class="headerlink" title="修改为上面的方法之后 clearInterval 就生效了，具体原因不明"></a>修改为上面的方法之后 clearInterval 就生效了，具体原因不明</h5><p>$once 相关用法参考 <a href="https://cn.vuejs.org/v2/api/#vm-once">Vue api 实例方法&#x2F;事件</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NodeJs换镜像源</title>
     <url>/2022/04/11/NodeJs%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90/</url>
     <content><![CDATA[<h3 id="nodejs-换源"><a href="#nodejs-换源" class="headerlink" title="nodejs 换源"></a>nodejs 换源</h3><p>get命令查看registry</p>
@@ -286,32 +289,17 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue中clearInterval失效问题</title>
-    <url>/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h5 id="使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费"><a href="#使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费" class="headerlink" title="使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费"></a>使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费</h5><h5 id="首先是setInterval和clearInterval的基本用法"><a href="#首先是setInterval和clearInterval的基本用法" class="headerlink" title="首先是setInterval和clearInterval的基本用法"></a>首先是<strong>setInterval</strong>和<strong>clearInterval</strong>的基本用法</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="comment">// 每 1s 调用一次</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do once...&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">beforeDestroy</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer) <span class="comment">// 清除定时器 myTimer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h5 id="在-Vue-中，有时会发现-clearInterval-执行后定时器并没有被清除，可以使用下面方法试试"><a href="#在-Vue-中，有时会发现-clearInterval-执行后定时器并没有被清除，可以使用下面方法试试" class="headerlink" title="在 Vue 中，有时会发现 clearInterval 执行后定时器并没有被清除，可以使用下面方法试试"></a>在 Vue 中，有时会发现 clearInterval 执行后定时器并没有被清除，可以使用下面方法试试</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// do someting...</span></span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"><span class="variable language_">this</span>.$once(<span class="string">&#x27;hook:beforeDestroy&#x27;</span>,<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="修改为上面的方法之后-clearInterval-就生效了，具体原因不明"><a href="#修改为上面的方法之后-clearInterval-就生效了，具体原因不明" class="headerlink" title="修改为上面的方法之后 clearInterval 就生效了，具体原因不明"></a>修改为上面的方法之后 clearInterval 就生效了，具体原因不明</h5><p>$once 相关用法参考 <a href="https://cn.vuejs.org/v2/api/#vm-once">Vue api 实例方法&#x2F;事件</a></p>
+    <title>Js异步改同步（按顺序执行）</title>
+    <url>/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/</url>
+    <content><![CDATA[<h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5><span id="more"></span>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">val flag = <span class="string">&#x27;before&#x27;</span></span><br><span class="line">val slowFun = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; <span class="comment">// 返回一个 promise 对象</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      flag = <span class="string">&#x27;changed&#x27;</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;slowFun done&#x27;</span>)</span><br><span class="line">      <span class="title function_">resolve</span>() <span class="comment">// 标志此方法完成</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="number">2000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAll</span>(<span class="params"></span>)&#123; <span class="comment">// async 关键字指明是一个同步方法</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">slowFun</span>() <span class="comment">// await 即等待slowFun执行完成</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(flag)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;have waited slowFun for 2s&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">doAll</span>() <span class="comment">// 执行测试</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
-        <tag>Vue</tag>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>echarts鼠标首次悬浮经过页面闪动</title>
-    <url>/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/</url>
-    <content><![CDATA[<h3 id="使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-："><a href="#使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-：" class="headerlink" title="使用 echarts 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 tooltip 超出屏幕边界导致的，可以通过以下办法解决 ："></a>使用 <code>echarts</code> 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 <code>tooltip</code> 超出屏幕边界导致的，可以通过以下办法解决 ：</h3><h3 id="tooltip-options-添加以下属性："><a href="#tooltip-options-添加以下属性：" class="headerlink" title="tooltip options 添加以下属性："></a><code>tooltip options</code> 添加以下属性：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">tooltip</span>:&#123;</span><br><span class="line">		<span class="attr">transitionDuration</span>: <span class="number">0</span>,</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Echats</tag>
+        <tag>异步同步</tag>
       </tags>
   </entry>
   <entry>
@@ -345,6 +333,18 @@
       </tags>
   </entry>
   <entry>
+    <title>echarts鼠标首次悬浮经过页面闪动</title>
+    <url>/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/</url>
+    <content><![CDATA[<h3 id="使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-："><a href="#使用-echarts-绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是-tooltip-超出屏幕边界导致的，可以通过以下办法解决-：" class="headerlink" title="使用 echarts 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 tooltip 超出屏幕边界导致的，可以通过以下办法解决 ："></a>使用 <code>echarts</code> 绘制图形后，在页面中首次鼠标悬浮划过会出现页面闪动，突然有滚动条出现又立即消失，从页面来看应该是 <code>tooltip</code> 超出屏幕边界导致的，可以通过以下办法解决 ：</h3><h3 id="tooltip-options-添加以下属性："><a href="#tooltip-options-添加以下属性：" class="headerlink" title="tooltip options 添加以下属性："></a><code>tooltip options</code> 添加以下属性：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">tooltip</span>:&#123;</span><br><span class="line">		<span class="attr">transitionDuration</span>: <span class="number">0</span>,</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Echats</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>elementUI修改messageBox弹框样式</title>
     <url>/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/</url>
     <content><![CDATA[<h6 id="elementUI-messageBox-组件自定义样式方法：添加属性’customClass’"><a href="#elementUI-messageBox-组件自定义样式方法：添加属性’customClass’" class="headerlink" title="elementUI messageBox 组件自定义样式方法：添加属性’customClass’"></a>elementUI messageBox 组件自定义样式方法：添加属性’customClass’</h6><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.$confirm(<span class="string">&#x27;确认？&#x27;</span>,<span class="string">&#x27;告警&#x27;</span>,&#123;</span><br><span class="line">  <span class="attr">confirmButtonText</span>: <span class="string">&#x27;确定&#x27;</span>,</span><br><span class="line">  <span class="attr">cancelButtonText</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;warning&#x27;</span>,</span><br><span class="line">  <span class="attr">customClass</span>: <span class="string">&#x27;myBox&#x27;</span>  <span class="comment">// 👈</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="comment">// do some </span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -355,22 +355,6 @@
       <tags>
         <tag>ElementUI</tag>
         <tag>Css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mapbox关闭/取消图层的点击事件</title>
-    <url>/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/</url>
-    <content><![CDATA[<h6 id="mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可"><a href="#mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可" class="headerlink" title="mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可"></a>mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可</h6><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">map.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>,<span class="string">&#x27;layerId&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>👇</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myClick</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注册事件</span></span><br><span class="line">map.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;layerId&#x27;</span>, <span class="title function_">myClick</span>(e))</span><br><span class="line"><span class="comment">// 取消事件</span></span><br><span class="line">map.<span class="title function_">off</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;layerId&#x27;</span>, <span class="title function_">myClick</span>(e))</span><br></pre></td></tr></table></figure>
-<h6 id="踩坑！！！-需要注意的是如果用-Vue-开发，上面的自定义-click-事件不要写到-method-中去，直接与-map-on-方法平级即可"><a href="#踩坑！！！-需要注意的是如果用-Vue-开发，上面的自定义-click-事件不要写到-method-中去，直接与-map-on-方法平级即可" class="headerlink" title="踩坑！！！ 需要注意的是如果用 Vue 开发，上面的自定义 click 事件不要写到 method:{} 中去，直接与 map.on() 方法平级即可"></a>踩坑！！！ 需要注意的是如果用 Vue 开发，上面的自定义 click 事件不要写到 method:{} 中去，直接与 map.on() 方法平级即可</h6>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Gis开发</tag>
-        <tag>Javascript</tag>
-        <tag>Mapbox</tag>
       </tags>
   </entry>
   <entry>
@@ -391,21 +375,19 @@
       </tags>
   </entry>
   <entry>
-    <title>vue2/3使用highcharts时3d类图表3d效果不生效问题</title>
-    <url>/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h5 id="在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法"><a href="#在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法" class="headerlink" title="在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 Highcharts 来满足开发需求。  在这里记录一下其基本用法"></a>在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 <code>Highcharts</code> 来满足开发需求。 <br/> 在这里记录一下其基本用法</h5><ul>
-<li>首先安装 <code>npm install highcharts-vue</code></li>
-<li>在展示组件&#x2F;页面里引入，<b>!!!注意后两行，这里是关键，只有引入3d库才能支持3d图表!!!</b><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Chart</span>&#125; <span class="keyword">from</span> <span class="string">&quot;highcharts-vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts <span class="keyword">from</span> <span class="string">&quot;highcharts&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts3d <span class="keyword">from</span> <span class="string">&quot;highcharts/highcharts-3d&quot;</span>;</span><br><span class="line"><span class="title function_">highcharts3d</span>(highcharts);</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Chart</span> <span class="attr">:options</span>=<span class="string">&quot;chartOptions&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Chart</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>这时就可以使用 <code>chartOptions</code> 参照官方文档开始配置属性项了</li>
-</ul>
-]]></content>
+    <title>mapbox关闭/取消图层的点击事件</title>
+    <url>/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/</url>
+    <content><![CDATA[<h6 id="mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可"><a href="#mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可" class="headerlink" title="mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可"></a>mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可</h6><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">map.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>,<span class="string">&#x27;layerId&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>👇</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myClick</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注册事件</span></span><br><span class="line">map.<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;layerId&#x27;</span>, <span class="title function_">myClick</span>(e))</span><br><span class="line"><span class="comment">// 取消事件</span></span><br><span class="line">map.<span class="title function_">off</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;layerId&#x27;</span>, <span class="title function_">myClick</span>(e))</span><br></pre></td></tr></table></figure>
+<h6 id="踩坑！！！-需要注意的是如果用-Vue-开发，上面的自定义-click-事件不要写到-method-中去，直接与-map-on-方法平级即可"><a href="#踩坑！！！-需要注意的是如果用-Vue-开发，上面的自定义-click-事件不要写到-method-中去，直接与-map-on-方法平级即可" class="headerlink" title="踩坑！！！ 需要注意的是如果用 Vue 开发，上面的自定义 click 事件不要写到 method:{} 中去，直接与 map.on() 方法平级即可"></a>踩坑！！！ 需要注意的是如果用 Vue 开发，上面的自定义 click 事件不要写到 method:{} 中去，直接与 map.on() 方法平级即可</h6>]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
+        <tag>Gis开发</tag>
         <tag>Javascript</tag>
-        <tag>Highcharts</tag>
+        <tag>Mapbox</tag>
       </tags>
   </entry>
   <entry>
@@ -427,6 +409,24 @@
       <tags>
         <tag>Vue</tag>
         <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue2/3使用highcharts时3d类图表3d效果不生效问题</title>
+    <url>/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h5 id="在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法"><a href="#在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法" class="headerlink" title="在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 Highcharts 来满足开发需求。  在这里记录一下其基本用法"></a>在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 <code>Highcharts</code> 来满足开发需求。 <br/> 在这里记录一下其基本用法</h5><ul>
+<li>首先安装 <code>npm install highcharts-vue</code></li>
+<li>在展示组件&#x2F;页面里引入，<b>!!!注意后两行，这里是关键，只有引入3d库才能支持3d图表!!!</b><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Chart</span>&#125; <span class="keyword">from</span> <span class="string">&quot;highcharts-vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts <span class="keyword">from</span> <span class="string">&quot;highcharts&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts3d <span class="keyword">from</span> <span class="string">&quot;highcharts/highcharts-3d&quot;</span>;</span><br><span class="line"><span class="title function_">highcharts3d</span>(highcharts);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Chart</span> <span class="attr">:options</span>=<span class="string">&quot;chartOptions&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Chart</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>这时就可以使用 <code>chartOptions</code> 参照官方文档开始配置属性项了</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Highcharts</tag>
       </tags>
   </entry>
   <entry>
@@ -675,18 +675,6 @@
       </tags>
   </entry>
   <entry>
-    <title>谷歌浏览器滚动条样式优化</title>
-    <url>/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h6 id="众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下："><a href="#众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下：" class="headerlink" title="众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下："></a>众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下：</h6><span id="more"></span>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*滚动条样式：谷歌浏览器下*/</span></span><br><span class="line">::-webkit-scrollbar&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的轨道*/</span></span><br><span class="line">::-webkit-scrollbar-track&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的滑块按钮*/</span></span><br><span class="line">::-webkit-scrollbar-thumb&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#e4e7ed</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的上下两端的按钮*/</span></span><br><span class="line">::-webkit-scrollbar-button&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#B0AEDA</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>记录一下常用比较好用的css</title>
     <url>/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/</url>
     <content><![CDATA[<h6 id="首先，在工作中秉着能用-css-完成的就不用切图的原则，一些略微特殊的样式还是尽量使用-css-展示以提高页面展示效率，以下是一些常用的属性："><a href="#首先，在工作中秉着能用-css-完成的就不用切图的原则，一些略微特殊的样式还是尽量使用-css-展示以提高页面展示效率，以下是一些常用的属性：" class="headerlink" title="首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性："></a>首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性：</h6><ol>
@@ -703,6 +691,18 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谷歌浏览器滚动条样式优化</title>
+    <url>/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h6 id="众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下："><a href="#众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下：" class="headerlink" title="众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下："></a>众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下：</h6><span id="more"></span>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*滚动条样式：谷歌浏览器下*/</span></span><br><span class="line">::-webkit-scrollbar&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的轨道*/</span></span><br><span class="line">::-webkit-scrollbar-track&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f5f7fa</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的滑块按钮*/</span></span><br><span class="line">::-webkit-scrollbar-thumb&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#e4e7ed</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*滚动条的上下两端的按钮*/</span></span><br><span class="line">::-webkit-scrollbar-button&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#B0AEDA</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>前端</category>
       </categories>

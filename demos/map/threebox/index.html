@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>数据集轨迹回放</title>
+
+<head>
+    <meta charset="utf-8">
+    <script src="./libs/vue.js"></script>
+    <script src="./libs/element-ui.js"></script>
+    <script src="./libs/mapbox-gl-draw.js"></script>
+    <script src="./libs/mapbox-gl.js"></script>
+    <script src="./libs/turf.min.js"></script>
+    <script src="./libs/threebox/threebox.js"></script>
+
+    <script src="./libs/mapTools.js"></script>
+    <link rel='stylesheet' href="./libs/mapbox-gl-draw.css" type='text/css'/>
+    <link rel='stylesheet' href="./libs/mapbox-gl.css"/>
+    <link rel='stylesheet' href="./libs/theme-chalk_index.css"/>
+    <link rel='stylesheet' href="./libs/threebox/threebox.css"/>
+
+    <script src="./config/index.js"></script>
+    <script src="./assets/stopLines.js"></script>
+
+</head>
+
+<body>
+<style>
+    html,
+    body,
+    #app {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        /* background-image: url('./assets/images/background.png'); */
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mapboxgl-ctrl-logo,
+    .mapboxgl-ctrl-attrib {
+        display: none !important;
+    }
+
+    .element-tree {
+        width: 100%;
+        max-width: 100%;
+        /*height: calc(100% - 40px);*/
+        /*max-height: calc(100% - 40px);*/
+        overflow: auto;
+        flex: 1;
+    }
+
+    .el-tree-node__content {
+        height: 32px;
+        padding-right: 10px;
+    }
+
+    .el-input {
+        width: unset;
+        padding: 8px;
+    }
+
+    .custom-tree-node {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 8px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .custom-tree-node,
+    span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .asideTable {
+        z-index: 10;
+        width: 350px;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        transition: all 0.5s ease;
+    }
+    .centerPlay{
+        box-shadow: 0px 0px 10px 0px #00a4b7;position: absolute;display:flex;justify-content:center;border-radius:8px;backdrop-filter:blur(10px);align-items:center;left: 50%;top: 50%;transform: translateX(-50%) translateY(-50%);width: 200px;height: 200px;
+    }
+    .centerPlay:hover{
+        box-shadow: 0px 0px 15px 0px #03dcf5;
+    }
+    .playInner{
+        cursor: pointer;font-size: larger;transform: scale(7.5);
+        color: rgba(255,255,255,.7);
+    }
+    .playInner:hover{
+        color: rgba(255,255,255,1);
+    }
+
+    .asideHidden {
+        left: -330px;
+        transition: all 0.5s ease;
+    }
+
+    .troggleBtn {
+        height: 50px;
+        width: 20px;
+        background-color: white;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .troggleBtn:hover {
+        /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */
+        box-shadow: 0px 0px 10px 0px white;
+    }
+
+    .progress .el-icon-video-play,
+    .el-icon-video-pause {
+        font-weight: bold;
+        font-size: 26px;
+        color: white;
+    }
+
+    .progress .el-icon-video-play:hover,
+    .el-icon-video-pause:hover {
+        color: #00a4b7;
+    }
+
+    .progress {
+        position: absolute;
+        box-shadow: 0px 0px 10px 0px #00a4b7;
+        bottom: 45px;
+        height: 45px;
+        /* transition: all 0.5s ease; */
+        background-color: rgba(1, 79, 116, 0.7);
+        /* padding: 10px 30px 30px 30px; */
+        padding: 10px 30px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .videos {
+        /* background-color: rgba(0, 146, 218, 0.5); */
+        /* border: 1px solid rgb(0, 146, 218); */
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        max-height: 80%;
+        overflow-y: auto;
+        padding: 8px;
+        /* height: 342px; */
+        /* overflow-y: auto; */
+    }
+
+    .vehicleDetailPopup {
+        max-width: unset !important;
+    }
+
+    .eventNameText {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        z-index: 2;
+        transform: translateX(-50%);
+        padding: 10px 10px 10px 10px;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: rgba(29, 50, 68, 0.8);
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .singleVideo {
+        width: 500px;
+    }
+
+    .videoControl {
+        object-fit: fill;
+        border-radius: 10px;
+        box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .dialog {
+        width: 1200px;
+        height: 700px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .dialogHeader {
+        height: 50px;
+        background-color: #0070d6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        color: white;
+    }
+
+    .dialogContent {
+        box-sizing: border-box;
+        height: calc(100% - 50px);
+        display: flex;
+        justify-content: space-between;
+        /* padding: 10px; */
+        position: relative;
+        background-color: white;
+        border-left: 1px solid #888888;
+        border-right: 1px solid #888888;
+        border-bottom: 1px solid #888888;
+    }
+
+    .eventTrackContainer {
+        width: calc(100% - 280px);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progressContainer {
+        position: relative;
+        width: calc(100% - 240px);
+        height: 100%;
+    }
+
+    .progressFrameControl {
+        width: 160px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        color: white;
+    }
+
+    .frameControlLast {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .frameControlLast:hover {
+        color: rgba(64, 158, 255, 0.8);
+    }
+
+    .frameControlNext {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .frameControlNext:hover {
+        color: rgba(64, 158, 255, 0.8);
+    }
+
+    span {
+        color: black;
+        margin-left: 5px;
+        letter-spacing: 1px;
+    }
+
+    .mapboxgl-popup-content {
+        background-color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .mapboxgl-popup-tip {
+        border-top-color: rgba(255, 255, 255, 0.8) !important;
+    }
+</style>
+<div id="app">
+    <div id="map" v-loading.fullscreen.lock="loading" element-loading-text="加载文件中，请稍后..."
+         element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)"></div>
+    <div class="centerPlay" v-if="showCenterPlay">
+        <i class="el-icon-video-play playInner" @click="playExampleData"></i>
+    </div>
+    <div class="asideTable" style="display: none" :class="{'asideHidden':!asideShow}">
+        <div
+                style="width: calc(100% - 20px);height: 100%;display: flex;flex-direction: column;padding: 8px 0;background-color:white;">
+            <el-input class="tree-filter" placeholder="输入关键字进行过滤" v-model="filterText">
+            </el-input>
+            <el-tree ref="tree" class="element-tree" :filter-node-method="filterNode" :data="treeData"
+                     :props="{label:'name',children:'content'}" default-expand-all>
+                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                        <span>{{ node.label }}</span>
+                        <!--                        <i class="el-icon-video-play" @click="playRowTrack(node, data)" v-if="showPlayIcon(node, data)"-->
+                        <!--                            style="cursor: pointer;font-size: larger;"></i>-->
+                        <i class="el-icon-video-play" @click="playExampleData"
+                           style="cursor: pointer;font-size: larger;"></i>
+                    </span>
+            </el-tree>
+        </div>
+
+        <div class="troggleBtn" :class="asideShow?'el-icon-arrow-left':'el-icon-arrow-right'"
+             @click="asideShow=!asideShow">
+        </div>
+    </div>
+    <div class="progress"
+         :style="{left: asideShow?'400px':'50%',width: asideShow?'calc(100% - 500px)':'80%',transform: asideShow?'':'translateX(-50%)'}">
+        <div @click="changePlayStatus" class="pauseButton"><i
+                :class="playState?'el-icon-video-pause':'el-icon-video-play'"
+                :style="{cursor:fullTrack.length?'pointer':'not-allowed'}"></i></div>
+
+        <div class="progressContainer">
+            <el-slider ref="sliderRef" @mousedown="handleMouseDown" @mouseup="handleMouseUp"
+                       @change="handleTimeChange" style="width: 100%" :show-tooltip="false" v-model="progressVal"
+                       :max="progressMax"></el-slider>
+            <div class="progressLabels"
+                 style="position: absolute;top: 66%;left: -20px;color: white;font-size: 14px;">
+                {{globalStartTime}}
+            </div>
+            <div class="progressLabels"
+                 style="position: absolute;top: 66%;right: -20px;color: white;font-size: 14px;">
+                {{globalEndTime}}
+            </div>
+            <div class="progressLabels"
+                 style="position: absolute;top: -9px;color: white;font-size: 14px;transform: translateX(-50%);"
+                 :style="{left:progressLabelLeft}">
+                {{globalCurrentTime}}
+            </div>
+        </div>
+
+        <div class="progressFrameControl">
+            <div @click="frameJump(false)" class="frameControlLast"
+                 :style="{cursor:fullTrack.length&&!this.playState?'pointer':'not-allowed'}"><i style="font-size: 20px;
+								font-weight: bold;" class="el-icon-caret-left"></i>上一帧
+            </div>
+            <div @click="frameJump(true)" class="frameControlNext"
+                 :style="{cursor:fullTrack.length&&!this.playState?'pointer':'not-allowed'}">下一帧<i style="font-size: 20px;
+								font-weight: bold;" class="el-icon-caret-right"></i></div>
+        </div>
+    </div>
+    <div class="videos" v-if="videos.length">
+        <div class="videosContainer">
+            <div class="singleVideo" v-for="sVideo of videos">
+                <video autoplay controls width="100%" height="100%" loop class="videoControl" :id="sVideo">
+                    <source :src="sVideo" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const readFileBaseUrl = `http://127.0.0.1:${SERVER_PORT}/readFile?filePath=`
+    const readFolderBaseUrl = `http://127.0.0.1:${SERVER_PORT}/readFolder?folderPath=`
+    let map = null;
+    let fullTrack = [];
+    let fullLight = []
+    let lastFrameData = {};
+    let currentFrameTrack = {}
+    let vehicleModels = {};
+    let vehicleModelTypes = {};
+    let licenseLabel = {};
+    let popupVises = {};
+    let vehiclePopups = {};
+    let selectVehicles = [];
+    let targetIdList = [1975890,1973164]
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                filterText: '',
+                treeData: [{name: 123, content: 123}],
+                eventName: '',
+                progressLabelLeft: 0,
+                globalCurrentTime: '--',
+                globalStartTime: '--',
+                globalEndTime: '--',
+                asideShow: false,
+                labelLoading: false,
+                trackLoading: false,
+                lightLoading: false,
+                tableLoading: true,
+                progressMax: 0,
+                progressVal: 0,
+                speedVal: 1,
+                eventStartTime: '',
+                eventEndTime: '',
+                frameIndex: 0,
+                timeState: false,
+                licenseState: false,
+                playState: false,
+                videos: [],
+                bounds: [],
+                showCenterPlay:true,
+                targetIdVehicleTrackData: {},
+            }
+        },
+        computed: {
+            loading() {
+                // return this.labelLoading || this.trackLoading || this.lightLoading || this.tableLoading
+                return this.trackLoading
+            }
+        },
+        watch: {
+            filterText(val) {
+                this.$refs.tree.filter(val);
+            },
+            playState(val) {
+                if (val) {
+                    this.eventStartTime = fullTrack[this.frameIndex].globalTimeStampLong
+                    this.playNowTime = performance.now()
+                    requestAnimationFrame(this.startRender)
+                    for (let videoEle of this.videos) {
+                        document.getElementById(videoEle).currentTime = this.progressVal / 1000
+                        document.getElementById(videoEle).play()
+                    }
+                } else {
+                    for (let videoEle of this.videos) {
+                        document.getElementById(videoEle).currentTime = this.progressVal / 1000
+                        document.getElementById(videoEle).pause()
+                    }
+                }
+            }
+        },
+        methods: {
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.name.indexOf(value) !== -1;
+            },
+            showPlayIcon(a, b) {
+                return a.level === 4
+            },
+            // 帧 前进/后退
+            frameJump(bool) {
+                // 没有轨迹数据不允许跳帧
+                if (!fullTrack.length) {
+                    return
+                }
+                // 播放状态不允许跳帧
+                if (this.playState) {
+                    return
+                }
+                this.renderPath(bool)
+            },
+            changePlayStatus() {
+                if (!fullTrack.length) {
+                    return
+                }
+                this.playState = !this.playState
+            },
+            getTimeIndex(timeValue) {
+                let closestIndex = 0;
+                let closestDiff = Math.abs(
+                    timeValue + fullTrack[0].globalTimeStampLong - fullTrack[0].globalTimeStampLong
+                );
+                for (let i = 0; i < fullTrack.length; i++) {
+                    const diff = Math.abs(
+                        timeValue + fullTrack[0].globalTimeStampLong - fullTrack[i].globalTimeStampLong
+                    );
+                    if (diff < closestDiff) {
+                        closestDiff = diff;
+                        closestIndex = i;
+                    }
+                }
+                return closestIndex;
+            },
+            handleTimeChange(value) {
+                if (value) {
+                    this.playState = false
+                    this.frameIndex = this.getTimeIndex(value)
+                    this.$nextTick(() => {
+                        this.playState = true
+                    })
+                }
+            },
+            handleMouseDown() {
+                this.playState = false;
+            },
+            handleMouseUp() {
+                this.handleTimeChange(this.progressVal)
+            },
+            async playRowTrack(node, data) {
+                let fullPath = data.fullPath.split('\\').join('/')
+                this.eventName = EVENT_TYPE[data.fullPath.split('\\')[1]] || '--'
+                // return
+                this.playState = false
+                this.videos = []
+                fullTrack = []
+                fullLight = []
+                this.frameIndex = 0
+                this.hideTb()
+                this.progressMax = 0
+                this.progressVal = 0
+                this.eventStartTime = ''
+                this.eventEndTime = ''
+                this.globalCurrentTime = '--'
+                this.globalStartTime = '--'
+                this.globalEndTime = '--'
+                this.removeLayers('vehicle,lightLayer,lightLayerText,selectVehicleTrack')
+                this.labelLoading = true
+                this.trackLoading = true
+                this.lightLoading = true
+                // 加载视频
+                // fetch(`${readFolderBaseUrl}${fullPath}/取证文件夹/视频`).then(resp => {
+                //     if (resp.ok) {
+                //         resp.json().then(respon => {
+                //             console.log('videoArr', respon);
+                //             for (let videoObj of respon) {
+                //                 this.videos.push(`${fullPath}/取证文件夹/视频/${videoObj.name}`)
+                //             }
+                //             setTimeout(() => {
+                //                 for (let videoEle of this.videos) {
+                //                     document.getElementById(videoEle).pause()
+                //                 }
+                //             }, 0)
+                //         });
+                //     } else {
+                //         alert('Error reading videos folder');
+                //     }
+                // })
+                // Promise.all([
+                //     fetch(`${readFileBaseUrl}${fullPath}/track.json`),
+                //     fetch(`${readFileBaseUrl}${fullPath}/light.json`),
+                //     fetch(`${readFileBaseUrl}${fullPath}/label.csv`)
+                // ]).then(([response, lightRes, labelRes]) => {
+                //
+                //     if (labelRes.ok) {
+                //         labelRes.text().then(res => {
+                //             this.labelLoading = false
+                //             let labelResArr = res.split(/[(\r\n)\r\n]+/)
+                //             console.log('labelMessage', labelResArr);
+                //             let fieldArr // 字段
+                //             targetIdList = []
+                //             for (let index = 0; index < labelResArr.length; index++) {
+                //                 if (index === 0) {
+                //                     fieldArr = labelResArr[index].split(',')
+                //                 } else {
+                //                     let valueArr = labelResArr[index].split(',')
+                //                     let targetIdListIndex = fieldArr.indexOf('targetIdList')
+                //                     let targetIdListValue = valueArr[targetIdListIndex].slice(1, -1).split('-').map(valueItem => {
+                //                         return Number(valueItem)
+                //                     })
+                //                     targetIdList.push(...targetIdListValue)
+                //                 }
+                //             }
+                //
+                //             console.log('target...', targetIdList);
+                //         })
+                //     } else {
+                //         this.labelLoading = false
+                //         alert('Error reading file label.csv');
+                //     }
+                //
+                //     if (lightRes.ok) {
+                //         lightRes.text().then(res => {
+                //             this.lightLoading = false
+                //             let lightResArr = res.split(/[(\r\n)\r\n]+/)
+                //             fullLight = lightResArr.map(str => {
+                //                 if (str) {
+                //                     return JSON.parse(str)
+                //                 }
+                //             })
+                //             fullLight.pop()
+                //             console.log('fullLight', fullLight);
+                //         })
+                //     } else {
+                //         this.lightLoading = false
+                //         alert('Error reading file light.json');
+                //     }
+                //     if (response.ok) {
+                //         response.text().then(res => {
+                //             this.trackLoading = false
+                //             let stringArr = res.split(/[(\r\n)\r\n]+/)
+                //             fullTrack = stringArr.map(str => {
+                //                 if (str) {
+                //                     return JSON.parse(str)
+                //                 }
+                //             })
+                //             fullTrack.pop()
+                //             console.log('fullTrack', fullTrack);
+                //             this.eventStartTime = fullTrack[0].globalTimeStampLong
+                //             this.globalStartTime = new Date(fullTrack[0].globalTimeStampLong).toLocaleString()
+                //             this.globalEndTime = new Date(fullTrack[fullTrack.length - 1].globalTimeStampLong).toLocaleString()
+                //             this.eventEndTime = fullTrack[fullTrack.length - 1].globalTimeStampLong
+                //             this.progressMax = this.eventEndTime - this.eventStartTime
+                //             this.playNowTime = performance.now()
+                //             this.playState = true
+                //         })
+                //     } else {
+                //         this.trackLoading = false
+                //         alert('Error reading file track.json');
+                //     }
+                // }).catch(err => {
+                //     this.$message.error(err)
+                // })
+
+            },
+            playExampleData() {
+                this.showCenterPlay = false
+                this.trackLoading = true
+                fetch('./track.json').then(result => {
+                    result.text().then(res => {
+                        this.trackLoading = false
+                        let stringArr = res.split(/[(\r\n)\r\n]+/)
+                        fullTrack = stringArr.map(str => {
+                            if (str) {
+                                return JSON.parse(str)
+                            }
+                        })
+                        fullTrack.pop()
+                        this.eventStartTime = fullTrack[0].globalTimeStampLong
+                        this.globalStartTime = new Date(fullTrack[0].globalTimeStampLong).toLocaleString()
+                        this.globalEndTime = new Date(fullTrack[fullTrack.length - 1].globalTimeStampLong).toLocaleString()
+                        this.eventEndTime = fullTrack[fullTrack.length - 1].globalTimeStampLong
+                        this.progressMax = this.eventEndTime - this.eventStartTime
+                        this.playNowTime = performance.now()
+                        this.playState = true
+                    })
+                })
+            },
+            startRender() {
+                if (this.playState) {
+                    this.renderPath(true)
+                    requestAnimationFrame(this.startRender)
+                }
+            },
+            renderPath(bool) {
+                if (this.frameIndex === 0) {
+                    this.eventStartTime = fullTrack[0].globalTimeStampLong
+                    this.playNowTime = performance.now()
+                    // this.removeLayers('selectVehicleTrack')
+                    for (let key in this.targetIdVehicleTrackData) {
+                        this.removeLayers(`selectVehicleTrack${key}`)
+                    }
+                    this.targetIdVehicleTrackData = {}
+                    for (let item of this.videos) {
+                        document.getElementById(item).currentTime = 0
+                    }
+                }
+                // eventStartTime playNowTime 为每次暂停后重新开始时更新的基准时间 防止暂停后再次播放render时间差值问题
+                let eventSpendTime = fullTrack[this.frameIndex].globalTimeStampLong - this.eventStartTime
+                let nowSpendTime = performance.now() - this.playNowTime
+                if (nowSpendTime > eventSpendTime) {
+                    this.refreshMapLayers(bool)
+                } else {
+                    if (this.playState === false) {
+                        this.refreshMapLayers(bool)
+                    }
+                }
+            },
+            removeLayers(names) {
+                if (map) {
+                    for (let layerId of names.split(",")) {
+                        if (map.getLayer(layerId)) {
+                            map.removeLayer(layerId);
+                        }
+                        if (map.getSource(layerId)) {
+                            map.removeSource(layerId);
+                        }
+                    }
+                }
+            },
+            convertDict(dictName, value) {
+                return value
+            },
+            // 转换轨迹数据为geo 并更新轨迹图层
+            updateSelectVehcleTrack(id, lng, lat) {
+                if (!this.targetIdVehicleTrackData[id]) {
+                    this.targetIdVehicleTrackData[id] = []
+                }
+                this.targetIdVehicleTrackData[id].push([lng, lat])
+
+
+                if (this.targetIdVehicleTrackData[id].length > 1) {
+                    let feature = turf.lineString(
+                        this.targetIdVehicleTrackData[id]
+                    );
+                    let geo = turf.featureCollection([feature]);
+                    addOrUpdateSelectVehicleTrack(map, geo, id);
+                }
+            },
+            addCheckDetail(data) {
+                if (vehiclePopups[`popup${data.id}`]) {
+                    if (popupVises[`popup${data.id}`]) {
+                        vehiclePopups[`popup${data.id}`].setLngLat([
+                            data.longitude,
+                            data.latitude,
+                        ]);
+                        // 参与事故车辆弹窗
+                        for (let targetId of targetIdList) {
+                            let realTimeData = fullTrack[this.frameIndex].e1FrameParticipant.find(i => {
+                                return i.id == targetId
+                            })
+                            if (realTimeData) {
+                                // 如果目标车辆只有1 则展示轨迹
+                                // if (targetIdList.length === 1) {
+                                // 	this.updateSelectVehcleTrack(data.longitude,
+                                // 		data.latitude)
+                                // }
+                                if (targetIdList.length) {
+                                    this.updateSelectVehcleTrack(data.id, data.longitude,
+                                        data.latitude)
+                                }
+                                for (let itm of document.querySelectorAll(`.popup${realTimeData.id} .detailItem`)) {
+                                    if (itm.attributes.attr.value !== 'eventName') {
+                                        itm.childNodes[2].data = realTimeData[itm.attributes.attr.value] || '无数据'
+                                    }
+                                    if (itm.attributes.attr.value === 'longitude' || itm.attributes.attr.value === 'latitude') {
+                                        itm.childNodes[2].data = Number(realTimeData[itm.attributes.attr.value]).toFixed(6)
+                                    }
+                                    if (itm.attributes.attr.value === 'originalColor') {
+                                        itm.childNodes[2].data = CAR_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
+                                    }
+                                    if (itm.attributes.attr.value === 'originalType') {
+                                        itm.childNodes[2].data = CAR_TYPE[realTimeData[itm.attributes.attr.value]]
+                                    }
+                                    if (itm.attributes.attr.value === 'licenseColor') {
+                                        itm.childNodes[2].data = LICENSE_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
+                                    }
+                                    if (itm.attributes.attr.value === 'speed') {
+                                        itm.childNodes[2].data = (realTimeData[itm.attributes.attr.value] / 100 * 3.6).toFixed(2) + ' km/h'
+                                    }
+                                }
+                            }
+                        }
+                        // 手动选择车辆弹窗
+                        for (let selectVehicle of selectVehicles) {
+                            let realTimeData = fullTrack[this.frameIndex].e1FrameParticipant.find(i => {
+                                return i.id === selectVehicle.id
+                            })
+                            if (realTimeData) {
+                                for (let itm of document.querySelectorAll(`.popup${realTimeData.id} .detailItem`)) {
+                                    if (itm.attributes.attr.value !== 'eventName') {
+                                        itm.childNodes[2].data = realTimeData[itm.attributes.attr.value] || '无数据'
+                                    }
+
+                                    if (itm.attributes.attr.value === 'longitude' || itm.attributes.attr.value === 'latitude') {
+                                        itm.childNodes[2].data = Number(realTimeData[itm.attributes.attr.value]).toFixed(6)
+                                    }
+                                    if (itm.attributes.attr.value === 'originalColor') {
+                                        itm.childNodes[2].data = CAR_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
+                                    }
+                                    if (itm.attributes.attr.value === 'originalType') {
+                                        itm.childNodes[2].data = CAR_TYPE[realTimeData[itm.attributes.attr.value]]
+                                    }
+                                    if (itm.attributes.attr.value === 'licenseColor') {
+                                        itm.childNodes[2].data = LICENSE_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
+                                    }
+                                    if (itm.attributes.attr.value === 'speed') {
+                                        itm.childNodes[2].data = (realTimeData[itm.attributes.attr.value] / 100 * 3.6).toFixed(2) + ' km/h'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    vehiclePopups[`popup${data.id}`] = new mapboxgl.Popup({
+                        closeButton: true,
+                        closeOnClick: false,
+                        anchor: "bottom",
+                        offset: [0, -40],
+                    });
+                    vehiclePopups[`popup${data.id}`]
+                        .setLngLat([data.longitude, data.latitude])
+                        .setHTML(`
+								<div class="vehicleDetail">
+									<div class="vehicleDetailInner">
+										<div class="content">
+											<div class="detailItem" attr='eventName'>
+												<span class="left" >事件类型：</span>${this.eventName} 
+											</div>
+											<div class="detailItem" attr='picLicense'>
+<!--												<span class="left" >车辆号牌：</span>${data.picLicense || "无数据"} -->
+												<span class="left" >车辆号牌：</span>${"无数据"}
+											</div>
+											<div class="detailItem"  attr='licenseColor'>
+												<span class="left" >号牌颜色：</span>
+												${this.convertDict("PlateColor", LICENSE_COLOR_LABEL[data.licenseColor])} 
+											</div>
+											<div class="detailItem" attr='speed'>
+												<span class="left" >行驶速度：</span>${data.speed ? (data.speed / 100 * 3.6).toFixed(2) : 0} km/h
+											</div>
+											<div class="detailItem" attr='originalColor'>
+												<span class="left" >车身颜色：</span>
+												${this.convertDict("CarColor", CAR_COLOR_LABEL[data.originalColor])} 
+											</div>
+											<div class="detailItem" attr='courseAngle'>
+												<span class="left" >航向角：</span>${data.courseAngle || 0} 
+											</div>
+											<div class="detailItem" attr='originalType'>
+												<span class="left">车辆类型：</span>
+												${this.convertDict("CarType", CAR_TYPE[data.originalType])}
+											</div>
+											<div class="detailItem" attr='id'>
+												<span class="left">ID ：</span>${data.id}
+											</div>
+											<div class="detailItem" attr='longitude'>
+												<span class="left">经度：</span>${Number(data.longitude).toFixed(6)} 
+											</div>
+											<div class="detailItem" attr='latitude'>
+												<span class="left">纬度：</span>${Number(data.latitude).toFixed(6)}
+											</div>
+										</div>
+									</div>
+									<div class="vehicle_arrow"></div>
+								</div>
+							`)
+                        .addTo(map)
+                        .addClassName(`popup${data.id} vehicleDetailPopup`);
+                    vehiclePopups[`popup${data.id}`].on("close", () => {
+                        vehiclePopups[`popup${data.id}`] = null;
+                        delete vehiclePopups[`popup${data.id}`];
+                        popupVises[`popup${data.id}`] = false;
+                        delete popupVises[`popup${data.id}`];
+                    });
+                    popupVises[`popup${data.id}`] = true;
+                }
+            },
+            removeTargetPopup(targetKey) {
+                vehiclePopups[`popup${targetKey}`]?.remove();
+                delete vehiclePopups[`popup${targetKey}`]
+                delete popupVises[`popup${targetKey}`]
+            },
+            hideTb() {
+                if (window.tb) {
+                    for (let item of window.tb.world.children) {
+                        window.tb.clear(item.userData.data.id)
+                    }
+                    vehicleModels = {};
+                    licenseLabel = {}
+                }
+            },
+            refreshBounds() {
+                let mapBounds = map.getBounds();
+                let leftDownXy = [mapBounds._sw.lng, mapBounds._sw.lat];
+                let rightUpXy = [mapBounds._ne.lng, mapBounds._ne.lat];
+                let mid1 = [mapBounds._sw.lng, mapBounds._ne.lat];
+                let mid2 = [mapBounds._ne.lng, mapBounds._sw.lat];
+                this.bounds = [[leftDownXy, mid1, rightUpXy, mid2, leftDownXy]];
+            },
+            refreshMapLayers(bool) {
+                let zoom = map?.getZoom()
+                if (zoom) {
+                    if (bool) {
+                        this.frameIndex += 1
+                        if (this.frameIndex >= fullTrack.length) {
+                            this.frameIndex = 0
+                        }
+                    } else {
+                        this.frameIndex -= 1
+                    }
+                    this.progressVal = fullTrack[this.frameIndex].globalTimeStampLong - fullTrack[0].globalTimeStampLong
+                    if (fullTrack.length) {
+                        this.progressLabelLeft = (this.frameIndex / fullTrack.length * 100) + '%'
+                    } else {
+                        this.progressLabelLeft = 0
+                    }
+                    this.globalCurrentTime = new Date(fullTrack[this.frameIndex].globalTimeStampLong).toLocaleTimeString()
+                    let allData
+                    currentFrameTrack = fullTrack[this.frameIndex]
+                    // 筛选可见区域
+                    for (let i = 0; i < currentFrameTrack.e1FrameParticipant.length; i++) {
+                        let pt = turf.point([currentFrameTrack.e1FrameParticipant[i].longitude, currentFrameTrack.e1FrameParticipant[i].latitude]);
+                        let poly = turf.polygon(this.bounds);
+                        if (!turf.booleanPointInPolygon(pt, poly)) {
+                            currentFrameTrack.e1FrameParticipant.splice(i, 1);
+                            i = i - 1;
+                        }
+                    }
+                    if (lastFrameData.e1FrameParticipant) {
+                        allData = this.diff(lastFrameData.e1FrameParticipant, currentFrameTrack.e1FrameParticipant);
+                    } else {
+                        allData = currentFrameTrack.e1FrameParticipant
+                    }
+                    if (!this.licenseState && Object.keys(licenseLabel).length) {
+                        for (let key in licenseLabel) {
+                            window.tb.clear(key, null);
+                        }
+                        licenseLabel = {};
+                    }
+                    for (let item of allData) {
+                        if (item.dill === 'del') {
+                            this.removeTargetPopup(item.id)
+                            // if (targetIdList.includes(item.id)) {
+                            // if(this.targetIdVehicleTrackData[item.id]){
+                            // 	this.targetIdVehicleTrackData[item.id] = []
+                            // }
+                            // }
+                        } else {
+                            // 参与事件车辆添加弹窗
+                            if (targetIdList.includes(item.id)) {
+                                this.addCheckDetail(item)
+                            }
+                            // 如果选中车辆存在 则弹窗更新  否则删除目标弹窗
+                            for (let index = 0; index < selectVehicles.length; index++) {
+                                if (item.id === selectVehicles[index].id) {
+                                    if (['add', 'com'].includes(item.dill) && popupVises[`popup${item.id}`]) {
+                                        this.addCheckDetail(item)
+                                    }
+                                }
+                            }
+                        }
+
+                        if (zoom > 17.5) {
+                            if (
+                                item.dill === "add" ||
+                                (item.dill === "com" && !vehicleModels[item.id])
+                            ) {
+                                this.addVehicleModels(item);
+                                if (this.licenseState) this.addVehicleLicenses(item);
+                            } else {
+                                for (let key in vehicleModels) {
+                                    if (vehicleModels[key].userData.data?.id === item.id) {
+                                        if (item.dill === "del") {
+                                            if (licenseLabel[`license${item.id}`]) {
+                                                window.tb.clear(`license${item.id}`, true);
+                                                delete licenseLabel[`license${item.id}`];
+                                            }
+                                            if (vehicleModels[item.id]) {
+                                                window.tb.clear(item.id, true);
+                                                delete vehicleModels[item.id];
+                                            }
+                                        }
+                                        if (item.dill === "com") {
+                                            // 车型中途变化 清除并重新创建
+                                            if (
+                                                vehicleModels[item.id].userData.data.originalType !==
+                                                item.originalType
+                                            ) {
+                                                if (vehicleModels[item.id]) {
+                                                    window.tb.clear(item.id, true);
+                                                    delete vehicleModels[item.id];
+                                                }
+                                                if (licenseLabel[`license${item.id}`]) {
+                                                    window.tb.clear(`license${item.id}`, true);
+                                                    delete licenseLabel[`license${item.id}`];
+                                                }
+                                                this.addVehicleModels(item);
+                                                if (this.licenseState) this.addVehicleLicenses(item);
+                                            } else {
+                                                if (licenseLabel[`license${item.id}`]) {
+                                                    // 如果车牌model存在且未改变 则setCoords
+                                                    if (
+                                                        licenseLabel[`license${item.id}`].userData.data
+                                                            .picLicense == item.picLicense
+                                                    ) {
+                                                        licenseLabel[`license${item.id}`].setCoords([
+                                                            item.longitude,
+                                                            item.latitude,
+                                                            4,
+                                                        ]);
+                                                    }
+                                                    // 否则先删除当前车牌 再创建更新后的车牌
+                                                    else {
+                                                        window.tb.clear(`license${item.id}`, true);
+                                                        delete licenseLabel[`license${item.id}`];
+                                                        this.addVehicleLicenses(item);
+                                                    }
+                                                } else {
+                                                    if (this.licenseState)
+                                                        this.addVehicleLicenses(item);
+                                                }
+                                                this.setModel(vehicleModels[item.id], item);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (zoom <= 17.5) {
+                        this.removeLayers('lightLayer,lightLayerText')
+                        this.hideTb();
+                        let features = [];
+                        for (let it of fullTrack[this.frameIndex].e1FrameParticipant) {
+                            features.push(
+                                turf.point([it.longitude, it.latitude], it)
+                            );
+                        }
+                        let geo = turf.featureCollection(features);
+                        addOrUpdateVehicle(map, geo)
+                    } else {
+                        this.removeLayers('vehicle')
+                        this.refreshLights()
+                    }
+                    lastFrameData = fullTrack[this.frameIndex];
+                    if (this.frameIndex >= fullTrack.length) {
+                        this.frameIndex = 0
+                    }
+                }
+
+            },
+            refreshLights() {
+                let lightResults = [];
+                let currentFrameLights = fullLight.find(fullLightItem => {
+                    return Math.abs(fullLightItem[0].timeStamp - fullTrack[this.frameIndex].globalTimeStampLong) < 800
+                })
+                if (currentFrameLights) {
+                    for (let frameSigleCrossLight of currentFrameLights) {
+                        let dirsLights = frameSigleCrossLight.dirLampGroupMap;
+                        for (let dirKey in dirsLights) {
+                            let stopLine = STOP_LINE_DATA.find((stop) => {
+                                return (
+                                    stop.lkid == frameSigleCrossLight.crossId &&
+                                    stop.dirtype == dirKey
+                                );
+                            });
+                            if (stopLine) {
+                                // 停止线往路口中心偏移0.8米
+                                let resultStopLine = turf.lineString(
+                                    JSON.parse(stopLine.geom).coordinates
+                                );
+                                let stopLineGeom = turf.lineOffset(resultStopLine, -0.0008, {
+                                    units: "kilometers",
+                                }).geometry.coordinates;
+                                let splitPoints = {};
+                                splitPoints.left = stopLineGeom[0];
+                                splitPoints.right = stopLineGeom[stopLineGeom.length - 1];
+                                splitPoints.center = turf.midpoint(
+                                    turf.point(splitPoints.left),
+                                    turf.point(splitPoints.right)
+                                ).geometry.coordinates;
+                                let lightNumSplitMap = {
+                                    1: ["center"],
+                                    2: ["left", "right"],
+                                };
+                                let stopLineAngle = stopLine.angle;
+                                // 停止线对应的转向数组 只有属于此数组的才视为合法转向灯
+                                let stopLineTurns = stopLine.turntype.replace(",3", "").split(",");
+                                // 根据停止线 turntype 筛选合法灯组
+                                let newSingleDirTurnLightList = [];
+                                for (let turnKey in dirsLights[dirKey]) {
+                                    if (stopLineTurns.includes(turnKey)) {
+                                        newSingleDirTurnLightList.push({
+                                            color: dirsLights[dirKey][turnKey],
+                                            countDown: frameSigleCrossLight.phaseMap[dirKey][turnKey],
+                                            turn: turnKey,
+                                        });
+                                    }
+                                }
+                                for (let i = 0; i < newSingleDirTurnLightList.length; i++) {
+                                    lightResults.push({
+                                        state: newSingleDirTurnLightList[i].color,
+                                        remainTime: newSingleDirTurnLightList[i].countDown || `-`,
+                                        turn: newSingleDirTurnLightList[i].turn,
+                                        coordinates:
+                                            splitPoints[lightNumSplitMap[stopLineTurns.length][i]],
+                                        ts: `${newSingleDirTurnLightList[i].turn}${newSingleDirTurnLightList[i].color}`,
+                                        lightAngle: stopLineAngle - 90,
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    let features = [];
+                    for (let item of lightResults) {
+                        features.push(turf.point(item.coordinates, item));
+                    }
+                    let geo = turf.featureCollection(features);
+                    addOrUpdateLightLayers(map, geo);
+                } else {
+                    this.removeLayers('lightLayer,lightLayerText')
+                }
+
+            },
+            addVehicleLicenses(option) {
+                if (option.picLicense) {
+                    let ele = document.createElement("div");
+                    ele.style.color = "white";
+                    ele.innerText = option.picLicense;
+                    ele.style.backgroundImage = `url('${LICENSE_IMAGES[`license${option.licenseColor}`]
+                    }')`;
+                    ele.style.backgroundSize = "100% 100%";
+                    ele.style.fontSize = "8px";
+                    ele.style.textAlign = "center";
+                    ele.style.padding = "2px 4px 8px 4px";
+                    let license = window.tb.label({
+                        htmlElement: ele,
+                        alwaysVisible: true,
+                        topMargin: 2,
+                    });
+                    license.setCoords([option.longitude, option.latitude, 4]);
+                    license.userData.data = {picLicense: option.picLicense};
+                    window.tb.add(license, `license${option.id}`);
+                    licenseLabel[`license${option.id}`] = license;
+                }
+            },
+            diff(oldData, newData) {
+                const add = newData.filter((e) => !oldData.find((c) => c.id === e.id));
+                const del = oldData.filter((e) => !newData.find((c) => c.id === e.id));
+                const com = newData.filter((e) => oldData.find((c) => c.id === e.id));
+                add.forEach((a) => (a.dill = "add"));
+                del.forEach((d) => (d.dill = "del"));
+                com.forEach((c) => (c.dill = "com"));
+                return [...add, ...del, ...com];
+            },
+            onSelectedChangeVehicle(e) {
+                if (e.detail.selected) {
+                    setTimeout(() => {
+                        selectVehicles.push(e.detail.userData.data)
+                        this.addCheckDetail(selectVehicles[selectVehicles.length - 1]);
+                    }, 0);
+                }
+            },
+            addVehicleModels(option) {
+                if (vehicleModelTypes[`car${option.originalType}`]) {
+                    let model = vehicleModelTypes[`car${option.originalType}`].duplicate();
+                    this.setModel(model, option);
+                    model.addEventListener(
+                        "SelectedChange",
+                        this.onSelectedChangeVehicle,
+                        false
+                    );
+                    vehicleModels[option.id] = model;
+                    window.tb.add(model, option.id);
+                }
+            },
+            setModel(model, options) {
+                if (targetIdList.length && targetIdList.includes(options.id)) {
+                    model.traverse((child) => {
+                        if (child.isMesh && child.name.includes("_19")) {
+                            child.material = child.material.clone();
+                            let realColor = '#e74032';
+                            child.material.color.set(realColor);
+                        }
+                    });
+                } else {
+                    model.traverse((child) => {
+                        if (child.isMesh && child.name.includes("_19")) {
+                            child.material = child.material.clone();
+                            let realColor = CAR_COLOR[options.originalColor];
+                            child.material.color.set(realColor);
+                        }
+                    });
+                }
+                model.setCoords([options.longitude, options.latitude]);
+                model.userData.data = options;
+                model.setRotation({x: 90, y: 360 - options.courseAngle - 90, z: 0});
+            },
+            deleteTreeContent(tree) {
+                for (let item of tree) {
+                    if (item.content) {
+                        if (['正样本', '负样本'].includes(item.name)) {
+                            for (let event of item.content) {
+                                delete event.content
+                            }
+                        }
+                        this.deleteTreeContent(item.content)
+                    }
+                }
+            },
+        },
+        mounted() {
+            const sliderElement = this.$refs.sliderRef.$el;
+            sliderElement.addEventListener("mouseup", this.handleMouseUp);
+            sliderElement.addEventListener("mousedown", this.handleMouseDown);
+            map = new mapboxgl.Map(MAP_OPTION);
+            map.on('load', () => {
+                map.on('click', (e) => {
+                    console.log('click lnglat', e.lngLat)
+                    console.log('center', map.getCenter());
+                    console.log('bearing', map.getBearing());
+                    console.log('zoom', map.getZoom());
+                    console.log('pitch', map.getPitch());
+                })
+            })
+            map.on('zoomend', () => {
+                this.refreshBounds()
+            })
+            map.on('moveend', () => {
+                this.refreshBounds()
+            })
+            map.on('style.load', () => {
+                map.setFog({
+                    color: "#1d3244", // Lower atmosphere
+                    "high-color": "#030b19", // Upper atmosphere
+                    "horizon-blend": 0.2, // Atmosphere thickness (default 0.2 at low zooms)
+                    "space-color": "rgb(11, 11, 25)", // Background color
+                    "star-intensity": 0, // Background star brightness (default 0.35 at low zoooms )
+                });
+                this.refreshBounds();
+                // for (let key in LIGHT_IMAGES) {
+                //     map.loadImage(LIGHT_IMAGES[key], (error, image) => {
+                //         if (map && !map.hasImage(key)) map.addImage(key, image);
+                //     });
+                // }
+                // 快捷键
+                window.onkeydown = () => {
+                    // alt + t 显示隐藏时间
+                    if (event.altKey && event.keyCode === 84) {
+                        this.timeState = !this.timeState;
+                    }
+                    // alt + k 改变车牌号显示状态
+                    if (event.altKey && event.keyCode === 75) {
+                        this.licenseState = !this.licenseState;
+                    }
+                };
+                window.tb = new Threebox(map, map.getCanvas().getContext("webgl"), {
+                    defaultLights: true,
+                    realSunlight: true,
+                    // realSunlightHelper: true,
+                    // sky: true,
+                    enableSelectingObjects: true,
+                });
+                map.addLayer({
+                    id: "vehicle3D",
+                    type: "custom",
+                    renderingMode: "3d",
+                    onAdd: (map, mbxContext) => {
+                        for (let typeCode in CAR_TYPE) {
+                            let modelType = MODEL_TYPE_MAP[typeCode] || typeCode
+                            let options = {
+                                obj: `./gltf/car${modelType}.glb`,
+                                type: "gltf",
+                                units: "meters",
+                                scale: 0.8,
+                                adjustment: {x: 0.5, y: 1, z: -0.5},
+                                bbox: true,
+                            };
+                            window.tb.loadObj(options, (model) => {
+                                vehicleModelTypes[`car${typeCode}`] = model;
+                            });
+                        }
+                    },
+                    render: function (gl, matrix) {
+                        window.tb.update();
+                    },
+                });
+            })
+        }
+    })
+</script>
+</div>
+</body>
+
+</html>
