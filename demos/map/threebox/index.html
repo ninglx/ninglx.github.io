@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>数据集轨迹回放</title>
+<title>mapbox + threejs</title>
 
 <head>
     <meta charset="utf-8">
@@ -31,6 +31,7 @@
         width: 100%;
         overflow: hidden;
         position: relative;
+        background-color: #292929;
         /* background-image: url('./assets/images/background.png'); */
     }
 
@@ -722,6 +723,9 @@
                                     if (itm.attributes.attr.value === 'originalColor') {
                                         itm.childNodes[2].data = CAR_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
                                     }
+                                    if (itm.attributes.attr.value === 'picLicense') {
+                                        itm.childNodes[2].data = '无数据'
+                                    }
                                     if (itm.attributes.attr.value === 'originalType') {
                                         itm.childNodes[2].data = CAR_TYPE[realTimeData[itm.attributes.attr.value]]
                                     }
@@ -744,7 +748,9 @@
                                     if (itm.attributes.attr.value !== 'eventName') {
                                         itm.childNodes[2].data = realTimeData[itm.attributes.attr.value] || '无数据'
                                     }
-
+                                    if (itm.attributes.attr.value === 'picLicense') {
+                                        itm.childNodes[2].data = '无数据'
+                                    }
                                     if (itm.attributes.attr.value === 'longitude' || itm.attributes.attr.value === 'latitude') {
                                         itm.childNodes[2].data = Number(realTimeData[itm.attributes.attr.value]).toFixed(6)
                                     }
@@ -778,11 +784,10 @@
 									<div class="vehicleDetailInner">
 										<div class="content">
 											<div class="detailItem" attr='eventName'>
-												<span class="left" >事件类型：</span>${this.eventName} 
+												<span class="left" >事件类型：</span>无数据
 											</div>
 											<div class="detailItem" attr='picLicense'>
-<!--												<span class="left" >车辆号牌：</span>${data.picLicense || "无数据"} -->
-												<span class="left" >车辆号牌：</span>${"无数据"}
+												<span class="left" >车辆号牌：</span>无数据
 											</div>
 											<div class="detailItem"  attr='licenseColor'>
 												<span class="left" >号牌颜色：</span>
@@ -953,7 +958,7 @@
                                                     // 如果车牌model存在且未改变 则setCoords
                                                     if (
                                                         licenseLabel[`license${item.id}`].userData.data
-                                                            .picLicense == item.picLicense
+                                                            .picLicense == '无数据'
                                                     ) {
                                                         licenseLabel[`license${item.id}`].setCoords([
                                                             item.longitude,
@@ -1078,7 +1083,7 @@
                 if (option.picLicense) {
                     let ele = document.createElement("div");
                     ele.style.color = "white";
-                    ele.innerText = option.picLicense;
+                    ele.innerText = '无数据';
                     ele.style.backgroundImage = `url('${LICENSE_IMAGES[`license${option.licenseColor}`]
                     }')`;
                     ele.style.backgroundSize = "100% 100%";
@@ -1091,7 +1096,7 @@
                         topMargin: 2,
                     });
                     license.setCoords([option.longitude, option.latitude, 4]);
-                    license.userData.data = {picLicense: option.picLicense};
+                    license.userData.data = {picLicense: '无数据'};
                     window.tb.add(license, `license${option.id}`);
                     licenseLabel[`license${option.id}`] = license;
                 }
@@ -1162,6 +1167,7 @@
             },
         },
         mounted() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoibmluZ2x4IiwiYSI6ImNsYnlnM2s2ODBnNmIzcHBpbzY5aDh3bHAifQ.hQL4zLjBss5i4x-zuFp9tg';
             const sliderElement = this.$refs.sliderRef.$el;
             sliderElement.addEventListener("mouseup", this.handleMouseUp);
             sliderElement.addEventListener("mousedown", this.handleMouseDown);

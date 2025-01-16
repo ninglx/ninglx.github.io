@@ -180,7 +180,7 @@ const LIGHT_IMAGES = {
 };
 const MAP_OPTION = {
     container: "map",
-    style: "http://106.120.201.126:14724/style.json",
+    style: "mapbox://styles/mapbox/dark-v11",
     center: [117.09, 36.644],
     zoom: 16,
     pitch: 0,
