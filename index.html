@@ -152,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -208,6 +208,81 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="Ning lx">
+      <meta itemprop="description" content="进击的菜鸡">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ning">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/" class="post-title-link" itemprop="url">记录一下vue3的hooks</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-01-18 16:46:09 / 修改时间：17:38:36" itemprop="dateCreated datePublished" datetime="2025-01-18T16:46:09+08:00">2025-01-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在24年开始，个人逐步从-vue2-迁移到了-vue3-框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在-function-的提取，在这里记录一下后来前两个月才开始使用的-hooks-写法"><a href="#在24年开始，个人逐步从-vue2-迁移到了-vue3-框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在-function-的提取，在这里记录一下后来前两个月才开始使用的-hooks-写法" class="headerlink" title="在24年开始，个人逐步从 vue2 迁移到了 vue3 框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在 function 的提取，在这里记录一下后来前两个月才开始使用的 hooks 写法"></a>在24年开始，个人逐步从 <code>vue2</code> 迁移到了 <code>vue3</code> 框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在 <code>function</code> 的提取，在这里记录一下后来前两个月才开始使用的 <code>hooks</code> 写法</h4><ol>
+<li><p>首先创建 <code>hooks</code> <code>js</code> 文件，在我项目中涉及到了 <code>webgis</code> 模块的多个业务图层的分隔处理，比如加载红绿灯图层并根据数据每秒驱动渲染的逻辑单独封装一个 hooks，可以大大方便后续其他模块对这个功能调用的便捷性。而且有些图层的加载与更新涉及的代码量很大，也可以减少单文件行数，方便后续维护，功能模块的 <code>bug</code> 也更好排查。 <br><br>以下给一个简单的示例 <code>useExampleHooks.js</code>，记录一下。。。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (initNum) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> convertRuleNum = <span class="title function_">ref</span>(initNum)</span><br><span class="line">    <span class="title function_">onMounted</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> apiResult = <span class="number">10000</span></span><br><span class="line">        convertRuleNum.<span class="property">value</span> += apiResult</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">numConvert</span> = (<span class="params">num</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> num.<span class="title function_">toFixed</span>(<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 导出要在其他多个模块使用的变量和方法</span></span><br><span class="line">    <span class="keyword">return</span> &#123; convertRuleNum, numConvert &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>vue</code> 文件中使用 <code>hooks</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> useExampleHooks <span class="keyword">from</span> <span class="string">&#x27;./useExampleHooks.js&#x27;</span></span><br><span class="line"><span class="keyword">const</span> &#123; convertRuleNum, numConvert &#125; = <span class="title function_">useExampleHooks</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; convertRuleNum &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; numConvert(10) &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -952,90 +1027,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Cesium自定义popup封装使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-07 19:06:23" itemprop="dateCreated datePublished" datetime="2023-03-07T19:06:23+08:00">2023-03-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件-来介绍一些关于这个entity的详细信息。"><a href="#前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件-来介绍一些关于这个entity的详细信息。" class="headerlink" title="前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件 来介绍一些关于这个entity的详细信息。"></a>前几天项目中有个需求是基于<code>Vue</code>框架使用<code>CesiumJS</code>库，需要创建里面<code>gltf</code>模型对应的<code>Popup</code>弹窗组件 来介绍一些关于这个<code>entity</code>的详细信息。<br/></h5><ul>
-<li>因为UI样式定制化较高，且可能多处需要调用，所以需要封装一个<code>Popup</code>组件。</li>
-<li>并且如果使用原生<code>html</code>文本来一点点编写组件的话，开发起来会很呆 - -| 所以，改用创建并挂载一个<code>Vue</code>页面组件来实现这个弹窗页面。</li>
-<li>接下来介绍一下实现步骤：<br/>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1107,7 +1098,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

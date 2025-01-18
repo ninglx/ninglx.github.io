@@ -79,19 +79,6 @@
         text-overflow: ellipsis;
         overflow: hidden;
     }
-
-    .asideTable {
-        z-index: 10;
-        width: 350px;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: flex;
-        align-items: center;
-        transition: all 0.5s ease;
-    }
     .centerPlay{
         box-shadow: 0px 0px 10px 0px #00a4b7;position: absolute;display:flex;justify-content:center;border-radius:8px;backdrop-filter:blur(10px);align-items:center;left: 50%;top: 50%;transform: translateX(-50%) translateY(-50%);width: 200px;height: 200px;
     }
@@ -294,27 +281,6 @@
     <div class="centerPlay" v-if="showCenterPlay">
         <i class="el-icon-video-play playInner" @click="playExampleData"></i>
     </div>
-    <div class="asideTable" style="display: none" :class="{'asideHidden':!asideShow}">
-        <div
-                style="width: calc(100% - 20px);height: 100%;display: flex;flex-direction: column;padding: 8px 0;background-color:white;">
-            <el-input class="tree-filter" placeholder="输入关键字进行过滤" v-model="filterText">
-            </el-input>
-            <el-tree ref="tree" class="element-tree" :filter-node-method="filterNode" :data="treeData"
-                     :props="{label:'name',children:'content'}" default-expand-all>
-                    <span class="custom-tree-node" slot-scope="{ node, data }">
-                        <span>{{ node.label }}</span>
-                        <!--                        <i class="el-icon-video-play" @click="playRowTrack(node, data)" v-if="showPlayIcon(node, data)"-->
-                        <!--                            style="cursor: pointer;font-size: larger;"></i>-->
-                        <i class="el-icon-video-play" @click="playExampleData"
-                           style="cursor: pointer;font-size: larger;"></i>
-                    </span>
-            </el-tree>
-        </div>
-
-        <div class="troggleBtn" :class="asideShow?'el-icon-arrow-left':'el-icon-arrow-right'"
-             @click="asideShow=!asideShow">
-        </div>
-    </div>
     <div class="progress"
          :style="{left: asideShow?'400px':'50%',width: asideShow?'calc(100% - 500px)':'80%',transform: asideShow?'':'translateX(-50%)'}">
         <div @click="changePlayStatus" class="pauseButton"><i
@@ -362,8 +328,6 @@
 </div>
 
 <script>
-    const readFileBaseUrl = `http://127.0.0.1:${SERVER_PORT}/readFile?filePath=`
-    const readFolderBaseUrl = `http://127.0.0.1:${SERVER_PORT}/readFolder?folderPath=`
     let map = null;
     let fullTrack = [];
     let fullLight = []
@@ -375,13 +339,10 @@
     let popupVises = {};
     let vehiclePopups = {};
     let selectVehicles = [];
-    let targetIdList = [1975890,1973164]
     new Vue({
         el: '#app',
         data: function () {
             return {
-                filterText: '',
-                treeData: [{name: 123, content: 123}],
                 eventName: '',
                 progressLabelLeft: 0,
                 globalCurrentTime: '--',
@@ -414,9 +375,6 @@
             }
         },
         watch: {
-            filterText(val) {
-                this.$refs.tree.filter(val);
-            },
             playState(val) {
                 if (val) {
                     this.eventStartTime = fullTrack[this.frameIndex].globalTimeStampLong
@@ -435,13 +393,6 @@
             }
         },
         methods: {
-            filterNode(value, data) {
-                if (!value) return true;
-                return data.name.indexOf(value) !== -1;
-            },
-            showPlayIcon(a, b) {
-                return a.level === 4
-            },
             // 帧 前进/后退
             frameJump(bool) {
                 // 没有轨迹数据不允许跳帧
@@ -490,122 +441,6 @@
             },
             handleMouseUp() {
                 this.handleTimeChange(this.progressVal)
-            },
-            async playRowTrack(node, data) {
-                let fullPath = data.fullPath.split('\\').join('/')
-                this.eventName = EVENT_TYPE[data.fullPath.split('\\')[1]] || '--'
-                // return
-                this.playState = false
-                this.videos = []
-                fullTrack = []
-                fullLight = []
-                this.frameIndex = 0
-                this.hideTb()
-                this.progressMax = 0
-                this.progressVal = 0
-                this.eventStartTime = ''
-                this.eventEndTime = ''
-                this.globalCurrentTime = '--'
-                this.globalStartTime = '--'
-                this.globalEndTime = '--'
-                this.removeLayers('vehicle,lightLayer,lightLayerText,selectVehicleTrack')
-                this.labelLoading = true
-                this.trackLoading = true
-                this.lightLoading = true
-                // 加载视频
-                // fetch(`${readFolderBaseUrl}${fullPath}/取证文件夹/视频`).then(resp => {
-                //     if (resp.ok) {
-                //         resp.json().then(respon => {
-                //             console.log('videoArr', respon);
-                //             for (let videoObj of respon) {
-                //                 this.videos.push(`${fullPath}/取证文件夹/视频/${videoObj.name}`)
-                //             }
-                //             setTimeout(() => {
-                //                 for (let videoEle of this.videos) {
-                //                     document.getElementById(videoEle).pause()
-                //                 }
-                //             }, 0)
-                //         });
-                //     } else {
-                //         alert('Error reading videos folder');
-                //     }
-                // })
-                // Promise.all([
-                //     fetch(`${readFileBaseUrl}${fullPath}/track.json`),
-                //     fetch(`${readFileBaseUrl}${fullPath}/light.json`),
-                //     fetch(`${readFileBaseUrl}${fullPath}/label.csv`)
-                // ]).then(([response, lightRes, labelRes]) => {
-                //
-                //     if (labelRes.ok) {
-                //         labelRes.text().then(res => {
-                //             this.labelLoading = false
-                //             let labelResArr = res.split(/[(\r\n)\r\n]+/)
-                //             console.log('labelMessage', labelResArr);
-                //             let fieldArr // 字段
-                //             targetIdList = []
-                //             for (let index = 0; index < labelResArr.length; index++) {
-                //                 if (index === 0) {
-                //                     fieldArr = labelResArr[index].split(',')
-                //                 } else {
-                //                     let valueArr = labelResArr[index].split(',')
-                //                     let targetIdListIndex = fieldArr.indexOf('targetIdList')
-                //                     let targetIdListValue = valueArr[targetIdListIndex].slice(1, -1).split('-').map(valueItem => {
-                //                         return Number(valueItem)
-                //                     })
-                //                     targetIdList.push(...targetIdListValue)
-                //                 }
-                //             }
-                //
-                //             console.log('target...', targetIdList);
-                //         })
-                //     } else {
-                //         this.labelLoading = false
-                //         alert('Error reading file label.csv');
-                //     }
-                //
-                //     if (lightRes.ok) {
-                //         lightRes.text().then(res => {
-                //             this.lightLoading = false
-                //             let lightResArr = res.split(/[(\r\n)\r\n]+/)
-                //             fullLight = lightResArr.map(str => {
-                //                 if (str) {
-                //                     return JSON.parse(str)
-                //                 }
-                //             })
-                //             fullLight.pop()
-                //             console.log('fullLight', fullLight);
-                //         })
-                //     } else {
-                //         this.lightLoading = false
-                //         alert('Error reading file light.json');
-                //     }
-                //     if (response.ok) {
-                //         response.text().then(res => {
-                //             this.trackLoading = false
-                //             let stringArr = res.split(/[(\r\n)\r\n]+/)
-                //             fullTrack = stringArr.map(str => {
-                //                 if (str) {
-                //                     return JSON.parse(str)
-                //                 }
-                //             })
-                //             fullTrack.pop()
-                //             console.log('fullTrack', fullTrack);
-                //             this.eventStartTime = fullTrack[0].globalTimeStampLong
-                //             this.globalStartTime = new Date(fullTrack[0].globalTimeStampLong).toLocaleString()
-                //             this.globalEndTime = new Date(fullTrack[fullTrack.length - 1].globalTimeStampLong).toLocaleString()
-                //             this.eventEndTime = fullTrack[fullTrack.length - 1].globalTimeStampLong
-                //             this.progressMax = this.eventEndTime - this.eventStartTime
-                //             this.playNowTime = performance.now()
-                //             this.playState = true
-                //         })
-                //     } else {
-                //         this.trackLoading = false
-                //         alert('Error reading file track.json');
-                //     }
-                // }).catch(err => {
-                //     this.$message.error(err)
-                // })
-
             },
             playExampleData() {
                 this.showCenterPlay = false
@@ -675,22 +510,6 @@
             convertDict(dictName, value) {
                 return value
             },
-            // 转换轨迹数据为geo 并更新轨迹图层
-            updateSelectVehcleTrack(id, lng, lat) {
-                if (!this.targetIdVehicleTrackData[id]) {
-                    this.targetIdVehicleTrackData[id] = []
-                }
-                this.targetIdVehicleTrackData[id].push([lng, lat])
-
-
-                if (this.targetIdVehicleTrackData[id].length > 1) {
-                    let feature = turf.lineString(
-                        this.targetIdVehicleTrackData[id]
-                    );
-                    let geo = turf.featureCollection([feature]);
-                    addOrUpdateSelectVehicleTrack(map, geo, id);
-                }
-            },
             addCheckDetail(data) {
                 if (vehiclePopups[`popup${data.id}`]) {
                     if (popupVises[`popup${data.id}`]) {
@@ -698,46 +517,6 @@
                             data.longitude,
                             data.latitude,
                         ]);
-                        // 参与事故车辆弹窗
-                        for (let targetId of targetIdList) {
-                            let realTimeData = fullTrack[this.frameIndex].e1FrameParticipant.find(i => {
-                                return i.id == targetId
-                            })
-                            if (realTimeData) {
-                                // 如果目标车辆只有1 则展示轨迹
-                                // if (targetIdList.length === 1) {
-                                // 	this.updateSelectVehcleTrack(data.longitude,
-                                // 		data.latitude)
-                                // }
-                                if (targetIdList.length) {
-                                    this.updateSelectVehcleTrack(data.id, data.longitude,
-                                        data.latitude)
-                                }
-                                for (let itm of document.querySelectorAll(`.popup${realTimeData.id} .detailItem`)) {
-                                    if (itm.attributes.attr.value !== 'eventName') {
-                                        itm.childNodes[2].data = realTimeData[itm.attributes.attr.value] || '无数据'
-                                    }
-                                    if (itm.attributes.attr.value === 'longitude' || itm.attributes.attr.value === 'latitude') {
-                                        itm.childNodes[2].data = Number(realTimeData[itm.attributes.attr.value]).toFixed(6)
-                                    }
-                                    if (itm.attributes.attr.value === 'originalColor') {
-                                        itm.childNodes[2].data = CAR_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
-                                    }
-                                    if (itm.attributes.attr.value === 'picLicense') {
-                                        itm.childNodes[2].data = '无数据'
-                                    }
-                                    if (itm.attributes.attr.value === 'originalType') {
-                                        itm.childNodes[2].data = CAR_TYPE[realTimeData[itm.attributes.attr.value]]
-                                    }
-                                    if (itm.attributes.attr.value === 'licenseColor') {
-                                        itm.childNodes[2].data = LICENSE_COLOR_LABEL[realTimeData[itm.attributes.attr.value]]
-                                    }
-                                    if (itm.attributes.attr.value === 'speed') {
-                                        itm.childNodes[2].data = (realTimeData[itm.attributes.attr.value] / 100 * 3.6).toFixed(2) + ' km/h'
-                                    }
-                                }
-                            }
-                        }
                         // 手动选择车辆弹窗
                         for (let selectVehicle of selectVehicles) {
                             let realTimeData = fullTrack[this.frameIndex].e1FrameParticipant.find(i => {
@@ -897,16 +676,7 @@
                     for (let item of allData) {
                         if (item.dill === 'del') {
                             this.removeTargetPopup(item.id)
-                            // if (targetIdList.includes(item.id)) {
-                            // if(this.targetIdVehicleTrackData[item.id]){
-                            // 	this.targetIdVehicleTrackData[item.id] = []
-                            // }
-                            // }
                         } else {
-                            // 参与事件车辆添加弹窗
-                            if (targetIdList.includes(item.id)) {
-                                this.addCheckDetail(item)
-                            }
                             // 如果选中车辆存在 则弹窗更新  否则删除目标弹窗
                             for (let index = 0; index < selectVehicles.length; index++) {
                                 if (item.id === selectVehicles[index].id) {
@@ -1132,38 +902,16 @@
                 }
             },
             setModel(model, options) {
-                if (targetIdList.length && targetIdList.includes(options.id)) {
-                    model.traverse((child) => {
-                        if (child.isMesh && child.name.includes("_19")) {
-                            child.material = child.material.clone();
-                            let realColor = '#e74032';
-                            child.material.color.set(realColor);
-                        }
-                    });
-                } else {
-                    model.traverse((child) => {
-                        if (child.isMesh && child.name.includes("_19")) {
-                            child.material = child.material.clone();
-                            let realColor = CAR_COLOR[options.originalColor];
-                            child.material.color.set(realColor);
-                        }
-                    });
-                }
+                model.traverse((child) => {
+                    if (child.isMesh && child.name.includes("_19")) {
+                        child.material = child.material.clone();
+                        let realColor = CAR_COLOR[options.originalColor];
+                        child.material.color.set(realColor);
+                    }
+                });
                 model.setCoords([options.longitude, options.latitude]);
                 model.userData.data = options;
                 model.setRotation({x: 90, y: 360 - options.courseAngle - 90, z: 0});
-            },
-            deleteTreeContent(tree) {
-                for (let item of tree) {
-                    if (item.content) {
-                        if (['正样本', '负样本'].includes(item.name)) {
-                            for (let event of item.content) {
-                                delete event.content
-                            }
-                        }
-                        this.deleteTreeContent(item.content)
-                    }
-                }
             },
         },
         mounted() {
