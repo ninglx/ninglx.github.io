@@ -1,1288 +1,2548 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
+  <!-- meta/link... -->
+  
+
+
+
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
 
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"ninglx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="进击的菜鸡">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ning">
-<meta property="og:url" content="http://ninglx.github.io/index.html">
-<meta property="og:site_name" content="Ning">
-<meta property="og:description" content="进击的菜鸡">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Ning lx">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://ninglx.github.io/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
 
   <title>Ning</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    <link href="https://unpkg.com/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" rel="stylesheet">
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script defer src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+    
+    <!-- 依赖于jquery和vue -->
+    <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+  
+  <!-- 预加载动画 -->
   
 
+  <body>
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script defer>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?71b22babdc8da0b8a4c38614720f6a5e";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (src) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
 
-</head>
+</script> 
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
 
-  <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Ning</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
+  <script src="/js/vue-typed-js/index.js"></script>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
 
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
 
+<!-- 打字机效果js -->
+<script src="https://unpkg.com/typed.js@2.0.11"></script>
 
 
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-threebox">
-
-    <a href="/demos/map/threebox/index.html" rel="section"><i class="fa fa-map-marked fa-fw"></i>threebox</a>
-
-  </li>
-        <li class="menu-item menu-item-mapbox">
-
-    <a href="/demos/map/mapbox/index.html" rel="section"><i class="fa fa-map-marked fa-fw"></i>mapbox</a>
-
-  </li>
-        <li class="menu-item menu-item-cesium">
-
-    <a href="/demos/map/cesium/index.html" rel="section"><i class="fa fa-map-marked fa-fw"></i>cesium</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-  <a href="https://github.com/ninglx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/" class="post-title-link" itemprop="url">记录一下vue3的hooks</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-01-18 16:46:09 / 修改时间：17:38:36" itemprop="dateCreated datePublished" datetime="2025-01-18T16:46:09+08:00">2025-01-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="在24年开始，个人逐步从-vue2-迁移到了-vue3-框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在-function-的提取，在这里记录一下后来前两个月才开始使用的-hooks-写法"><a href="#在24年开始，个人逐步从-vue2-迁移到了-vue3-框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在-function-的提取，在这里记录一下后来前两个月才开始使用的-hooks-写法" class="headerlink" title="在24年开始，个人逐步从 vue2 迁移到了 vue3 框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在 function 的提取，在这里记录一下后来前两个月才开始使用的 hooks 写法"></a>在24年开始，个人逐步从 <code>vue2</code> 迁移到了 <code>vue3</code> 框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在 <code>function</code> 的提取，在这里记录一下后来前两个月才开始使用的 <code>hooks</code> 写法</h4><ol>
-<li><p>首先创建 <code>hooks</code> <code>js</code> 文件，在我项目中涉及到了 <code>webgis</code> 模块的多个业务图层的分隔处理，比如加载红绿灯图层并根据数据每秒驱动渲染的逻辑单独封装一个 hooks，可以大大方便后续其他模块对这个功能调用的便捷性。而且有些图层的加载与更新涉及的代码量很大，也可以减少单文件行数，方便后续维护，功能模块的 <code>bug</code> 也更好排查。 <br><br>以下给一个简单的示例 <code>useExampleHooks.js</code>，记录一下。。。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (initNum) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> convertRuleNum = <span class="title function_">ref</span>(initNum)</span><br><span class="line">    <span class="title function_">onMounted</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> apiResult = <span class="number">10000</span></span><br><span class="line">        convertRuleNum.<span class="property">value</span> += apiResult</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">numConvert</span> = (<span class="params">num</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> num.<span class="title function_">toFixed</span>(<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 导出要在其他多个模块使用的变量和方法</span></span><br><span class="line">    <span class="keyword">return</span> &#123; convertRuleNum, numConvert &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>vue</code> 文件中使用 <code>hooks</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> useExampleHooks <span class="keyword">from</span> <span class="string">&#x27;./useExampleHooks.js&#x27;</span></span><br><span class="line"><span class="keyword">const</span> &#123; convertRuleNum, numConvert &#125; = <span class="title function_">useExampleHooks</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; convertRuleNum &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; numConvert(10) &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">webgl页面里使用vue动态render组件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-01-15 16:24:56 / 修改时间：17:37:27" itemprop="dateCreated datePublished" datetime="2025-01-15T16:24:56+08:00">2025-01-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="在之前进行-webgl-类项目开发时，比如-mapbox-或者-three-或者它们的耦合体，还有-cesium-开发时，基本都会遇到需要需要在-webgl-页面里-点击产生-复杂弹窗-的需求"><a href="#在之前进行-webgl-类项目开发时，比如-mapbox-或者-three-或者它们的耦合体，还有-cesium-开发时，基本都会遇到需要需要在-webgl-页面里-点击产生-复杂弹窗-的需求" class="headerlink" title="在之前进行 webgl 类项目开发时，比如 mapbox 或者 three 或者它们的耦合体，还有 cesium 开发时，基本都会遇到需要需要在 webgl 页面里 点击产生 复杂弹窗 的需求"></a>在之前进行 <code>webgl</code> 类项目开发时，比如 <code>mapbox</code> 或者 <code>three</code> 或者它们的耦合体，还有 <code>cesium</code> 开发时，基本都会遇到需要需要在 <code>webgl</code> 页面里 点击产生<font color='#ea7b7b'> 复杂弹窗 </font>的需求<br></h4><h4 id="这时例如-threejs-就需要-css2dRender-或者-3dRender-去处理，mapbox-就需要-Popup-内嵌组件，Cesium-就需要-cesiumWidget-内嵌组件"><a href="#这时例如-threejs-就需要-css2dRender-或者-3dRender-去处理，mapbox-就需要-Popup-内嵌组件，Cesium-就需要-cesiumWidget-内嵌组件" class="headerlink" title="这时例如 threejs 就需要 css2dRender 或者 3dRender 去处理，mapbox 就需要 Popup 内嵌组件，Cesium 就需要 cesiumWidget 内嵌组件"></a>这时例如 <code>threejs</code> 就需要 <code>css2dRender</code> 或者 <code>3dRender</code> 去处理，<code>mapbox</code> 就需要 <code>Popup</code> 内嵌组件，<code>Cesium</code> 就需要 <code>cesiumWidget</code> 内嵌组件<br></h4><h4 id="这个时候弹窗想要内嵌一些复杂内容的话，只能把内容作为组件隔离出去，然后需要的时候挂载到-dom-树里"><a href="#这个时候弹窗想要内嵌一些复杂内容的话，只能把内容作为组件隔离出去，然后需要的时候挂载到-dom-树里" class="headerlink" title="这个时候弹窗想要内嵌一些复杂内容的话，只能把内容作为组件隔离出去，然后需要的时候挂载到 dom 树里"></a>这个时候弹窗想要内嵌一些复杂内容的话，只能把内容作为组件隔离出去，然后需要的时候挂载到 <code>dom</code> 树里</h4><h4 id="而且，vue2-和-vue3-的挂载方式又不相同，在这里记录一下"><a href="#而且，vue2-和-vue3-的挂载方式又不相同，在这里记录一下" class="headerlink" title="而且，vue2 和 vue3 的挂载方式又不相同，在这里记录一下"></a>而且，<code>vue2</code> 和 <code>vue3</code> 的挂载方式又不相同，在这里记录一下</h4><ul>
-<li><p>首先是 <code>vue2</code> 的动态挂载组件方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">MyPopup</span> <span class="keyword">from</span> <span class="string">&#x27;./myPopup.vue&#x27;</span></span><br><span class="line"><span class="keyword">let</span> popup = <span class="keyword">new</span> <span class="title class_">MyPopup</span>(&#123;</span><br><span class="line">    <span class="attr">propsData</span>: &#123;</span><br><span class="line">        <span class="comment">// 给组件传的参数</span></span><br><span class="line">        <span class="attr">data</span>:&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">popup.$mount(<span class="string">&#x27;#targetId&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>👆上述代码就完成了组件实例的创建并挂载到指定 <code>id</code> 的容器中<br><br>至于其中的 <code>targetId</code> 就是你在 <code>webgl</code> 页面中使用它的 <code>api</code> 提前创建好的容器</p>
-</li>
-<li><p>其次就是 <code>vue3</code> 的动态挂载组件方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">MyPopup</span> <span class="keyword">from</span> <span class="string">&#x27;./myPopup.vue&#x27;</span></span><br><span class="line"><span class="keyword">let</span> vNode = <span class="title function_">h</span>(<span class="title class_">MyPopup</span>, &#123;<span class="attr">model</span>: &#123;&#125;&#125;)</span><br><span class="line"><span class="title function_">render</span>(vNode, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">`targetId`</span>))</span><br></pre></td></tr></table></figure>
-<p>其实只是写法稍稍不同，不管是 <code>mapbox</code> 还是 <code>threejs</code> 还是 <code>cesium</code>，只要使用相应的弹窗 <code>api</code> 创建好容器后，把组件 <code>render</code> 进去就完活了 -.-</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/" class="post-title-link" itemprop="url">vue3vite中不支持require后的平替写法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-01-15 16:02:44 / 修改时间：17:37:27" itemprop="dateCreated datePublished" datetime="2025-01-15T16:02:44+08:00">2025-01-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="当开发框架从-vue2-升级到-vue3-vite-后-或者-项目要从-v2-升级到-v3-vite，一些使用-require-的动态路径引入的资源会报错"><a href="#当开发框架从-vue2-升级到-vue3-vite-后-或者-项目要从-v2-升级到-v3-vite，一些使用-require-的动态路径引入的资源会报错" class="headerlink" title="当开发框架从 vue2 升级到 vue3 + vite 后 或者 项目要从 v2 升级到 v3 + vite，一些使用 require 的动态路径引入的资源会报错"></a>当开发框架从 <code>vue2</code> 升级到 <code>vue3 + vite</code> 后 或者 项目要从 <code>v2</code> 升级到 <code>v3 + vite</code>，一些使用 <code>require</code> 的<font color='#ea7b7b'>动态路径</font>引入的资源会报错<br></h4><h4 id="这一般是因为-vue3-vite-不支持-commonjs-写法，可以安装一些插件来支持，但我个人更倾向于使用-v3-的解决方案："><a href="#这一般是因为-vue3-vite-不支持-commonjs-写法，可以安装一些插件来支持，但我个人更倾向于使用-v3-的解决方案：" class="headerlink" title="这一般是因为 vue3 vite 不支持 commonjs 写法，可以安装一些插件来支持，但我个人更倾向于使用 v3 的解决方案："></a>这一般是因为 <code>vue3</code> <code>vite</code> 不支持 <code>commonjs</code> 写法，可以安装一些插件来支持，但我个人更倾向于使用 <code>v3</code> 的解决方案：<br></h4><ul>
-<li><p>这是之前的写法</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;require(`/path/$&#123;aPath&#125;.png&#x27;)`&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> aPath = <span class="string">&#x27;imgName&#x27;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>处理成 <code>v3</code> 支持的写法 👇</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;getImgUrl(&#x27;imgName&#x27;)&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">getImgUrl</span> = (<span class="params">name</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;/path/&#x27;</span> + name + <span class="string">&#x27;.png&#x27;</span>, <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">url</span>).<span class="property">href</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/" class="post-title-link" itemprop="url">记录一下常用比较好用的css</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-29 13:26:45" itemprop="dateCreated datePublished" datetime="2024-04-29T13:26:45+08:00">2024-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="首先，在工作中秉着能用-css-完成的就不用切图的原则，一些略微特殊的样式还是尽量使用-css-展示以提高页面展示效率，以下是一些常用的属性："><a href="#首先，在工作中秉着能用-css-完成的就不用切图的原则，一些略微特殊的样式还是尽量使用-css-展示以提高页面展示效率，以下是一些常用的属性：" class="headerlink" title="首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性："></a>首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性：</h6><ol>
-<li><p>边框渐变（结合边框渐变可以完成比较常见的渐变分割条等效果</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 边框渐变 */</span></span><br><span class="line"><span class="comment">/* 渐变方向有多种方式表示 角度 例如90deg 方向 例如to right */</span></span><br><span class="line"><span class="comment">/* 实际使用可以选择顺手的 （方向的可以有更为复杂的组合写法 详见mdn官网 */</span></span><br><span class="line"><span class="attribute">border-width</span>: <span class="number">1px</span>;</span><br><span class="line"><span class="attribute">border-style</span>: solid;</span><br><span class="line"><span class="attribute">border-image-source</span>: <span class="built_in">linear-gradient</span>(<span class="number">90deg</span>, <span class="number">#269cd7</span>, <span class="number">#0090ea</span>);</span><br><span class="line"><span class="attribute">border-image-slice</span>: <span class="number">1</span>; <span class="comment">/* 填充整个边框宽度 */</span></span><br><span class="line"><span class="attribute">border-image-repeat</span>: stretch; <span class="comment">/* 根据需要选择 repeat、stretch 或 round 等重复方式 */</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>背景色渐变</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 渐变方向与上面的边框渐变同理 */</span></span><br><span class="line"><span class="comment">/* 首先是 side by side 的渐变 */</span></span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(to right, <span class="number">#0d80d7</span>, <span class="number">#04477b</span>);</span><br><span class="line"><span class="comment">/* 其次是中心渐变 （可以结合div的不同排布 实现热力图展示 */</span></span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(<span class="built_in">rgba</span>(<span class="number">237</span>, <span class="number">34</span>, <span class="number">44</span>,<span class="number">0.6</span>), transparent, transparent);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>多个子元素斑马等样式展示</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 涉及到多个子元素不同样式则要用到 nth-child 伪类 */</span></span><br><span class="line"><span class="comment">/* 老是记不清偶数和奇数怎么表示 -.-|  偶数even 奇数odd */</span></span><br><span class="line"><span class="comment">/* 奇数子元素 */</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(odd) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#133260</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 偶数子元素 */</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(even) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#112b4e</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>… … 待更新 … …</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">vue2/3使用highcharts时3d类图表3d效果不生效问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-18 08:55:26" itemprop="dateCreated datePublished" datetime="2024-04-18T08:55:26+08:00">2024-04-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法"><a href="#在进行图表展示开发时，因为外观的需求，有时会有-3d图表-的展示要求，这时可以使用-Highcharts-来满足开发需求。-在这里记录一下其基本用法" class="headerlink" title="在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 Highcharts 来满足开发需求。  在这里记录一下其基本用法"></a>在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 <code>Highcharts</code> 来满足开发需求。 <br/> 在这里记录一下其基本用法</h5><ul>
-<li>首先安装 <code>npm install highcharts-vue</code></li>
-<li>在展示组件&#x2F;页面里引入，<b>!!!注意后两行，这里是关键，只有引入3d库才能支持3d图表!!!</b><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">Chart</span>&#125; <span class="keyword">from</span> <span class="string">&quot;highcharts-vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts <span class="keyword">from</span> <span class="string">&quot;highcharts&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> highcharts3d <span class="keyword">from</span> <span class="string">&quot;highcharts/highcharts-3d&quot;</span>;</span><br><span class="line"><span class="title function_">highcharts3d</span>(highcharts);</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Chart</span> <span class="attr">:options</span>=<span class="string">&quot;chartOptions&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">Chart</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>这时就可以使用 <code>chartOptions</code> 参照官方文档开始配置属性项了</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Cesium加载3dtileset并修改位置/偏移位置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-23 16:44:03" itemprop="dateCreated datePublished" datetime="2024-02-23T16:44:03+08:00">2024-02-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>在使用<code>cesium</code>进行开发时，有时需要加载一些外部的<code>3dtile</code>模型，由于模型制作者对模型的世界坐标可能只是随意赋值的，这时我们加载了后还需要对模型进行一定的<strong>偏移</strong>（<strong>包括经纬度和高度</strong>），以下是代码实现：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tileset = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">Cesium3DTileset</span>(&#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 托管tilesetjson根文件的 url 以及一些参数。。。</span></span><br><span class="line">&#125;); </span><br><span class="line">tileset.<span class="property">readyPromise</span>.<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//计算tileset的绑定范围</span></span><br><span class="line">  <span class="keyword">let</span> boundingSphere = tileset.<span class="property">boundingSphere</span>;</span><br><span class="line">  <span class="comment">//计算中心点位置</span></span><br><span class="line">  <span class="keyword">let</span> cartographic = <span class="title class_">Cesium</span>.<span class="property">Cartographic</span>.<span class="title function_">fromCartesian</span>(</span><br><span class="line">    boundingSphere.<span class="property">center</span></span><br><span class="line">  );</span><br><span class="line">  <span class="comment">//计算中心点位置的地表坐标</span></span><br><span class="line">  <span class="keyword">let</span> surface = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromRadians</span>(</span><br><span class="line">    cartographic.<span class="property">longitude</span>,</span><br><span class="line">    cartographic.<span class="property">latitude</span>,</span><br><span class="line">    <span class="number">0.0</span></span><br><span class="line">  );</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;tileset自身center : &quot;</span>, [</span><br><span class="line">    <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">longitude</span>),</span><br><span class="line">    <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">latitude</span>),</span><br><span class="line">  ]);</span><br><span class="line">  <span class="comment">// 偏移tileset到指定位置</span></span><br><span class="line">  <span class="keyword">const</span> heightOffset = <span class="number">100</span>; <span class="comment">// 高度偏移 正上负下</span></span><br><span class="line">  <span class="keyword">const</span> xOffset = <span class="number">100</span>; <span class="comment">// 经度偏移量 正负</span></span><br><span class="line">  <span class="keyword">const</span> yOffset = <span class="number">100</span>; <span class="comment">// 纬度偏移量 正负</span></span><br><span class="line">  <span class="keyword">let</span> x = <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">longitude</span>);</span><br><span class="line">  <span class="keyword">let</span> y = <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toDegrees</span>(cartographic.<span class="property">latitude</span>);</span><br><span class="line">  <span class="keyword">let</span> offset = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromRadians</span>(</span><br><span class="line">    xOffset</span><br><span class="line">      ? <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toRadians</span>(x + xOffset)</span><br><span class="line">      : cartographic.<span class="property">longitude</span>,</span><br><span class="line">    yOffset</span><br><span class="line">      ? <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toRadians</span>(y + yOffset)</span><br><span class="line">      : cartographic.<span class="property">latitude</span>,</span><br><span class="line">    heightOffset</span><br><span class="line">  ); <span class="comment">// 进行经纬度和高度偏移</span></span><br><span class="line">  <span class="keyword">let</span> translation = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">subtract</span>(</span><br><span class="line">    offset,</span><br><span class="line">    surface,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">Cartesian3</span>()</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">//tileset.modelMatrix转换</span></span><br><span class="line">  tileset.<span class="property">modelMatrix</span> = <span class="title class_">Cesium</span>.<span class="property">Matrix4</span>.<span class="title function_">fromTranslation</span>(translation);</span><br><span class="line">&#125;);</span><br><span class="line">viewer.<span class="property">scene</span>.<span class="property">primitives</span>.<span class="title function_">add</span>(tileset); <span class="comment">// 加载...</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果要根据指定经纬度偏移，对<strong>进行经纬度和高度偏移</strong>部分代码进行适当修改即可~~~</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/09/11/%E5%85%B3%E4%BA%8EsetTimeout%E8%A1%8D%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/11/%E5%85%B3%E4%BA%8EsetTimeout%E8%A1%8D%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">关于setTimeout衍生的一些问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-11 16:12:16" itemprop="dateCreated datePublished" datetime="2023-09-11T16:12:16+08:00">2023-09-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="setTimeout-与-vue的nextTick-与-宏任务微任务"><a href="#setTimeout-与-vue的nextTick-与-宏任务微任务" class="headerlink" title="setTimeout 与 vue的nextTick 与 宏任务微任务"></a>setTimeout 与 vue的nextTick 与 宏任务微任务</h3><ul>
-<li>最近在看 <code>mdn</code> 时，看到一个执行顺序问题，发现自己对 <code>setTimeout</code> 之前的理解存在一定的偏差，这里记录一下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">aadsas</span> () &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;1. 这是开始&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;2. 这是来自第一个回调的消息&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;3. 这是一条消息&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;4. 这是来自第二个回调的消息&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;5. 这是结束&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">aadsas</span>();</span><br></pre></td></tr></table></figure></li>
-<li>我之前错误的理解的打印顺序是 <code>1. 3. 2. 4. 5.</code> <ul>
-<li>首先打印 1.</li>
-<li>遇到 <code>setTimeout</code> 放入事件队列</li>
-<li>打印 3. </li>
-<li>遇到 <code>setTimeout</code> 放入事件队列 然后此时后面的 <code>console.log</code> 因为不是耗时操作所以清空队列 2. 4. </li>
-<li>最后再执行 5.</li>
-</ul>
-</li>
-<li>之所以上述理解是错误的，是因为我对主线程的理解有误，在清空事件队列之前应该保证主线程为空，但是主线程应当包括整个执行栈，而不应该因为 <code>console.log</code> 不是耗时操作把最后一个 <code>console.log</code> 忽视掉。</li>
-<li>所以 正确是执行顺序是 <code>1. 3. 5. 2. 4.</code></li>
-</ul>
-<hr>
-<h3 id="再举个带-Promise-的很经典的执行顺序问题"><a href="#再举个带-Promise-的很经典的执行顺序问题" class="headerlink" title="再举个带 Promise 的很经典的执行顺序问题"></a>再举个带 <code>Promise</code> 的很经典的执行顺序问题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="params">_</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>))  </span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;  </span><br><span class="line">  <span class="title function_">resolve</span>()  </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上述由于 <code>setTimeout</code> 是宏任务，而 <code>Promise.then</code> 则是微任务，上述代码的执行顺序就是按照序号来输出的。<ul>
-<li><code>setTimeout</code> 创建一个宏任务，放入宏任务队列等待执行</li>
-<li><code>Promise</code> 构造函数中的代码是同步执行的，所以会立即执行 <code>console 1</code></li>
-<li>接下来的 <code>then</code> 的回调会进入微任务队列等待当前宏任务执行完毕执行</li>
-<li>最后 <code>console 2</code> 是同步执行，直接执行 <code>console 2</code></li>
-<li>此时当前宏任务结束 微任务队列 <code>console 3</code> 执行</li>
-<li>最后宏任务队列的 <code>console 4</code> 执行</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="由上述问题可以引出-Vue-中的-nextTick-和-setTimeout-问题"><a href="#由上述问题可以引出-Vue-中的-nextTick-和-setTimeout-问题" class="headerlink" title="由上述问题可以引出 Vue 中的 nextTick 和 setTimeout 问题"></a>由上述问题可以引出 Vue 中的 <code>nextTick</code> 和 <code>setTimeout</code> 问题</h3><ul>
-<li>在 <code>Vue</code> 中一般需要视图更新后进行一些操作时需要用到 <code>this.$nextTick()</code> ，这里的 <code>nextTick</code> 有些情况下可以替换为 <code>setTimeout</code> ，  比如 不需要关心 <code>Vue</code> 组件的更新状态时；</li>
-<li><code>this.$nextTick</code> 的主要用途是等待 <code>Vue</code> 组件更新后执行回调函数。它确保回调函数在下一个微任务队列中执行，可以确保访问更新后的 <code>DOM</code> </li>
-<li><code>setTimeout</code> 是一个宏任务，它的回调函数将在当前宏任务执行完毕后，在下一个宏任务队列中执行，所以可以不需要关心 <code>Vue</code> 组件更新状态时可以相互替换； 而且 <code>setTimeout</code> 因为是下一个宏任务队列中执行 所以 <code>nextTick</code> 的优先级相对较高</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/" class="post-title-link" itemprop="url">使用protobuf进行前后端数据交互</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-05-22 15:12:22" itemprop="dateCreated datePublished" datetime="2023-05-22T15:12:22+08:00">2023-05-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"><a href="#在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理" class="headerlink" title="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下:比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞 – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"></a>在前后端交互过程中，一般采用<code>json</code>作为通信协议，不过在特殊情况下:<br/>比如最近项目中要求<span style='color:green'><code>websocket</code>短时间内频繁由后台推送大量数据</span>给前端，由于网络原因很容易阻塞<br/> – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择<code>protobuf</code>作为通信协议，先把数据进行序列化再发送…接收…处理</h5><ol>
-<li>首先是前后端协商定义数据格式  &#x3D;&gt;
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
         
-      
+<header class="header no-swiper " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
     </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+      <h3 class="drawer-box-head_title">Ning</h3>
+      <h5 class="drawer-box-head_desc">进击的菜鸡</h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">首页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/archives/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">归档</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/tags/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/about/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-film" aria-hidden="true"></i>
+                  
+                  <span class="name">关于</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(5)">
+                  <span>
+                    
+                      <i class="fas fa-link"></i>
+                    
+                    <span class="name">一些小玩意</span>
+                  </span>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(5)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(5)">
+                  
+                  <li>
+                    <a href="/demos/map/threebox/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>Mapbox</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/demos/map/mapbox/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>ThreeBox</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/demos/map/cesium/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>Cesium</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/ninglx">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
 
+    </div>
+    <div class="blog-title" id="author-avatar">
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">记一次Cesium的property插值用法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-04-23 16:51:21" itemprop="dateCreated datePublished" datetime="2023-04-23T16:51:21+08:00">2023-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
+        <div class="avatar">
+          <img src="/medias/logo.png" class="lazyload placeholder" data-srcset="/medias/logo.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      
+      <a href="/" class="logo">Ning</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="首页">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">首页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/archives/" class="menu-item-link" title="归档">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">归档</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/tags/" class="menu-item-link" title="标签">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories/" class="menu-item-link" title="分类">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">分类</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/about/" class="menu-item-link" title="关于">
+                  
+                    <i class="fas fa-film" aria-hidden="true"></i>
+                  
+                  <span class="name">关于</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="一些小玩意">
+                  
+                    <i class="fas fa-link"></i>
+                  
+                  <span class="name">一些小玩意</span>
+                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/demos/map/threebox/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>Mapbox</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/demos/map/mapbox/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>ThreeBox</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a href="/demos/map/cesium/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>Cesium</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">本地搜索</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="请输入关键字"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
 
       
-          <h4 id="cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："><a href="#cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：" class="headerlink" title="cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："></a><code>cesium</code> 中描述 <code>entity</code> 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：</h4><p><strong>一般常用的插值有两种，一种是连续值插值<code>SampleProperty</code>，即给个时间段和一个状态区间，<code>cesium</code>会在区间内自己做平滑处理；<br>一种是枚举值插值<code>TimeIntervalCollectionProperty</code>，即一个时间段对应一个状态，不会做平滑插值。</strong></p>
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/ninglx" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+</header>
+        <!-- 内容区域 -->
+        
+
+<div id="l_main">
+  <div class="l_content">
+    <!-- 自定义的内容 -->
+    
+    <!-- 首页座右铭 -->
+    
+  <div class="motto">
+      <h3 class="motto-title">闲言碎语</h3>
+      <div class="motto-content">
+        <p>
+          这世上，本就没有任何一句话，可以让你醍醐灌顶。真正叫你醍醐灌顶的，只能是一段经历。而那句话，只是火药仓库内划燃的一根火柴。  
+        </p> 
+      </div>
+  </div>
+
+    <!-- 首页公告 -->
+    
+<style>
+  .index-notice-content {
+    margin-top: 10px;
+  }
+  .warp {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .index-notice-content__ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .index-notice-content__ul li,
+  .index-notice-content__ul a {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+  .index-notice-content__title {
+    flex: 1;
+    overflow: hidden;
+  }
+  .index-notice-content__title a,
+  .index-notice-content__title span {
+    overflow: hidden;
+    display: block;
+    text-overflow:ellipsis; 
+    white-space: nowrap;
+    height: 100%;
+    width: 100%;
+    color: #000;
+  }
+  .index-notice-content__title a:hover,
+  .index-notice-content__title span:hover {
+    text-decoration: underline;
+  }
+  .index-notice-content__date {
+    min-width: 80px;
+    margin-left: 5px;
+    color: #000;
+  }
+</style>
+<div class="index-notice" id="appIndexNotice">
+    <h3>
+      <i class="fas fa-bullhorn index-notice-icon"></i>公告
+    </h3>
+    <div class="index-notice-content">
+      
+      <vue-seamless-scroll
+        :data="listData"
+        :class-option="classOption"
+        class="warp"
+        style="height: 30px"
+      >
+        <ul class="index-notice-content__ul">
+          
+          
+            <li>
+              
+                <div class="index-notice-content__title">
+                  
+                    <a href="/" title="# 博客更新到2.0了" style="color:red">
+                      # 博客更新到2.0了
+                    </a>
+                  
+                </div>
+                
+                  <div class="index-notice-content__date" style="color:red">
+                    2025-01-20
+                  </div>
+                
+              
+            </li>
+           
+        </ul>
+      </vue-seamless-scroll>
+    </div>
+</div>
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 滚动插件采用 vue-seamless-scroll
+  https://chenxuan0000.github.io/vue-seamless-scroll/zh/guide/06-singleStop.html 
+-->
+
+<script>
+  var seamless = JSON.parse('false');
+  seamless = seamless ? 0 : 30;
+  var listData = '[object Object]' || '';
+  listData = listData.split(',');
+  var vm = new Vue({
+    el: '#appIndexNotice',
+    data: {
+      listData: listData,
+      moveNum: 2,
+      classOption: {
+        singleHeight: seamless,
+        limitMoveNum: listData.length
+      },
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+    },
+    created() {
+      this.moveNum = parseInt(this.listData.length);
+    }
+  })
+</script>
+
+
+
+    <!-- 首页文章置顶 -->
+    
+
+
+
+    <div class="bg-floor" id="home-bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+    <!-- 每一篇文章卡片 -->
+    <!-- hash算法 -->
+
+<section class="posts">
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2025-01-18</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/">记录一下vue3的hooks</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            在24年开始，个人逐步从 vue2 迁移到了 vue3 框架的开发，但是在开发过程中的体现也只是部分写法的转变，一些很好用的特性并没有深入学习，单文件过大的拆解前期也仅仅停留在 function 的提取，在这里记录一下后来前两个月才开始使用
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2025-01-15</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/">webgl页面里使用vue动态render组件</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            在之前进行 webgl 类项目开发时，比如 mapbox 或者 three 或者它们的耦合体，还有 cesium 开发时，基本都会遇到需要需要在 webgl 页面里 点击产生 复杂弹窗 的需求这时例如 threejs 就需要 css2dRe
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2025-01-15</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/">vue3vite中不支持require后的平替写法</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            当开发框架从 vue2 升级到 vue3 + vite 后 或者 项目要从 v2 升级到 v3 + vite，一些使用 require 的动态路径引入的资源会报错这一般是因为 vue3 vite 不支持 commonjs 写法，可以安装一些
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2024-04-29</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/">记录一下常用比较好用的css</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/" rel="tag">Css</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            首先，在工作中秉着能用 css 完成的就不用切图的原则，一些略微特殊的样式还是尽量使用 css 展示以提高页面展示效率，以下是一些常用的属性：
+边框渐变（结合边框渐变可以完成比较常见的渐变分割条等效果
+12345678/* 边框渐变 *//
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2024-04-18</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">vue2/3使用highcharts时3d类图表3d效果不生效问题</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Highcharts/" rel="tag">Highcharts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 Highcharts 来满足开发需求。  在这里记录一下其基本用法
+首先安装 npm install highcharts-vue
+在展示组件&#x2F;页
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2024-02-23</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/">Cesium加载3dtileset并修改位置/偏移位置</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cesium/" rel="tag">Cesium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gis%E5%BC%80%E5%8F%91/" rel="tag">Gis开发</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            
+在使用cesium进行开发时，有时需要加载一些外部的3dtile模型，由于模型制作者对模型的世界坐标可能只是随意赋值的，这时我们加载了后还需要对模型进行一定的偏移（包括经纬度和高度），以下是代码实现：
+123456789101112131
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-09-11</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/09/11/%E5%85%B3%E4%BA%8EsetTimeout%E8%A1%8D%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于setTimeout衍生的一些问题</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/09/11/%E5%85%B3%E4%BA%8EsetTimeout%E8%A1%8D%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            setTimeout 与 vue的nextTick 与 宏任务微任务
+最近在看 mdn 时，看到一个执行顺序问题，发现自己对 setTimeout 之前的理解存在一定的偏差，这里记录一下：12345678910111213141516fun
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2023/09/11/%E5%85%B3%E4%BA%8EsetTimeout%E8%A1%8D%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2023/09/11/%E5%85%B3%E4%BA%8EsetTimeout%E8%A1%8D%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-05-22</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">使用protobuf进行前后端数据交互</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <h5 id="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"><a href="#在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理" class="headerlink" title="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下:比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞 – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"></a>在前后端交互过程中，一般采用<code>json</code>作为通信协议，不过在特殊情况下:<br/>比如最近项目中要求<span style='color:green'><code>websocket</code>短时间内频繁由后台推送大量数据</span>给前端，由于网络原因很容易阻塞<br/> – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择<code>protobuf</code>作为通信协议，先把数据进行序列化再发送…接收…处理</h5><ol>
+<li>首先是前后端协商定义数据格式  &#x3D;&gt;
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-04-23</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">记一次Cesium的property插值用法</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cesium/" rel="tag">Cesium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <h4 id="cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："><a href="#cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：" class="headerlink" title="cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："></a><code>cesium</code> 中描述 <code>entity</code> 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：</h4><p><strong>一般常用的插值有两种，一种是连续值插值<code>SampleProperty</code>，即给个时间段和一个状态区间，<code>cesium</code>会在区间内自己做平滑处理；<br>一种是枚举值插值<code>TimeIntervalCollectionProperty</code>，即一个时间段对应一个状态，不会做平滑插值。</strong></p>
 <p><em>假设现在有一个entity：</em></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myEntity = vie.<span class="property">entities</span>.<span class="title function_">add</span>(&#123;</span><br><span class="line">  <span class="attr">id</span>: options.<span class="property">id</span>,</span><br><span class="line">  <span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">`gltf/car.gltf`</span>,</span><br><span class="line">    <span class="attr">scale</span>: <span class="number">0.8</span>,</span><br><span class="line">    <span class="attr">minimumPixelSize</span>: <span class="number">32</span>,</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Cesium</span>.<span class="property">Color</span>.<span class="title function_">fromCssColorString</span>(<span class="string">&#x27;#ff0&#x27;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>以下的<code>source</code>都是若干个 <code>&#123;时间，对应值组成的对象&#125;</code> 组成的数组list</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ninglx.github.io/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avator.jpg">
-      <meta itemprop="name" content="Ning lx">
-      <meta itemprop="description" content="进击的菜鸡">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ning">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" class="post-title-link" itemprop="url">基于websocket使用mapbox结合threebox实现车辆实时轨迹展示</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-20 15:23:18" itemprop="dateCreated datePublished" datetime="2023-03-20T15:23:18+08:00">2023-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-15 17:37:27" itemprop="dateModified" datetime="2025-01-15T17:37:27+08:00">2025-01-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
+          </div>
         </div>
-      </header>
+        <div class="post-more">
+          <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-03-20</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">基于websocket使用mapbox结合threebox实现车辆实时轨迹展示</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapbox/" rel="tag">Mapbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Threejs/" rel="tag">Threejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Websocket/" rel="tag">Websocket</a></li></ul>
 
-      
-          <h5 id="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"><a href="#最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下" class="headerlink" title="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"></a>最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载<code>gltf</code>、<code>glb</code>此类3D模型作为车辆点，所以在此需要结合<code>threejs</code><br/>但是若使用原生<code>threejs</code>的话结合地图开发不太友好，所以使用<code>threebox</code>作为桥梁可以减少很多心智负担。在这里做个小demo记录一下</h5><hr>
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <h5 id="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"><a href="#最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下" class="headerlink" title="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"></a>最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载<code>gltf</code>、<code>glb</code>此类3D模型作为车辆点，所以在此需要结合<code>threejs</code><br/>但是若使用原生<code>threejs</code>的话结合地图开发不太友好，所以使用<code>threebox</code>作为桥梁可以减少很多心智负担。在这里做个小demo记录一下</h5><hr>
 <ol>
 <li>引入所需的 js 库<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// mapboxgl</span></span><br><span class="line"> &lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;xxx/mapbox-gl.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/mapbox-gl.css&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="comment">// threebox</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;xxx/threebox/threebox.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/threebox/threebox.css&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="comment">// turf</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./turf/turf.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/#more" rel="contents">
-                阅读全文 &raquo;
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+</section>
+    <!-- 翻页 -->
+    
+  <!-- <nav class="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav> -->
+  <div class="page-nav">
+    
+    <div class="page-info">
+        <div class="page-info-text">1 / 4</div>
+    </div>
+    
+      <a href="/page/2/"
+         class="page-nav-next">
+          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
+      </a>
+      
+  </div>
+
+  </div>
+
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box circle' href='/'>
+          <img src='/medias/logo.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>NingLx</h2>
+        
+        
+          <p>a web developer</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">Ning</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/ninglx"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1181699158"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:n1181699158@gmail.com"
+              class="social fab fa-google flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+        
+    <section class="widget side_category">
+      
+  <header>
+    
+      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+      <div class='content'>
+        <ul class="entry navigation">
+          
+            <li><a class="flat-box"
+              title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"
+              id="categoriesE5898DE7ABAF"
+              ><div class='name'>前端</div><div class='badge'>(33)</div></a></li>
+          
+            <li><a class="flat-box child"
+              title="/categories/%E5%89%8D%E7%AB%AF/%E5%90%8E%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/%E5%90%8E%E7%AB%AF/"
+              id="categoriesE5898DE7ABAFE5908EE7ABAF"
+              ><div class='name'>后端</div><div class='badge'>(2)</div></a></li>
+          
+        </ul>
+      </div>
+    </section>
+  
+  
+      
+      
+        
+<section class="widget side_tagcloud">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+    <a href="/tags/Cesium/" style="font-size: 19px; color: #777">Cesium</a> <a href="/tags/Css/" style="font-size: 20.67px; color: #6c6c6c">Css</a> <a href="/tags/ES6/" style="font-size: 14px; color: #999">ES6</a> <a href="/tags/Echats/" style="font-size: 14px; color: #999">Echats</a> <a href="/tags/ElementUI/" style="font-size: 17.33px; color: #828282">ElementUI</a> <a href="/tags/Flvjs/" style="font-size: 14px; color: #999">Flvjs</a> <a href="/tags/Gis%E5%BC%80%E5%8F%91/" style="font-size: 17.33px; color: #828282">Gis开发</a> <a href="/tags/Highcharts/" style="font-size: 14px; color: #999">Highcharts</a> <a href="/tags/Javascript/" style="font-size: 24px; color: #555">Javascript</a> <a href="/tags/Mapbox/" style="font-size: 15.67px; color: #8e8e8e">Mapbox</a> <a href="/tags/NodeJs/" style="font-size: 14px; color: #999">NodeJs</a> <a href="/tags/SpringBoot/" style="font-size: 14px; color: #999">SpringBoot</a> <a href="/tags/Threejs/" style="font-size: 14px; color: #999">Threejs</a> <a href="/tags/Vue/" style="font-size: 22.33px; color: #606060">Vue</a> <a href="/tags/Websocket/" style="font-size: 14px; color: #999">Websocket</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/" style="font-size: 14px; color: #999">上传下载</a> <a href="/tags/%E5%9C%B0%E5%9B%BE%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 14px; color: #999">地图可视化</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E5%90%8C%E6%AD%A5/" style="font-size: 15.67px; color: #8e8e8e">异步同步</a> <a href="/tags/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/" style="font-size: 14px; color: #999">视频播放</a> <a href="/tags/%E8%AF%AD%E6%B3%95%E4%BC%98%E5%8C%96/" style="font-size: 14px; color: #999">语法优化</a>
+    </div>
+</section>
+
+  
+      
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
-          <!--/noindex-->
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-18</span>
+                
+              </div>
+              <a class="post-title" href="/2025/01/18/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8Bvue3%E7%9A%84hooks/">记录一下vue3的hooks</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-15</span>
+                
+              </div>
+              <a class="post-title" href="/2025/01/15/webgl%E9%A1%B5%E9%9D%A2%E9%87%8C%E4%BD%BF%E7%94%A8vue%E5%8A%A8%E6%80%81render%E7%BB%84%E4%BB%B6/">webgl页面里使用vue动态render组件</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">01-15</span>
+                
+              </div>
+              <a class="post-title" href="/2025/01/15/vue3vite%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81require%E5%90%8E%E7%9A%84%E5%B9%B3%E6%9B%BF%E5%86%99%E6%B3%95/">vue3vite中不支持require后的平替写法</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-29</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E6%AF%94%E8%BE%83%E5%A5%BD%E7%94%A8%E7%9A%84css/">记录一下常用比较好用的css</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-18</span>
+                
+              </div>
+              <a class="post-title" href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">vue2/3使用highcharts时3d类图表3d效果不生效问题</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+      
+  <section class="widget side_archives">
+    
+    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">4</span></a></li></ul></div>
+  </section>
+
+      <section class="widget side_webinfo">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name' style="color: ">站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>34 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
+        </div>
+        <script>
+          var BirthDay = new Date(new Date('2023/02/01'));
+          var today = new Date();
+          var timeold = (today.getTime() - BirthDay.getTime());
+          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
+          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
+        </script>
+      
+
+
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站访客数：</div>
+          
+          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>本站总访问量：</div>
+          
+          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
+          
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          
+            <div id="last-update" style="display: none;">Tue Jan 21 2025 10:51:06 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2025-01-21 日</div>
+          
+        </div>
+        
+        <script>
+          function timeago(dateTimeStamp) {
+              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
+              var hour = minute * 60;
+              var day = hour * 24;
+              var week = day * 7;
+              var month = day * 30;
+              var now = new Date().getTime(); //获取当前时间毫秒
+              var diffValue = now - dateTimeStamp; //时间差
+              if (diffValue < 0) {
+                  return;
+              }
+              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
+              var hourC = diffValue / hour;
+              var dayC = diffValue / day;
+              var weekC = diffValue / week;
+              var monthC = diffValue / month;
+              if (monthC >= 1 && monthC <= 3) {
+                  result = " " + parseInt(monthC) + " 月前"
+              } else if (weekC >= 1 && weekC <= 3) {
+                  result = " " + parseInt(weekC) + " 周前"
+              } else if (dayC >= 1 && dayC <= 6) {
+                  result = " " + parseInt(dayC) + " 天前"
+              } else if (hourC >= 1 && hourC <= 23) {
+                  result = " " + parseInt(hourC) + " 小时前"
+              } else if (minC >= 1 && minC <= 59) {
+                  result = " " + parseInt(minC) + " 分钟前"
+              } else if (diffValue >= 0 && diffValue <= minute) {
+                  result = "刚刚"
+              } else {
+                  var datetime = new Date();
+                  datetime.setTime(dateTimeStamp);
+                  var Nyear = datetime.getFullYear();
+                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                  result = Nyear + "-" + Nmonth + "-" + Ndate
+              }
+              return result;
+          }
+          var lastUpDate = document.getElementById('last-update').innerHTML;
+          try {
+            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
+          } catch (error) {
+            document.getElementById('last-update-show').innerHTML = '2025-01-21 日';
+          }
+        </script>
         
       
     </div>
-
+  </div>
+</section>
+      
     
+  </div>
+</aside>
+</div>
+<!-- 花瓣和雪花飘落 -->
+<!-- 雪花和花瓣特效 -->
+
+
+
+<!-- 灯笼 -->
+
+  <!-- 灯笼1 -->
+  <div class="deng-box">
+    <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+            <div class="deng-b"><div class="deng-t">节</div></div>
+        </div>
+        <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+    </div>
+  </div>
+  
+  <!-- 灯笼2 -->
+  <div class="deng-box1">
+    <div class="deng">
+        <div class="xian"></div>
+        <div class="deng-a">
+            <div class="deng-b"><div class="deng-t">春</div></div>
+        </div>
+        <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+    </div>
+  </div>
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
   
   
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script defer>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = '' || 'rgba(233, 66, 66, 0.8)';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
   
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+              
+                <a target="_blank" rel="noopener" href="https://github.com/ninglx" class="social">
+                  
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1181699158" class="social">
+                  
+                    <i class="fab fa-qq" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+              
+                <a href="mailto:n1181699158@gmail.com" class="social">
+                  
+                    <i class="fab fa-google" aria-hidden="true"></i>
+                  
+                </a>
+              
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2023 - 2025 <a target="_blank" rel="noopener" href="https://github.com/ninglx">NingLx</a></p>
 
           </div>
-          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark" onclick="toggleDarkMode()">
+  <div class="dark-content">
+    <i class="fas" id="darkIcon" aria-hidden="true"></i>
+  </div>
+</div>
+
+<script defer>
+  $(function() {
+    // 初始化暗黑模式状态
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    updateDarkModeIcon(isDark);
   });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
+
+  function toggleDarkMode() {
+    const isDark = $(document.body).hasClass('darkModel');
+    $(document.body).toggleClass('darkModel');
+    localStorage.setItem('dark', !isDark);
+    updateDarkModeIcon(!isDark);
+  }
+
+  function updateDarkModeIcon(isDark) {
+    const iconElement = document.getElementById('darkIcon');
+    if (isDark) {
+      iconElement.classList.remove('fa-moon');
+      iconElement.classList.add('fa-lightbulb');
+    } else {
+      iconElement.classList.remove('fa-lightbulb');
+      iconElement.classList.add('fa-moon');
+    }
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Ning lx"
-      src="/images/avator.jpg">
-  <p class="site-author-name" itemprop="name">Ning lx</p>
-  <div class="site-description" itemprop="description">进击的菜鸡</div>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">34</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">20</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="http://wpa.qq.com/msgrd?v=3&uin=1181699158&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1181699158&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://github.com/ninglx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ninglx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:n1181699158@gmail.com" title="GMail → mailto:n1181699158@gmail.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>GMail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.facebook.com/ninglix" title="FaceBook → https:&#x2F;&#x2F;www.facebook.com&#x2F;ninglix" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FaceBook</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://stackoverflow.com/users/19733658/ninglx" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;19733658&#x2F;ninglx" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.youtube.com/@ninglx" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;@ninglx" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
-      </span>
-  </div>
+<script defer src="/js/goTop.js"></script>
 
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
 
+    <!-- 图片放大 -->
+    
+      <script src="https://unpkg.com/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    
 
-      </div>
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
 
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-<div class="copyright">
-  
-  &copy; 2022 – 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Ning lx</span>
-</div>
-
-<!--
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>-->
-
-<span>
-  本站已运行
-  <span id="showDays"></span>
-</span>
-<script>
-  var seconds = 1000;
-  var minutes = seconds * 60;
-  var hours = minutes * 60;
-  var days = hours * 24;
-  var years = days * 365;
-  var birthDay = Date.UTC(2022,04,11,14,00,00); // 这里设置建站时间
-  setInterval(function() {
-    var today = new Date();
-    var todayYear = today.getFullYear();
-    var todayMonth = today.getMonth()+1;
-    var todayDate = today.getDate();
-    var todayHour = today.getHours();
-    var todayMinute = today.getMinutes();
-    var todaySecond = today.getSeconds();
-    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
-    var diff = now - birthDay;
-    var diffYears = Math.floor(diff/years);
-    var diffDays = Math.floor((diff/days)-diffYears*365);
-    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
-    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
-    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
-      document.getElementById('showDays').innerHTML=""+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒 ";
-  }, 1000);
+<script async>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?71b22babdc8da0b8a4c38614720f6a5e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
+
+    <!-- Baidu Push -->
+
+<script async>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+      <script async type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<!-- <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.min.js"></script>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.css">
 
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -70,
+    // headingsOffset: -($(window).height() * 0.4 - 45),
+    headingsOffset: -($(window).height() * 0.4 - 70),
+    // positionFixedSelector: '.toc-main',
+    // positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    orderedList: true,
+    collapseDepth: 20,
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
 
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
 
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
 
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
 
+  }
 
-      </div>
-    </footer>
-  </div>
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
 
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 150) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
   
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('side_toc')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
 
-<script src="/js/utils.js"></script>
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
 
-<script src="/js/motion.js"></script>
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
 
+<style>
+  /* .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
 
-<script src="/js/schemes/pisces.js"></script>
+  .toc-main ul {
+    counter-reset: show-list;
+  }
 
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  } */
+</style>
+ 
 
-<script src="/js/next-boot.js"></script>
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
 
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
 
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
 
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
 
-  
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
 
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
 
+<!-- 渲染远程json加载的图片标签(getPhotoOnline)里的内容 -->
+<script>
+  function loadPhotoOnlineJS() {
+    if ($(".post-detail").find(".getJsonPhoto-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/getPhotoOnline/index.js');
+  };
+  $(function () {
+    loadPhotoOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getPhotoJson == "undefined") {
+      loadPhotoOnlineJS();
+    }
+  })
+</script>
 
+<!-- 渲染远程json加载的talk标签(getTalkOnline)里的内容 -->
+<script>
+  function loadTalkOnlineJS() {
+    if ($(".post-detail").find(".getJsonTalk-api").length == 0) {
+      return;
+    } 
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/waterfall.js/1.0.2/waterfall.min.js'); // 瀑布流插件，https://raphamorim.io/waterfall.js/
+    loadScript('/js/getTalkOnline/index.js');
+  };
+  $(function () {
+    loadTalkOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getTalkJson == "undefined") {
+      loadTalkOnlineJS();
+    }
+  })
+</script>
 
-  
-<script src="/js/local-search.js"></script>
+<!-- 渲染远程json加载的site-card标签(getSiteOnline)里的内容 -->
+<script>
+  function loadSiteOnlineJS() {
+    if ($(".post-detail").find(".getJsonSite-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/getSiteOnline/index.js');
+  };
+  $(function () {
+    loadSiteOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getSiteJson == "undefined") {
+      loadSiteOnlineJS();
+    }
+  })
+</script>
 
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script src="/js/activate-power-mode.js"></script>
   <script>
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'http://ninglx.github.io/',]
-      });
-      });
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
   </script>
 
 
-</body>
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://unpkg.com/v-plugs-ayu/lib/ayu.css">
+  <script src="https://unpkg.com/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = '复制';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "代码已复制，请遵守相关授权协议。",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://unpkg.com/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+        <script type="text/javascript">
+  var utteranceComment = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceComment.Theme = 'github-dark';
+    } else {
+      utteranceComment.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceComment.Theme)
+      utterances.setAttribute('repo', '')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceComment.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+      
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+    <script async src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+    <script async src="/js/cursor/explosion.min.js"></script>
+  
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
+
+
+<!-- 轮播图标签 -->
+<script>
+  var bambooSwiperTag = {};
+  function load_swiper() {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    loadCSS("https://unpkg.com/swiper@6/swiper-bundle.min.css")
+    loadScript("https://unpkg.com/swiper@6/swiper-bundle.min.js").then(() => {
+      pjax_swiper();
+    });
+  }
+
+  load_swiper();
+
+  function pjax_swiper() {
+    bambooSwiperTag.swiper = new Swiper('.post-swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      centeredSlides: true,
+      loop: true,
+      autoplay: true ? {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      } : false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on:{
+        init: function(){
+          swiperAnimateCache(this); //隐藏动画元素 
+          swiperAnimate(this); //初始化完成开始动画
+        }, 
+        slideChangeTransitionEnd: function(){ 
+          swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+          //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
+        } 
+      }
+    });
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    if (typeof bambooSwiperTag.swiper === "undefined") {
+      load_swiper();
+    } else {
+      pjax_swiper();
+    }
+  });
+</script>
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
 </html>
