@@ -552,7 +552,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 #l_side .side_category {
   min-height: auto;
-  order: ;
+  order: 8;
   background: #fff;
 }
 #l_side .side_category .content {
@@ -618,7 +618,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 #l_side .side_tagcloud {
   background: #fff;
-  order: ;
+  order: 6;
 }
 #l_side .side_tagcloud .content {
   text-align: justify;
@@ -722,7 +722,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   text-align: right;
 }
 #l_side .side_webinfo {
-  order: ;
+  order: 5;
   background: #fff;
 }
 #l_side .side_webinfo .webinfo-item {
