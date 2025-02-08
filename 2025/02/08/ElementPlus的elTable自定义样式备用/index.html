@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>NingLx</title>
+  <title>elementPlus的elTable自定义样式备用 | NingLx</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -160,7 +160,7 @@
       <main class="main" id="pjax-container">
         <!-- 头部导航 -->
         
-<header class="header no-swiper " 
+<header class="header  " 
   id="navHeader"
   style="position: fixed;
   left: 0; top: 0; z-index: 10;width: 100%;"
@@ -544,593 +544,195 @@
 </header>
         <!-- 内容区域 -->
         
-
-<div id="l_main">
-  <div class="l_content">
-    <!-- 自定义的内容 -->
-    
-    <!-- 首页座右铭 -->
-    
-    <!-- 首页公告 -->
-    
-    <!-- 首页文章置顶 -->
-    
+<!-- prismjs 代码高亮 -->
 
 
 
-    <div class="bg-floor" id="home-bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-    <!-- 每一篇文章卡片 -->
-    <!-- hash算法 -->
 
-<section class="posts">
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-05-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">mapbox关闭/取消图层的点击事件</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gis%E5%BC%80%E5%8F%91/" rel="tag">Gis开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapbox/" rel="tag">Mapbox</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            mapbox地图开发时会遇到给图层添加完点击事件无法继续使用匿名函数取消掉此事件，此时稍微修改写法即可123map.on(&#x27;click&#x27;,&#x27;layerId&#x27;,function(e)&#123;  co
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-05-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">elementUI修改messageBox弹框样式</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/" rel="tag">Css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElementUI/" rel="tag">ElementUI</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            elementUI messageBox 组件自定义样式方法：添加属性’customClass’12345678this.$confirm(&#x27;确认？&#x27;,&#x27;告警&#x27;,&#123;  confirmButt
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-05-07</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/">记录Promise.all用法</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5%E5%90%8C%E6%AD%A5/" rel="tag">异步同步</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            场景：页面中多个耗时请求返回的数据的集合需要作为另一个业务的前置数据使用方法示例：12345678910111213141516171819202122var newNum = 0// 第一个耗时请求 返回第一个数据var firstSlo
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/05/07/%E8%AE%B0%E5%BD%95Promise-all%E7%94%A8%E6%B3%95/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-28</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/">原生HTML-table表格，超出内容鼠标悬浮展示</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/" rel="tag">Css</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h6 id="最近项目上遇到一个需求是地图上的-popup-弹窗里需要做个分页表格，所以这里只能用原生-html-js-来实现，又因为-popup-宽度非常有限，所以过长的-cell-需要用…隐藏，鼠标悬浮展示完整内容，纯-html-css-即可实现"><a href="#最近项目上遇到一个需求是地图上的-popup-弹窗里需要做个分页表格，所以这里只能用原生-html-js-来实现，又因为-popup-宽度非常有限，所以过长的-cell-需要用…隐藏，鼠标悬浮展示完整内容，纯-html-css-即可实现" class="headerlink" title="最近项目上遇到一个需求是地图上的 popup 弹窗里需要做个分页表格，所以这里只能用原生 html js 来实现，又因为 popup 宽度非常有限，所以过长的 cell 需要用…隐藏，鼠标悬浮展示完整内容，纯 html + css 即可实现"></a>最近项目上遇到一个需求是地图上的 popup 弹窗里需要做个分页表格，所以这里只能用原生 html js 来实现，又因为 popup 宽度非常有限，所以过长的 cell 需要用…隐藏，鼠标悬浮展示完整内容，纯 html + css 即可实现</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&#x27;moreTable&#x27;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">titel</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">class</span>=<span class="string">&#x27;tableCell&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;内容内容内容内容内容内容内容内容&#x27;</span>&gt;</span>内容内容内容内容内容内容内容内容<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/28/%E5%8E%9F%E7%94%9FHTML-table%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%B6%85%E5%87%BA%E5%86%85%E5%AE%B9%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-21</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/">谷歌浏览器滚动条样式优化</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/" rel="tag">Css</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h6 id="众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下："><a href="#众所周知-谷歌浏览器默认的滚动条很丑-，在项目中非常影响美观，还好可以使用-css-样式控制，代码如下：" class="headerlink" title="众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下："></a>众所周知 谷歌浏览器默认的滚动条很丑 -.-| ，在项目中非常影响美观，还好可以使用 css 样式控制，代码如下：</h6>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/21/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-20</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/">记录一下好用的Js技巧（新手向大佬勿喷）</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h6 id="从数组中删除重复项"><a href="#从数组中删除重复项" class="headerlink" title="从数组中删除重复项"></a>从数组中删除重复项</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deletedArr = [...<span class="keyword">new</span> <span class="title class_">Set</span>(arr)]</span><br></pre></td></tr></table></figure>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/20/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%A5%BD%E7%94%A8%E7%9A%84Js%E6%8A%80%E5%B7%A7%EF%BC%88%E6%96%B0%E6%89%8B%E5%90%91%E5%A4%A7%E4%BD%AC%E5%8B%BF%E5%96%B7%EF%BC%89/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">Gis二次开发相关文件处理</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gis%E5%BC%80%E5%8F%91/" rel="tag">Gis开发</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%90%8E%E7%AB%AF/">后端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <p><font color=red>注意：首先需要进行geoserver环境搭建（需要在 tomcat 中 geoserver 包里的 web.xml 文件中进行跨域处理）及相关依赖引入</font></p>
-<h5 id="shp-文件处理（解析文件并展示）"><a href="#shp-文件处理（解析文件并展示）" class="headerlink" title=".shp 文件处理（解析文件并展示）"></a>.shp 文件处理（解析文件并展示）</h5><h6 id="后端接收前端发送的-file-文件流，通过-GeoServer-发布，并返回一个-geojson-格式数据的-url"><a href="#后端接收前端发送的-file-文件流，通过-GeoServer-发布，并返回一个-geojson-格式数据的-url" class="headerlink" title="后端接收前端发送的 file 文件流，通过 GeoServer 发布，并返回一个 geojson 格式数据的 url"></a>后端接收前端发送的 file 文件流，通过 GeoServer 发布，并返回一个 geojson 格式数据的 url</h6><p><strong>主要代码：</strong></p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/18/Gis%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/">Js实现网页时钟（备用）</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h6 id="js定时器实现一个网页时钟，直接贴代码（Vue框架环境）"><a href="#js定时器实现一个网页时钟，直接贴代码（Vue框架环境）" class="headerlink" title="js定时器实现一个网页时钟，直接贴代码（Vue框架环境）"></a>js定时器实现一个网页时钟，直接贴代码（Vue框架环境）</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-sjzt&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-xs&quot;</span>&gt;</span>&#123;&#123; dateTime &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;he-nyr&quot;</span>&gt;</span>&#123;&#123; yearTime &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/18/Js%E5%AE%9E%E7%8E%B0%E7%BD%91%E9%A1%B5%E6%97%B6%E9%92%9F%EF%BC%88%E5%A4%87%E7%94%A8%EF%BC%89/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/">Vue中clearInterval失效问题</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费"><a href="#使用场景：在当前页面使用的定时器，离开当前页面需要销毁-以避免不必要的性能浪费" class="headerlink" title="使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费"></a>使用场景：在当前页面使用的定时器，离开当前页面需要销毁 以避免不必要的性能浪费</h5><h5 id="首先是setInterval和clearInterval的基本用法"><a href="#首先是setInterval和clearInterval的基本用法" class="headerlink" title="首先是setInterval和clearInterval的基本用法"></a>首先是<strong>setInterval</strong>和<strong>clearInterval</strong>的基本用法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myTimer = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="comment">// 每 1s 调用一次</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;do once...&#x27;</span>)</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">beforeDestroy</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(myTimer) <span class="comment">// 清除定时器 myTimer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/18/Vue%E4%B8%ADclearInterval%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-04-13</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/">Js异步改同步（按顺序执行）</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E6%AD%A5%E5%90%8C%E6%AD%A5/" rel="tag">异步同步</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/04/13/Js%E5%BC%82%E6%AD%A5%E6%94%B9%E5%90%8C%E6%AD%A5%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%89/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-</section>
-    <!-- 翻页 -->
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/page/2/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">3 / 4</div>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        elementPlus的elTable自定义样式备用
+      </span>
     </div>
     
-      <a href="/page/4/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
-      </a>
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2025-02-08 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-detail-header_category">
+              前端
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 353 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 1分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
   </div>
+  
+  
+    <script defer src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h5 id="众所周知-在实际的页面开发时，所有表单表格都需要高度自定义。这时如果每次来了新需求-再去使用-elementPlus-原生样式一点点改造就有点费劲，各种审查元素所以为了让后续的开发不在这种繁琐的事情上耗费经历，在这里记录一下，后续直接拿来改对应的颜色就行"><a href="#众所周知-在实际的页面开发时，所有表单表格都需要高度自定义。这时如果每次来了新需求-再去使用-elementPlus-原生样式一点点改造就有点费劲，各种审查元素所以为了让后续的开发不在这种繁琐的事情上耗费经历，在这里记录一下，后续直接拿来改对应的颜色就行" class="headerlink" title="众所周知 在实际的页面开发时，所有表单表格都需要高度自定义。这时如果每次来了新需求 再去使用 elementPlus 原生样式一点点改造就有点费劲，各种审查元素所以为了让后续的开发不在这种繁琐的事情上耗费经历，在这里记录一下，后续直接拿来改对应的颜色就行"></a>众所周知 在实际的页面开发时，所有表单表格都需要高度自定义。<br>这时如果每次来了新需求 再去使用 <code>elementPlus</code> 原生样式一点点改造就有点费劲，各种审查元素<br>所以为了让后续的开发不在这种繁琐的事情上耗费经历，在这里记录一下，后续直接拿来改对应的颜色就行</h5><ul>
+<li>首先是 <code>html</code> 部分，用 <code>attr</code> 给一组类名就行，对应下面的 <code>css</code> 类名，然后看情况加 <code>highLight</code><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">class</span>=<span class="string">&quot;custom_el_table&quot;</span> <span class="attr">header-cell-class-name</span>=<span class="string">&quot;header_cell&quot;</span> <span class="attr">highlight-current-row</span> <span class="attr">:data</span>=<span class="string">&quot;tableData&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>其次就是封装的 <code>scss</code> 或 <code>less</code> 文件内容了，例如把这个文件命名为 <code>myElTable.scss</code><br><br>👉注意 <code>.current-row</code> 的 <code>background-image</code> 是高亮行的背景图，如果较为简单可以用 <code>css</code> 处理<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">deep</span>(.current-row)&#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;/src/assets/images/table_row_active.png&quot;</span>);</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">100%</span> <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line">:<span class="built_in">deep</span>(.custom_el_table)&#123;</span><br><span class="line">    <span class="attribute">background</span>: transparent;</span><br><span class="line">    <span class="attr">--el-table-border</span>: none;</span><br><span class="line">    <span class="attr">--el-table-row-hover-bg-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">158</span>, <span class="number">250</span>, .<span class="number">1</span>) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attr">--el-table-current-row-bg-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">158</span>, <span class="number">250</span>, <span class="number">0</span>) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attr">--el-table-text-color</span>: white;</span><br><span class="line">    <span class="attr">--el-table-header-bg-color</span>: <span class="number">#041954</span>;</span><br><span class="line">    <span class="attr">--el-table-bg-color</span>: transparent;</span><br><span class="line">    <span class="attr">--el-table-tr-bg-color</span>: transparent;</span><br><span class="line">    <span class="attr">--el-table-header-text-color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line">:<span class="built_in">deep</span>(.header_cell)&#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">500</span>;</span><br><span class="line">&#125;</span><br><span class="line">:<span class="built_in">deep</span>(.el-table__inner-wrapper:before)&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>最后在 <code>vue</code> 文件中的 <code>style</code> 里引入即可<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;/src/assets/css/myElTable.scss&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li>完事</li>
+</ul>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Vue/" class="">
+              Vue
+            </a>
+          
+            <a href="/tags/ElementUI/" class="">
+              ElementUI
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>Ning lx</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2025/02/08/ElementPlus的elTable自定义样式备用/" target="_blank" title="elementPlus的elTable自定义样式备用">http://ninglx.github.io/2025/02/08/ElementPlus的elTable自定义样式备用/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2025/01/21/%E5%A4%84%E7%90%86%E6%8B%89%E5%8F%96%E4%BB%A3%E7%A0%81%E6%88%96%E8%80%85push%E6%97%B6git%E6%8F%90%E7%A4%BAFailed-to-connect-to-github-com-port-443-after-21090-ms-Couldnt-connect-to-server/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">处理拉取代码或者push时git提示Failed to connect to github.com port 443 after 21090 ms: Couldnt connect to server</div>
+      </div>
+      <!-- <div class="content">
+        
+最近在 github 更新博客模板代码时，碰到提示 Failed to connect to github.com p
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script defer src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+
+<!-- 还需要在后面这个地址里设置script, comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
 
   </div>
 
+  <!-- 目录 -->
   <aside id='l_side'>
   
     
@@ -1201,58 +803,31 @@
   <div class="layout_sticky">    
     
       
-        
-    <section class="widget side_category">
-      
+<section class="widget side_toc">
+  
   <header>
     
-      <a style="color: " href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
     
   </header>
 
 
-      <div class='content'>
-        <ul class="entry navigation">
-          
-            <li><a class="flat-box"
-              title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"
-              id="categoriesE5898DE7ABAF"
-              ><div class='name'>前端</div><div class='badge'>(34)</div></a></li>
-          
-            <li><a class="flat-box child"
-              title="/categories/%E5%89%8D%E7%AB%AF/%E5%90%8E%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/%E5%90%8E%E7%AB%AF/"
-              id="categoriesE5898DE7ABAFE5908EE7ABAF"
-              ><div class='name'>后端</div><div class='badge'>(2)</div></a></li>
-          
-            <li><a class="flat-box"
-              title="/categories/%E9%80%9A%E7%94%A8/" href="/categories/%E9%80%9A%E7%94%A8/"
-              id="categoriesE9809AE794A8"
-              ><div class='name'>通用</div><div class='badge'>(1)</div></a></li>
-          
-        </ul>
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%97%E6%89%80%E5%91%A8%E7%9F%A5-%E5%9C%A8%E5%AE%9E%E9%99%85%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%E6%97%B6%EF%BC%8C%E6%89%80%E6%9C%89%E8%A1%A8%E5%8D%95%E8%A1%A8%E6%A0%BC%E9%83%BD%E9%9C%80%E8%A6%81%E9%AB%98%E5%BA%A6%E8%87%AA%E5%AE%9A%E4%B9%89%E3%80%82%E8%BF%99%E6%97%B6%E5%A6%82%E6%9E%9C%E6%AF%8F%E6%AC%A1%E6%9D%A5%E4%BA%86%E6%96%B0%E9%9C%80%E6%B1%82-%E5%86%8D%E5%8E%BB%E4%BD%BF%E7%94%A8-elementPlus-%E5%8E%9F%E7%94%9F%E6%A0%B7%E5%BC%8F%E4%B8%80%E7%82%B9%E7%82%B9%E6%94%B9%E9%80%A0%E5%B0%B1%E6%9C%89%E7%82%B9%E8%B4%B9%E5%8A%B2%EF%BC%8C%E5%90%84%E7%A7%8D%E5%AE%A1%E6%9F%A5%E5%85%83%E7%B4%A0%E6%89%80%E4%BB%A5%E4%B8%BA%E4%BA%86%E8%AE%A9%E5%90%8E%E7%BB%AD%E7%9A%84%E5%BC%80%E5%8F%91%E4%B8%8D%E5%9C%A8%E8%BF%99%E7%A7%8D%E7%B9%81%E7%90%90%E7%9A%84%E4%BA%8B%E6%83%85%E4%B8%8A%E8%80%97%E8%B4%B9%E7%BB%8F%E5%8E%86%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%EF%BC%8C%E5%90%8E%E7%BB%AD%E7%9B%B4%E6%8E%A5%E6%8B%BF%E6%9D%A5%E6%94%B9%E5%AF%B9%E5%BA%94%E7%9A%84%E9%A2%9C%E8%89%B2%E5%B0%B1%E8%A1%8C"><span class="toc-text">众所周知 在实际的页面开发时，所有表单表格都需要高度自定义。
+这时如果每次来了新需求 再去使用 elementPlus 原生样式一点点改造就有点费劲，各种审查元素
+所以为了让后续的开发不在这种繁琐的事情上耗费经历，在这里记录一下，后续直接拿来改对应的颜色就行</span></a></li></ol> -->
+        <div class="toc"></div>
       </div>
-    </section>
-  
-  
-      
-      
-        
-<section class="widget side_tagcloud">
-    
-  <header>
-    
-      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-    <a href="/tags/Cesium/" style="font-size: 19px; color: #777">Cesium</a> <a href="/tags/Css/" style="font-size: 20.67px; color: #6c6c6c">Css</a> <a href="/tags/ES6/" style="font-size: 14px; color: #999">ES6</a> <a href="/tags/Echats/" style="font-size: 14px; color: #999">Echats</a> <a href="/tags/ElementUI/" style="font-size: 19px; color: #777">ElementUI</a> <a href="/tags/Flvjs/" style="font-size: 14px; color: #999">Flvjs</a> <a href="/tags/Gis%E5%BC%80%E5%8F%91/" style="font-size: 17.33px; color: #828282">Gis开发</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Highcharts/" style="font-size: 14px; color: #999">Highcharts</a> <a href="/tags/Javascript/" style="font-size: 24px; color: #555">Javascript</a> <a href="/tags/Mapbox/" style="font-size: 15.67px; color: #8e8e8e">Mapbox</a> <a href="/tags/NodeJs/" style="font-size: 14px; color: #999">NodeJs</a> <a href="/tags/SpringBoot/" style="font-size: 14px; color: #999">SpringBoot</a> <a href="/tags/Threejs/" style="font-size: 14px; color: #999">Threejs</a> <a href="/tags/Vue/" style="font-size: 22.33px; color: #606060">Vue</a> <a href="/tags/Websocket/" style="font-size: 14px; color: #999">Websocket</a> <a href="/tags/%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/" style="font-size: 14px; color: #999">上传下载</a> <a href="/tags/%E5%9C%B0%E5%9B%BE%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 14px; color: #999">地图可视化</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E5%90%8C%E6%AD%A5/" style="font-size: 15.67px; color: #8e8e8e">异步同步</a> <a href="/tags/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/" style="font-size: 14px; color: #999">视频播放</a> <a href="/tags/%E8%AF%AD%E6%B3%95%E4%BC%98%E5%8C%96/" style="font-size: 14px; color: #999">语法优化</a>
     </div>
+  </div>
 </section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
 
-  
-      
       
   <section class="widget side_recent_post">
     
@@ -1378,144 +953,163 @@
     </div>
   </section>
 
-      
-  <section class="widget side_archives">
-    
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/02/"><span class="card-archive-list-date">二月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div>
-  </section>
-
-      <section class="widget side_webinfo">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name' style="color: ">站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>36 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2023/02/01'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>14.7k 字</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Sat Feb 08 2025 17:23:44 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2025-02-08 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2025-02-08 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-      
     
   </div>
 </aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script defer src="/js/wrapImage.js"></script>
 </div>
-<!-- 花瓣和雪花飘落 -->
-<!-- 雪花和花瓣特效 -->
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
 
 
 
-<!-- 灯笼 -->
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
 
 
       </main>
