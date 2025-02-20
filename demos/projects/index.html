@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>NingLx的案例墙</title>
+    <meta charset="utf-8">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+        }
+        #projectHistory{
+            display: flex;
+            width: 100%; height: 100%;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .inner{
+            width: 100%;
+            height: 100%;
+            background-color: #cdcaca;
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            flex-flow: row wrap;
+        }
+        .videoItem{
+            width: calc(50% - 4px);
+            height: 50%;
+            margin-right: 8px;
+        }
+        .videoItem:nth-child(even){
+            margin-right: 0;
+        }
+        .videoTitle{
+            height: 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #8cc5ff;
+        }
+        video{
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+    </style>
+</head>
+
+<body>
+<div id="projectHistory">
+    <div class="inner">
+        <div class="videoItem">
+            <div class="videoTitle">基于mapbox实现实时轨迹播放</div>
+            <video controls autoplay muted loop src="./全息mapbox.mp4"></video>
+        </div>
+        <div class="videoItem">
+            <div class="videoTitle">基于cesium实现历史轨迹回溯</div>
+            <video controls muted loop src="./全息cesium.mp4"></video>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

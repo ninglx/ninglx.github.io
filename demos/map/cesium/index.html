@@ -2,141 +2,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <!-- Include the CesiumJS JavaScript and CSS files -->
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-  <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <title>cesium小小小demo</title>
+    <meta charset="utf-8">
+    <!-- Include the CesiumJS JavaScript and CSS files -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="cesiumContainer"></div>
-  <script>
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1OWE5YzQ2ZS05NDYzLTQ3NTEtYTZhOC0yNDhmMmIyY2I5ZTAiLCJpZCI6MTA0MTAyLCJpYXQiOjE2ODU2MTMxOTB9.JxmgXnf8_-V1eM9we2W8VfiP37vyGMJJDSWF4Br6hKU';
-    // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
-    const viewer = new Cesium.Viewer('cesiumContainer', {
-      shouldAnimate: true,
-      terrainProvider: new Cesium.EllipsoidTerrainProvider({}), // 地形
-    });
-    let initTime = '2023-01-01 00:00:00.000';
-    let receiveTime = 1; // 用来模拟当前接收数据的帧序列
-    let entities = {} // 用来保存entities
-    let start = Cesium.JulianDate.fromDate(new Date(initTime));
-    // 设置时钟起始时间
-    viewer.clock.startTime = start.clone();
-    // 设置时钟当前时间
-    viewer.clock.currentTime = start.clone();
-    viewer.clock.onTick.addEventListener(() => {
-      // console.log(111);
-      // console.log(entities.entity1.position);
-    })
-
-
-
-    let center = [133, 22]; // 中心点
-    var pt = turf.point(center);
-    var distance = 50; // 半径
-    let circlePoints = [];
-    let lineWidth = 3; // 线宽
-    let height = 0; // 圆环所在高度
-    for (let i = -180; i <= 180; i++) {
-      let destination = turf.rhumbDestination(pt, distance, i);
-      console.log(destination)
-      circlePoints.push(new Cesium.Cartesian3.fromDegrees(destination.geometry.coordinates[0], destination.geometry.coordinates[1], height));
-    }
-    var polyline = viewer.entities.add({
-      polyline: {
-        positions: circlePoints,
-        width: lineWidth,
-        material: Cesium.Color.YELLOW
-      }
-    });
-    viewer.zoomTo(polyline)
-
-    // 第一帧
-    // solveData({
-    //   time: convertDate(initTime, 0),
-    //   locations: [{ name: 'entity1' }, { name: 'entity2' }]
-    // })
-    // viewer.camera.setView({
-    //   destination: Cesium.Cartesian3.fromDegrees(Math.random() * 0.1 + 100, Math.random() * 0.1 + 30, 90000)
-    // });
-    // // 模拟 websocket 每过5s接收一次数据 -> addSample
-    // setInterval(() => {
-    //   let receiveData = {
-    //     time: convertDate(initTime, 5 * receiveTime),
-    //     locations: [{ name: 'entity1' }, { name: 'entity2' }]
-    //   }
-    //   solveData(receiveData)
-    // }, 5000)
-
-    // 处理一帧数据
-    function solveData(receiveData) {
-      for (let item of receiveData.locations) {
-        // 集合中不存在的 => add
-        if (!entities[item.name]) {
-          entities[item.name] = viewer.entities.add({
-            id: `entity${item.name}`,
-            model: {
-              uri: './car.gltf',
-              scale: 0.8,
-              minimumPixelSize: 128,
-              color: Cesium.Color.fromCssColorString('#fff'),
-            },
-          })
-        }
-        // 已存在的更新property
-        updateEntityProperty(
-          entities[item.name],
-          receiveData.time,
-          Math.random() * 0.1 + 100,
-          Math.random() * 0.1 + 30
-        )
-      }
-      // 更新timeline的右端点
-      let newStopTime = Cesium.JulianDate.fromDate(new Date(convertDate(initTime, 5 * receiveTime + 60)));
-      viewer.clock.stopTime = newStopTime.clone()
-      viewer.timeline.zoomTo(start, newStopTime)
-      receiveTime += 1
-    }
-
-
-    // 更新输入entity的property
-    function updateEntityProperty(entity, timestamp, lng, lat) {
-      let time = Cesium.JulianDate.fromDate(
-        new Date(timestamp)
-      );
-      let position = Cesium.Cartesian3.fromDegrees(
-        lng,
-        lat,
-        0
-      );
-      if (!entity.position) {
-        entity.position = new Cesium.SampledPositionProperty()
-      }
-      if (!entity.orientation) {
-        entity.orientation = new Cesium.VelocityOrientationProperty(entity.position)
-      }
-      entity.position.addSample(time, position);
-    }
-
-    // example：
-    // 输入 '2021-1-1 10:00:00:000', 20
-    // 返回 '2021-1-1 10:00:20:000'
-    function convertDate(date, second) {
-      let getTime = new Date(date).getTime()
-      let after = new Date(getTime + second * 1000)
-      const yy = after.getFullYear()
-      const mm = after.getMonth() + 1 < 10 ? '0' + (after.getMonth() + 1) : after.getMonth() + 1
-      const dd = after.getDate() < 10 ? '0' + after.getDate() : after.getDate()
-      const hh = after.getHours()
-      const mf = after.getMinutes() < 10 ? '0' + after.getMinutes() : after.getMinutes()
-      const ss = after.getSeconds() < 10 ? '0' + after.getSeconds() : after.getSeconds()
-      const ms = after.getMilliseconds()
-      return yy + '-' + mm + '-' + dd + ' ' + hh + ':' + mf + ':' + ss + ':' + ms
-    }
-  </script>
-  </div>
+<div id="cesiumContainer"></div>
+<script src="./cesiumInit.js"></script>
 </body>
 
 </html>
