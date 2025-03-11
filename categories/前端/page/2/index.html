@@ -592,6 +592,62 @@
         <div class="post-info">
           <div class="post-time">
             <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2023-03-20</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">基于websocket使用mapbox结合threebox实现车辆实时轨迹展示</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapbox/" rel="tag">Mapbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Threejs/" rel="tag">Threejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Websocket/" rel="tag">Websocket</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            <h5 id="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"><a href="#最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下" class="headerlink" title="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"></a>最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载<code>gltf</code>、<code>glb</code>此类3D模型作为车辆点，所以在此需要结合<code>threejs</code><br/>但是若使用原生<code>threejs</code>的话结合地图开发不太友好，所以使用<code>threebox</code>作为桥梁可以减少很多心智负担。在这里做个小demo记录一下</h5><hr>
+<ol>
+<li>引入所需的 js 库<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// mapboxgl</span></span><br><span class="line"> &lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;xxx/mapbox-gl.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/mapbox-gl.css&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="comment">// threebox</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;xxx/threebox/threebox.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/threebox/threebox.css&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="comment">// turf</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./turf/turf.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
             <span class="post-time">2023-03-07</span>
           </div>
           <div class="post-title">
@@ -631,7 +687,7 @@
         </div>
         <div class="post-more">
           <a href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -644,7 +700,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -690,7 +746,7 @@
         </div>
         <div class="post-more">
           <a href="/2023/03/07/Cesium%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%BB%84%E4%BB%B6%E5%88%9B%E5%BB%BA/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -703,7 +759,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -747,7 +803,7 @@
         </div>
         <div class="post-more">
           <a href="/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -760,7 +816,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -802,7 +858,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -815,7 +871,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -858,7 +914,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -871,7 +927,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -912,7 +968,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/12/27/echarts%E9%BC%A0%E6%A0%87%E9%A6%96%E6%AC%A1%E6%82%AC%E6%B5%AE%E7%BB%8F%E8%BF%87%E9%A1%B5%E9%9D%A2%E9%97%AA%E5%8A%A8/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -925,7 +981,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -968,7 +1024,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/12/27/vue%E8%B7%AF%E7%94%B1%E9%87%8D%E5%A4%8D%E7%82%B9%E5%87%BB%E6%8A%A5%E9%94%99/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -981,7 +1037,7 @@
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1025,7 +1081,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/06/02/antVL7%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1038,7 +1094,7 @@
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -1079,7 +1135,7 @@
         </div>
         <div class="post-more">
           <a href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -1087,60 +1143,6 @@
         <a href="/2022/05/18/mapbox%E5%85%B3%E9%97%AD-%E5%8F%96%E6%B6%88%E5%9B%BE%E5%B1%82%E7%9A%84%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-05-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">elementUI修改messageBox弹框样式</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/" rel="tag">Css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElementUI/" rel="tag">ElementUI</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            elementUI messageBox 组件自定义样式方法：添加属性’customClass’12345678this.$confirm(&#x27;确认？&#x27;,&#x27;告警&#x27;,&#123;  confirmButt
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/05/18/elementUI%E4%BF%AE%E6%94%B9messageBox%E5%BC%B9%E6%A1%86%E6%A0%B7%E5%BC%8F/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" alt="">
         </a>
       </div>
     </article>
