@@ -14,6 +14,7 @@
     <link rel='stylesheet' href="./libs/mapbox-gl.css"/>
     <link rel='stylesheet' href="./libs/theme-chalk_index.css"/>
     <link rel='stylesheet' href="./libs/threebox/threebox.css"/>
+    <script src="./libs/mTool.js"></script>
     <style>
         html,
         body,
@@ -24,10 +25,16 @@
             position: relative;
             background-color: #292929;
         }
+        .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner{
+            display: none !important;
+        }
+        *{
+            box-sizing: border-box;
+        }
 
         #map {
-            width: 99%;
-            height: 99%;
+            width: 100%;
+            height: 100%;
         }
 
         .rightTopButtons {
@@ -58,11 +65,6 @@
             width: 100%;
         }
 
-        .mybuttons {
-            display: flex;
-            justify-content: space-between;
-        }
-
         .drawResult {
             position: absolute;
             border-radius: 4px;
@@ -79,45 +81,6 @@
             padding-right: 5px;
             width: calc(58% - 36px);
         }
-
-        .slider-box {
-            position: absolute;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            padding: 8px 34px;
-            background-color: rgba(255, 255, 255, 0.25);
-            border-radius: 34px;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-            -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-            width: 455px;
-            height: 48px;
-            left: 50%;
-            bottom: 15px;
-            transform: translateX(-50%);
-        }
-
-        .slider-text {
-            color: white;
-            display: inline-block;
-            width: 90px;
-            text-align: center;
-        }
-
-        .ctrl-select {
-            width: 120px;
-        }
-
-        .play-icon {
-            font-size: 22px;
-            color: white;
-            cursor: pointer;
-            margin-right: 20px;
-            font-weight: 700;
-        }
     </style>
 </head>
 
@@ -129,7 +92,15 @@
         <div class="panelItem">
             <el-input class="panelItem" size="mini" placeholder="输入经纬度 用英文逗号,隔开"
                       v-model="lnglatStr"></el-input>
-            <el-button type="primary" class="panelItem" size="mini" @click="locate">定位</el-button>
+            <div class="panelItem">
+                <el-button type="primary" style="width:calc(50% - 8px)" class="panelItem" size="mini" @click="locate">
+                    定位
+                </el-button>
+                <el-button type="primary" style="width:calc(50% - 8px)" class="panelItem" size="mini"
+                           @click="removeLocate">清除
+                </el-button>
+            </div>
+
         </div>
         <el-divider></el-divider>
         <div class="panelItem">
@@ -174,10 +145,6 @@
                 </el-button>
             </div>
         </div>
-        <el-divider></el-divider>
-        <div class="panelItem">
-            <el-button type="primary" style="width:100%" size="mini" @click="openThree">打开Three-Map</el-button>
-        </div>
     </div>
     <div class="drawResult">
         <el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果" type="textarea" :rows="6"
@@ -188,33 +155,10 @@
 
             <el-button type="primary" size="mini" @click="copyResult"> 复制</el-button>
         </div>
-
     </div>
-    <el-dialog @open="dialogOpen" @close="closeDialog" top="5vh" title="Three-Map 轨迹播放示例"
-               :visible.sync="dialogVisible"
-               width="70%" :destroy-on-close="true">
-        <div id="threeMapContainer" style="height: 65vh;">
-            <div class="slider-box">
-                <i class="play-icon" :class="playStatus?'el-icon-video-pause':'el-icon-video-play'"
-                   @click="playClick"></i>
-                <el-slider ref="sliderRef" v-model="currentTime" :disabled="duration === 0" :min="0" :max="duration"
-                           :show-tooltip="false" @mousedown="handleMouseDown" @mouseup="handleMouseUp"
-                           @change="handleTimeChange"></el-slider>
-                <span class="slider-text" id="slider-text"></span>
-                <el-select size="small" v-model="speed" class="ctrl-select">
-                    <el-option v-for="item of speeds" :key="item.value" :label="item.label"
-                               :value="item.value"></el-option>
-                </el-select>
-            </div>
-        </div>
-
-        <div style="text-align: center;width: 100%;margin-top: 20px;">
-            <el-button type="danger" size="mini" @click="closeDialog">关闭</el-button>
-        </div>
-    </el-dialog>
 </div>
 <script>
-    let map = null, dMap = null, models = {}, fullTrack = [], dillPath = [], lastFrame = {}, colorMap = {}
+    let map = null, dMap = null, models = {}
     new Vue({
         el: '#app',
         data: function () {
@@ -227,275 +171,9 @@
                 rasterLayerUrl: '',
                 vectorTileUrl: '',
                 vectorSourceLayer: '',
-                // ----
-                dialogVisible: false,
-                modelNumber: 0,
-                playStatus: false,
-                speed: 1,
-                currentTime: 0,
-                duration: 0,
-                speeds: [
-                    {value: 0.25, label: "x 0.25"},
-                    {value: 0.5, label: "x 0.5"},
-                    {value: 1, label: "正常速度"},
-                    {value: 1.5, label: "x 1.5"},
-                    {value: 2, label: "x 2"},
-                ],
-                timeShouldChange: true
             }
         },
         methods: {
-            handleTimeChange(value) {
-                if (value) {
-                    const time = Math.floor(value);
-                    this.currentTime = time;
-                    this.timeTo(value);
-                }
-            },
-            getClosestIndex(arr, targetTime) {
-                let closestIndex = 0;
-                let closestDiff = Math.abs(
-                    targetTime - new Date(arr[0].frameTime).getTime()
-                );
-                for (let i = 1; i < arr.length; i++) {
-                    const diff = Math.abs(
-                        targetTime - new Date(arr[i].frameTime).getTime()
-                    );
-                    if (diff < closestDiff) {
-                        closestDiff = diff;
-                        closestIndex = i;
-                    }
-                }
-                return closestIndex;
-            },
-            timeTo(timestamp) {
-                let realTimeStamp =
-                    new Date(fullTrack[0].frameTime).getTime() + timestamp;
-                let index = this.getClosestIndex(fullTrack, realTimeStamp);
-                dillPath = fullTrack.slice(index);
-            },
-            formatTime(time) {
-                let fTime = Math.round(time / 1000)
-                // 格式化时间的方法，将时间转换成分钟和秒钟的形式
-                const minutes = Math.floor(fTime / 60);
-                const seconds = Math.floor(fTime % 60);
-                return `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds
-                }`;
-            },
-            playClick() {
-                this.playStatus = !this.playStatus;
-                this.playStatus
-                    ? this.continuePlay()
-                    : this.pause();
-            },
-            pause() {
-                this.playStatus = false;
-            },
-            continuePlay() {
-                this.playStatus = true;
-                this.renderPath();
-            },
-            handleMouseDown() {
-                this.timeShouldChange = false;
-            },
-            handleMouseUp() {
-                this.timeShouldChange = true;
-            },
-            dialogOpen() {
-                console.log('open');
-                this.$nextTick(() => {
-                    const sliderElement = this.$refs.sliderRef.$el;
-                    sliderElement.addEventListener("mouseup", this.handleMouseUp);
-                    sliderElement.addEventListener("mousedown", this.handleMouseDown);
-                    dMap = new mapboxgl.Map({
-                        container: 'threeMapContainer',
-                        style: 'mapbox://styles/mapbox/dark-v11',
-                        center: [110.70727046509603, 33.05124063231834],
-                        zoom: 11,
-                        pitch: 45,
-                    });
-                    dMap.on("style.load", () => {
-                        dMap.addLayer({
-                            id: "vehicle3D",
-                            type: "custom",
-                            renderingMode: "3d",
-                            onAdd: (dMap, mbxContext) => {
-                                window.tb = new Threebox(dMap, mbxContext, {
-                                    defaultLights: true,
-                                    enableSelectingObjects: false,
-                                });
-                                for (let item of [1, 2, 3, 4, 5]) {
-                                    let options = {
-                                        obj: `model/car${item}.gltf`,
-                                        type: "gltf",
-                                        units: "meters",
-                                        scale: 0.8,
-                                        adjustment: {x: 0.5, y: 1, z: -0.5},
-                                        bbox: true,
-                                    };
-                                    window.tb.loadObj(options, (model) => {
-                                        models[`car${item}`] = model;
-                                        this.modelNumber += 1;
-                                    });
-                                }
-                            },
-                            render: function (gl, matrix) {
-                                window.tb.update();
-                            },
-                        });
-                    });
-                    let interval = setInterval(() => {
-                        if (this.modelNumber === 5) {
-                            clearInterval(interval)
-                            fetch('libs/tracks.json').then(res => {
-                                res.json().then(result => {
-                                    fullTrack = result.blog_tracks
-                                    let fullTime =
-                                        new Date(fullTrack[fullTrack.length - 1].frameTime).getTime() -
-                                        new Date(fullTrack[0].frameTime).getTime();
-                                    this.duration = fullTime;
-                                    dillPath = JSON.parse(JSON.stringify(fullTrack));
-                                    this.playStatus = true;
-                                    dMap.flyTo({
-                                        center: [
-                                            dillPath[0].carInfo[0].longitude,
-                                            dillPath[0].carInfo[0].latitude,
-                                        ],
-                                        zoom: 19,
-                                    });
-                                    this.renderPath(true);
-                                })
-                            })
-                        }
-                    }, 500)
-                })
-            },
-            renderPath(begin) {
-                if (this.playStatus) {
-                    if (dillPath.length) {
-                        let currentFrame = dillPath[0].carInfo;
-                        let allData = this.diff(
-                            lastFrame.carInfo || [],
-                            currentFrame || []
-                        );
-                        let spend = new Date(dillPath[0].frameTime).getTime() - new Date(fullTrack[0].frameTime).getTime();
-                        this.timeShouldChange && (this.currentTime = spend);
-                        document.getElementById('slider-text').innerText = `${this.formatTime(this.currentTime)}/${this.formatTime(this.duration)}`
-                        let timeDiff = 0;
-                        if (!begin) {
-                            timeDiff =
-                                new Date(dillPath[0].frameTime).getTime() -
-                                new Date(lastFrame.frameTime).getTime() >
-                                1000
-                                    ? 100
-                                    : new Date(dillPath[0].frameTime).getTime() -
-                                    new Date(lastFrame.frameTime).getTime();
-                        }
-                        timeDiff = timeDiff / this.speed;
-                        lastFrame = Object.assign({}, dillPath[0], {
-                            carInfo: currentFrame,
-                        });
-                        this.addDelUpdateVehicleModels(allData, timeDiff);
-                        dillPath.shift();
-                        if (!dillPath.length) {
-                            dillPath = JSON.parse(JSON.stringify(fullTrack));
-                        }
-                        setTimeout(() => {
-                            this.renderPath(false);
-                        }, timeDiff);
-                    }
-                }
-            },
-            addDelUpdateVehicleModels(allData, timeDiff) {
-                if (window.tb && window.tb.world.children) {
-                    for (let item of allData) {
-                        // 新增
-                        if (item.dill === "add") {
-                            console.log(item.originalType);
-                            let model = models[`car${item.originalType}`].duplicate();
-                            model.setCoords([item.longitude, item.latitude]);
-                            model.userData.data = item;
-                            model.setRotation({x: 90, y: 360 - item.courseAngle - 90, z: 0});
-                            window.tb.add(model, item.id);
-                        }
-                        if (item.dill === "del") {
-                            window.tb.clear(item.id, true);
-                        }
-                        if (item.dill === "com") {
-                            for (let model of window.tb.world.children) {
-                                if (model.userData.data?.id === item.id) {
-                                    this.setModel(model, item, timeDiff);
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            setModel(model, options, timeDiff) {
-                // model.traverse((child) => {
-                // 	if (child.isMesh && child.name.includes("_19")) {
-                // 		child.material = child.material.clone();
-                // 		let realColor = colorMap[options.originalColor]
-                // 		child.material.color.set(realColor);
-                // 	}
-                // });
-                if (timeDiff === 0) {
-                    model.setCoords([options.longitude, options.latitude]);
-                } else {
-                    let timeDiffInterval = timeDiff / 4;
-                    let midPoint = turf.midpoint(
-                        [model.userData.data.longitude, model.userData.data.latitude],
-                        [options.longitude, options.latitude]
-                    );
-                    let midBePoint = turf.midpoint(
-                        [model.userData.data.longitude, model.userData.data.latitude],
-                        midPoint.geometry.coordinates
-                    );
-                    let midAfPoint = turf.midpoint(midPoint.geometry.coordinates, [
-                        options.longitude,
-                        options.latitude,
-                    ]);
-                    setTimeout(() => {
-                        model.setCoords(midBePoint.geometry.coordinates);
-                    }, timeDiffInterval);
-                    setTimeout(() => {
-                        model.setCoords(midPoint.geometry.coordinates);
-                    }, timeDiffInterval * 2);
-                    setTimeout(() => {
-                        model.setCoords(midAfPoint.geometry.coordinates);
-                    }, timeDiffInterval * 3);
-                    setTimeout(() => {
-                        model.setCoords([options.longitude, options.latitude]);
-                    }, timeDiffInterval * 4);
-                }
-                model.userData.data = options;
-                model.setRotation({x: 90, y: 360 - options.courseAngle - 90, z: 0});
-            },
-            diff(oldData, newData) {
-                const add = newData.filter((e) => !oldData.find((c) => c.id === e.id));
-                const del = oldData.filter((e) => !newData.find((c) => c.id === e.id));
-                const com = newData.filter((e) => oldData.find((c) => c.id === e.id));
-                add.forEach((a) => (a.dill = "add"));
-                del.forEach((d) => (d.dill = "del"));
-                com.forEach((c) => (c.dill = "com"));
-                return [...add, ...del, ...com];
-            },
-            closeDialog() {
-                this.playStatus = false
-                this.currentTime = 0
-                this.duration = 0
-                fullTrack = []
-                dillPath = []
-                lastFrame = {}
-                window.tb?.dispose();
-                dMap?.remove()
-                window.tb = null
-                dMap = null
-                this.dialogVisible = false
-            },
-            openThree() {
-                this.dialogVisible = true
-            },
             // 添加地形
             addTerrain() {
                 map.setTerrain({'source': 'mapbox-dem', 'exaggeration': 1.5});
@@ -630,14 +308,18 @@
                     let point = this.lnglatStr.split(',')
                     map.flyTo({
                         center: point,
-                        zoom: 18,
+                        zoom: 16,
                     })
+                    window.addPoint(map, [{lng: point[0], lat: point[1]}], 'sPoint')
                 } catch (error) {
                     this.$notify.error({
                         title: '输入非法！',
                         message: error
                     });
                 }
+            },
+            removeLocate() {
+                window.removeLayers(map, 'sPoint')
             },
             copyResult() {
                 const input = document.createElement('input')
@@ -671,11 +353,11 @@
             map.addControl(draw);
             map.on('load', () => {
                 map.on('click', (e) => {
-                    console.log(e.lngLat)
-                    console.log(map.getCenter());
-                    console.log(map.getBearing());
-                    console.log(map.getZoom());
-                    console.log(map.getPitch());
+                    console.log('点击经纬度: ',[e.lngLat.lng,e.lngLat.lat])
+                    console.log('地图中心点: ',[map.getCenter().lng,map.getCenter().lat]);
+                    console.log('bearing: ',map.getBearing());
+                    console.log('zoom: ',map.getZoom());
+                    console.log('pitch: ',map.getPitch());
                 })
                 // setTimeout(() => {
                 // 	map.flyTo({
@@ -708,9 +390,7 @@
             });
         }
     })
-
 </script>
-</div>
 </body>
 
 </html>
