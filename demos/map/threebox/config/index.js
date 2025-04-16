@@ -183,6 +183,7 @@ const MAP_OPTION = {
     style: "mapbox://styles/mapbox/dark-v11",
     center: [117.09, 36.644],
     zoom: 16,
+    antialias: true,
     pitch: 0,
     bearing: 0,
 };
