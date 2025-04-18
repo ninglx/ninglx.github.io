@@ -9,12 +9,11 @@
     <script src="./libs/mapbox-gl-draw.js"></script>
     <script src="./libs/mapbox-gl.js"></script>
     <script src="./libs/turf.min.js"></script>
-    <script src="./libs/threebox/threebox.js"></script>
     <link rel='stylesheet' href="./libs/mapbox-gl-draw.css" type='text/css'/>
     <link rel='stylesheet' href="./libs/mapbox-gl.css"/>
     <link rel='stylesheet' href="./libs/theme-chalk_index.css"/>
-    <link rel='stylesheet' href="./libs/threebox/threebox.css"/>
     <script src="./libs/mTool.js"></script>
+    <script src="./libs/convert.js"></script>
     <style>
         html,
         body,
@@ -25,11 +24,14 @@
             position: relative;
             background-color: #292929;
         }
-        .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner{
+
+        .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib-inner {
             display: none !important;
         }
-        *{
+
+        * {
             box-sizing: border-box;
+            font-family: 'Consolas', 'Microsoft YaHei', serif;
         }
 
         #map {
@@ -65,6 +67,12 @@
             width: 100%;
         }
 
+        .panelFlex {
+            margin-bottom: 5px;
+            width: 100%;
+            display: flex;
+        }
+
         .drawResult {
             position: absolute;
             border-radius: 4px;
@@ -92,7 +100,7 @@
         <div class="panelItem">
             <el-input class="panelItem" size="mini" placeholder="输入经纬度 用英文逗号,隔开"
                       v-model="lnglatStr"></el-input>
-            <div class="panelItem">
+            <div class="panelItem panelFlex">
                 <el-button type="primary" style="width:calc(50% - 8px)" class="panelItem" size="mini" @click="locate">
                     定位
                 </el-button>
@@ -112,7 +120,7 @@
             <el-input type="textarea" :rows="6" class="panelItem" size="mini"
                       placeholder="输入合法的 features 数据 (参考右侧生成数据格式)"
                       v-model="drawGeojsonValue"></el-input>
-            <div class="panelItem">
+            <div class="panelItem panelFlex">
                 <el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="drawGeojson">绘制
                 </el-button>
                 <el-button type="primary" style="width:calc(50% - 8px)" size="mini" @click="clearGeojson(true)">清除
@@ -123,7 +131,7 @@
         <div class="panelItem">
             <el-input type="textarea" :rows="2" class="panelItem" size="mini" placeholder="输入合法的 raster tile url"
                       v-model="rasterLayerUrl"></el-input>
-            <div class="panelItem">
+            <div class="panelItem panelFlex">
                 <el-button type="primary" style="width:calc(50% - 8px)" size="mini"
                            @click="addRasterLayer">添加栅格Raster
                 </el-button>
@@ -137,7 +145,7 @@
                       v-model="vectorTileUrl"></el-input>
             <el-input class="panelItem" placeholder="输入 vector 的对应 source-layer"
                       v-model="vectorSourceLayer"></el-input>
-            <div class="panelItem">
+            <div class="panelItem panelFlex">
                 <el-button type="primary" style="width:calc(50% - 8px)" size="mini"
                            @click="addVectorLayer">添加矢量Vector
                 </el-button>
@@ -147,22 +155,35 @@
         </div>
     </div>
     <div class="drawResult">
-        <el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果" type="textarea" :rows="6"
+        <el-input style="margin-bottom: 8px;" placeholder="绘制工具最近一条绘制/更新结果👉" type="textarea" :rows="6"
                   v-model="drawResultText"></el-input>
         <div class="rightTopButtons">
             <el-button type="primary" size="mini" @click="addTerrain">添加地形</el-button>
             <el-button type="primary" size="mini" @click="removeTerrain">删除地形</el-button>
-
             <el-button type="primary" size="mini" @click="copyResult"> 复制</el-button>
         </div>
+        <el-divider></el-divider>
+        <el-input type="textarea" :rows="6" class="panelItem" size="mini"
+                  placeholder="输入坐标 (wgs84 或者 gcj02) 示例：134,32"
+                  v-model="locationSource"></el-input>
+        <div class="rightTopButtons" style="margin: 8px 0;">
+            <el-button type="primary" size="mini" @click="to84">转为 wgs84 👇</el-button>
+            👇
+            <el-button type="primary" size="mini" @click="to02">👇 转为 gcj02</el-button>
+        </div>
+        <el-input type="textarea" :rows="6" class="panelItem" size="mini"
+                  placeholder="这里是转换后的坐标"
+                  v-model="locationTarget"></el-input>
     </div>
 </div>
 <script>
-    let map = null, dMap = null, models = {}
+    let map = null, models = {}
     new Vue({
         el: '#app',
         data: function () {
             return {
+                locationSource: '',
+                locationTarget: '',
                 visible: false,
                 lnglatStr: '',
                 drawResultText: '',
@@ -174,6 +195,26 @@
             }
         },
         methods: {
+            to84() {
+                try {
+                    this.locationTarget = window.gcj02towgs84(this.locationSource.split(',')[0], this.locationSource.split(',')[1])
+                } catch (error) {
+                    this.$notify.error({
+                        title: '输入非法！',
+                        message: error
+                    });
+                }
+            },
+            to02() {
+                try {
+                    this.locationTarget = window.wgs84togcj02(this.locationSource.split(',')[0], this.locationSource.split(',')[1])
+                } catch (error) {
+                    this.$notify.error({
+                        title: '输入非法！',
+                        message: error
+                    });
+                }
+            },
             // 添加地形
             addTerrain() {
                 map.setTerrain({'source': 'mapbox-dem', 'exaggeration': 1.5});
@@ -354,11 +395,11 @@
             map.addControl(draw);
             map.on('load', () => {
                 map.on('click', (e) => {
-                    console.log('点击经纬度: ',[e.lngLat.lng,e.lngLat.lat])
-                    console.log('地图中心点: ',[map.getCenter().lng,map.getCenter().lat]);
-                    console.log('bearing: ',map.getBearing());
-                    console.log('zoom: ',map.getZoom());
-                    console.log('pitch: ',map.getPitch());
+                    console.log('点击经纬度: ', [e.lngLat.lng, e.lngLat.lat])
+                    console.log('地图中心点: ', [map.getCenter().lng, map.getCenter().lat]);
+                    console.log('bearing: ', map.getBearing());
+                    console.log('zoom: ', map.getZoom());
+                    console.log('pitch: ', map.getPitch());
                 })
                 // setTimeout(() => {
                 // 	map.flyTo({
