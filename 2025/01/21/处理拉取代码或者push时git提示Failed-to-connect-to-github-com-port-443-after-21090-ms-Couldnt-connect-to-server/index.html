@@ -590,7 +590,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 200 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 228 |
           </span>
   
           <span class="min2read">
@@ -625,11 +625,18 @@
 <li>最近在 <code>github</code> 更新博客模板代码时，碰到提示 <code>Failed to connect to github.com port 443 after 21090 ms: Couldnt connect to server</code> <br><br>试过刷新 <code>dns</code> 缓存，开关梯子等操作，都不好使，后来使用一个方法，最终处理了这个问题，在这里记录一下</li>
 </ul>
 <ol>
-<li>因为我这边网络本身不挂梯子进不去 <code>github</code>，所以我这里的前置条件是开着代理</li>
-<li>从 window 设置里，进入 <code>网络和 Internet</code> -&gt; <code>代理</code> -&gt; <code>使用代理服务器</code>右边的<code>编辑</code></li>
-<li>然后看代理的端口是多少，例如是 <code>7897</code></li>
-<li>在命令行输入以下 设置 <code>git</code> 的代理端口 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:7897</span><br><span class="line">git config --global https.proxy 127.0.0.1:7897</span><br></pre></td></tr></table></figure></li>
-<li>最后重新试下拉取或者提交<br><br>✌好使了，完活 -.-</li>
+<li><p>因为我这边网络本身不挂梯子进不去 <code>github</code>，所以我这里的前置条件是开着代理</p>
+</li>
+<li><p>从 window 设置里，进入 <code>网络和 Internet</code> -&gt; <code>代理</code> -&gt; <code>使用代理服务器</code>右边的<code>编辑</code></p>
+</li>
+<li><p>然后看代理的端口是多少，例如是 <code>7897</code></p>
+</li>
+<li><p>在命令行输入以下 设置 <code>git</code> 的代理端口 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:7897</span><br><span class="line">git config --global https.proxy 127.0.0.1:7897</span><br></pre></td></tr></table></figure></li>
+<li><p>最后重新试下拉取或者提交<br><br>✌好使了，完活 -.-</p>
+</li>
+<li><p>最后，要是需要取消 <code>git</code> 代理，执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       </div>
