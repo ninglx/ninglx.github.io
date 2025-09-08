@@ -466,12 +466,14 @@
           result.text().then(res => {
             this.trackLoading = false
             let stringArr = res.split(/[(\r\n)\r\n]+/)
-            fullTrack = stringArr.map(str => {
+            let allFullTrack = stringArr.map(str => {
               if (str) {
                 return JSON.parse(str)
               }
             })
-            fullTrack.pop()
+            allFullTrack.pop()
+            fullTrack = allFullTrack
+
             this.eventStartTime = fullTrack[0].globalTimeStampLong
             this.globalStartTime = new Date(fullTrack[0].globalTimeStampLong).toLocaleString()
             this.globalEndTime = new Date(fullTrack[fullTrack.length - 1].globalTimeStampLong).toLocaleString()
@@ -978,10 +980,10 @@
           }
         };
         window.tb = new Threebox(map, map.getCanvas().getContext("webgl"), {
-          defaultLights: true,
+          // defaultLights: true,
           realSunlight: true,
           // realSunlightHelper: true,
-          // sky: true,
+          sky: true,
           enableSelectingObjects: true,
         });
         map.addLayer({
@@ -1006,6 +1008,7 @@
           },
           render: function (gl, matrix) {
             window.tb.update();
+            window.tb.setSunlight(new Date('2020-01-01 12:00:00'), map.getCenter())
           },
         });
       })

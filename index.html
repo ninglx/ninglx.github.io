@@ -256,6 +256,15 @@
                 <ul class="drawer-sub-menu" v-if="isOpen(5)">
                   
                   <li>
+                    <a href="/demos/map/mapboxArea/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>MyMap</span>
+                    </a>
+                  </li>
+                  
+                  <li>
                     <a href="/demos/map/mapbox/index.html">
                       
                       <i class="fas fa-map" style="margin-top: -20px;"></i>
@@ -423,6 +432,15 @@
                   <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
                 </a>
                 <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/demos/map/mapboxArea/index.html">
+                      
+                      <i class="fas fa-map" style="margin-top: -20px;"></i>
+                      
+                      <span>MyMap</span>
+                    </a>
+                  </li>
                   
                   <li>
                     <a href="/demos/map/mapbox/index.html">
@@ -1445,8 +1463,8 @@ websocket 数据是实时推送的，且帧数不超过1秒30帧，肉眼可见�
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon Jul 07 2025 17:36:42 GMT+0800 (中国标准时间)</div>
-            <div id="last-update-show">2025-07-07 日</div>
+            <div id="last-update" style="display: none;">Mon Sep 08 2025 13:57:20 GMT+0800 (中国标准时间)</div>
+            <div id="last-update-show">2025-09-08 日</div>
           
         </div>
         
@@ -1496,7 +1514,7 @@ websocket 数据是实时推送的，且帧数不超过1秒30帧，肉眼可见�
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2025-07-07 日';
+            document.getElementById('last-update-show').innerHTML = '2025-09-08 日';
           }
         </script>
         
