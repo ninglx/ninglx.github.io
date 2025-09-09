@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>mapbox小小小工具</title>
+    <title>mapbox区域热力</title>
     <meta charset="utf-8">
     <script src="./libs/vue.js"></script>
     <script src="./libs/element-ui.js"></script>
@@ -104,13 +104,16 @@
             <el-input size="mini" v-model="searchI" placeholder="请输入名称" style="margin-bottom: 10px;"></el-input>
             <div style="width: 100%;height: 50%;overflow: auto;">
                 <div class="editItem" v-for="(item,index) in (fs)" :key="index"
-                    v-show="item.properties.name.indexOf(searchI)>-1"
-                    style="position: relative; color:white;font-size:13px;border-radius: 4px;padding: 4px;padding-left: 10px; margin-bottom: 4px;background-color: rgba(255, 255, 255, 0.18);display: flex;justify-content: space-between;">
+                    v-show="item.properties.name.includes(searchI) || getProvince(item.properties.parent?.adcode).includes(searchI)"
+                    style="position: relative; color:white;font-size:13px;border-radius: 4px;padding: 4px;padding-left: 10px; margin-bottom: 4px;background-color: rgba(255, 255, 255, 0.5);display: flex;justify-content: space-between;">
                     <div style="left: 0;top:0;height: 100%;background-color: rgba(31, 142, 63,.8); position: absolute;z-index: 2;"
                         :style="{width: item.properties.mynum*3+'px'}"></div>
                     <div
                         style="width: 100%;height: 100%;z-index: 3;display: flex;justify-content: space-between;align-items: center;">
-                        <div style="cursor: pointer;" @click="flyCur(index)">{{item.properties.name}}</div>
+                        <div style="cursor: pointer;" @click="flyCur(index)">
+                            {{item.properties.name}} <span
+                                style="display: inline-block;margin-left: 10px;">{{'('+getProvince(item.properties.parent?.adcode)+')'}}</span>
+                        </div>
                         <div style="display: flex;justify-content: space-between;">
                             <div class="btnI" @click="changeI(1, index,item.properties.name)"
                                 style="text-align: center; margin-right: 10px; background-color: rgba(37, 148, 69,.8); border-radius: 4px;width: 30px;height: 100%;;">
@@ -137,12 +140,22 @@
                     searchI: '',
                     jsonOut: '',
                     fs: [],
+                    provinces: [],
                 }
             },
             computed: {
             },
             methods: {
+                getProvince(adcode) {
+                    let province = this.provinces.find(item => item.properties.adcode == adcode)
+                    return province?.properties?.name || ''
+                },
                 flyCur(indexI) {
+                    let fI = this.fs[indexI]
+                    var bbox = turf.bbox(fI);
+                    map?.fitBounds(bbox, {
+                        padding: { top: 10, bottom: 10, left: 10, right: 10 }
+                    });
 
                 },
                 changeI(isAdd, indexI, nameI) {
@@ -189,24 +202,25 @@
                                         10, "rgba(255, 99, 71, 1)",
                                         20, "rgba(220, 20, 60, 1)",
                                         50, "rgba(139, 0, 0, 1)"
-                                    ]
+                                    ],
+                                    'fill-outline-color': 'rgba(255,255,255,.7)'
                                 }
                             }
                         );
-                        // map.addLayer(
-                        //     {
-                        //         id: name + 't',
-                        //         type: "symbol",
-                        //         source: name,
-                        //         layout: {
-                        //             "text-field": ["get", "name"],
-                        //             "text-size": 12,
-                        //         },
-                        //         paint: {
-                        //             'text-color': '#fff'
-                        //         }
-                        //     }
-                        // );
+                        map.addLayer(
+                            {
+                                id: name + 't',
+                                type: "symbol",
+                                source: name,
+                                layout: {
+                                    "text-field": ["get", "name"],
+                                    "text-size": 10,
+                                },
+                                paint: {
+                                    'text-color': '#fff'
+                                }
+                            }
+                        );
                     }
                 },
                 getNew() {
@@ -288,6 +302,9 @@
                         setTimeout(() => {
                             this.getNew()
                         })
+                    })
+                    fetch('https://ninglx.github.io/demos/map/mapboxArea/libs/province.json').then(res => res.json()).then(data => {
+                        this.provinces = data.features
                     })
                 })
             }
