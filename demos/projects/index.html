@@ -24,12 +24,16 @@
             border-radius: 8px;
             padding: 8px;
             display: flex;
+            overflow: auto;
             flex-flow: row wrap;
+            align-content: flex-start;
         }
         .videoItem{
             width: calc(50% - 4px);
-            height: 50%;
+            height: 45%;
             margin-right: 8px;
+            flex-shrink: 0;
+            margin-bottom: 10px;
         }
         .videoItem:nth-child(even){
             margin-right: 0;
@@ -46,8 +50,8 @@
         }
         video{
             width: 100%;
-            height: 100%;
-            object-fit: fill;
+            height: calc(100% - 30px);
+            object-fit: contain;
         }
     </style>
 </head>
@@ -62,6 +66,10 @@
         <div class="videoItem">
             <div class="videoTitle">基于cesium实现历史轨迹回溯</div>
             <video controls muted loop src="./全息cesium.mp4"></video>
+        </div>
+        <div class="videoItem">
+            <div class="videoTitle">基于cesium的property插帧实时轨迹</div>
+            <video controls muted loop src="./优化版cesium.mp4"></video>
         </div>
     </div>
 </div>
