@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>分类: 前端 | NingLx</title>
+  <title>Cesium场景优化思路整理 | NingLx</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -562,639 +562,459 @@
 </header>
         <!-- 内容区域 -->
         
-
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-categoryDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-
-<div class="category-header"  style="background-image:url('https://pic3.zhimg.com/80/v2-98dcd81cb0d1fee52a807c13cedb8338_1440w.jpg?source=1940ef5c')">
-  <div class="category-header-title">
-    category
-  </div>
-  <div class="category-header-desc">
-    
-      <span class="title" id="category-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#category-header-desc';
-    const type = 'categoryDetail';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
+<!-- prismjs 代码高亮 -->
 
 
-<div class="category">
-  <div class="category-name">
-    <div class="name" style="background-color: #FEF9E7;">前端 分类</div>
-  </div>
-  <!-- 每一篇文章卡片 -->
-  <!-- hash算法 -->
 
-<section class="posts">
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2024-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">vue2/3使用highcharts时3d类图表3d效果不生效问题</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Highcharts/" rel="tag">Highcharts</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="/img/highCharts.png" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            在进行图表展示开发时，因为外观的需求，有时会有 3d图表 的展示要求，这时可以使用 Highcharts 来满足开发需求。  在这里记录一下其基本用法
-首先安装 npm install highcharts-vue
-在展示组件&#x2F;页
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2024/04/18/vue2-3%E4%BD%BF%E7%94%A8highcharts%E6%97%B63d%E7%B1%BB%E5%9B%BE%E8%A1%A83d%E6%95%88%E6%9E%9C%E4%B8%8D%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="/img/highCharts.png" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2024-02-23</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/">Cesium加载3dtileset并修改位置/偏移位置</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cesium/" rel="tag">Cesium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gis%E5%BC%80%E5%8F%91/" rel="tag">Gis开发</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="/img/3dtile.png" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            
-在使用cesium进行开发时，有时需要加载一些外部的3dtile模型，由于模型制作者对模型的世界坐标可能只是随意赋值的，这时我们加载了后还需要对模型进行一定的偏移（包括经纬度和高度），以下是代码实现：
-123456789101112131
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2024/02/23/Cesium%E5%8A%A0%E8%BD%BD3dtileset%E5%B9%B6%E4%BF%AE%E6%94%B9%E4%BD%8D%E7%BD%AE-%E5%81%8F%E7%A7%BB%E4%BD%8D%E7%BD%AE/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="/img/3dtile.png" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-05-22</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">使用protobuf进行前后端数据交互</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"><a href="#在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下-比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞-–-这时就需要将数据包进行压缩-x2F-序列化-amp-反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理" class="headerlink" title="在前后端交互过程中，一般采用json作为通信协议，不过在特殊情况下:比如最近项目中要求websocket短时间内频繁由后台推送大量数据给前端，由于网络原因很容易阻塞 – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择protobuf作为通信协议，先把数据进行序列化再发送…接收…处理"></a>在前后端交互过程中，一般采用<code>json</code>作为通信协议，不过在特殊情况下:<br/>比如最近项目中要求<span style='color:green'><code>websocket</code>短时间内频繁由后台推送大量数据</span>给前端，由于网络原因很容易阻塞<br/> – 这时就需要将数据包进行压缩&#x2F;序列化&amp;反序列化等处理以减小负载。经过考虑最终选择<code>protobuf</code>作为通信协议，先把数据进行序列化再发送…接收…处理</h5><ol>
-<li>首先是前后端协商定义数据格式  &#x3D;&gt;
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/05/22/%E4%BD%BF%E7%94%A8protobuf%E8%BF%9B%E8%A1%8C%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-23</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">记一次Cesium的property插值用法</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cesium/" rel="tag">Cesium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h4 id="cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："><a href="#cesium-中描述-entity-随时间动态变化时，必然要用到-property-插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：" class="headerlink" title="cesium 中描述 entity 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下："></a><code>cesium</code> 中描述 <code>entity</code> 随时间动态变化时，必然要用到 property 插值，来对应时间和实体的状态，最近有用到这个属性，记录一下：</h4><p><strong>一般常用的插值有两种，一种是连续值插值<code>SampleProperty</code>，即给个时间段和一个状态区间，<code>cesium</code>会在区间内自己做平滑处理；<br>一种是枚举值插值<code>TimeIntervalCollectionProperty</code>，即一个时间段对应一个状态，不会做平滑插值。</strong></p>
-<p><em>假设现在有一个entity：</em></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myEntity = vie.<span class="property">entities</span>.<span class="title function_">add</span>(&#123;</span><br><span class="line">  <span class="attr">id</span>: options.<span class="property">id</span>,</span><br><span class="line">  <span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">uri</span>: <span class="string">`gltf/car.gltf`</span>,</span><br><span class="line">    <span class="attr">scale</span>: <span class="number">0.8</span>,</span><br><span class="line">    <span class="attr">minimumPixelSize</span>: <span class="number">32</span>,</span><br><span class="line">    <span class="attr">color</span>: <span class="title class_">Cesium</span>.<span class="property">Color</span>.<span class="title function_">fromCssColorString</span>(<span class="string">&#x27;#ff0&#x27;</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以下的<code>source</code>都是若干个 <code>&#123;时间，对应值组成的对象&#125;</code> 组成的数组list</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/23/%E8%AE%B0%E4%B8%80%E6%AC%A1Cesium%E7%9A%84property%E6%8F%92%E5%80%BC%E7%94%A8%E6%B3%95/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-03-20</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">基于websocket使用mapbox结合threebox实现车辆实时轨迹展示</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mapbox/" rel="tag">Mapbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Threejs/" rel="tag">Threejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Websocket/" rel="tag">Websocket</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="/img/threebox%E8%BD%A8%E8%BF%B9.png" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"><a href="#最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下" class="headerlink" title="最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载gltf、glb此类3D模型作为车辆点，所以在此需要结合threejs但是若使用原生threejs的话结合地图开发不太友好，所以使用threebox作为桥梁可以减少很多心智负担。在这里做个小demo记录一下"></a>最近项目中有遇到根据实时推送数据展示轨迹的需求，并且需要加载<code>gltf</code>、<code>glb</code>此类3D模型作为车辆点，所以在此需要结合<code>threejs</code><br/>但是若使用原生<code>threejs</code>的话结合地图开发不太友好，所以使用<code>threebox</code>作为桥梁可以减少很多心智负担。在这里做个小demo记录一下</h5><hr>
-<ol>
-<li>引入所需的 js 库<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// mapboxgl</span></span><br><span class="line"> &lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;xxx/mapbox-gl.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/mapbox-gl.css&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="comment">// threebox</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;xxx/threebox/threebox.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx/threebox/threebox.css&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="comment">// turf</span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./turf/turf.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/03/20/%E5%9F%BA%E4%BA%8Ewebsocket%E4%BD%BF%E7%94%A8mapbox%E7%BB%93%E5%90%88threebox%E5%AE%9E%E7%8E%B0%E8%BD%A6%E8%BE%86%E5%AE%9E%E6%97%B6%E8%BD%A8%E8%BF%B9%E5%B1%95%E7%A4%BA/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="/img/threebox%E8%BD%A8%E8%BF%B9.png" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-03-07</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/">Cesium自定义popup封装使用</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cesium/" rel="tag">Cesium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件-来介绍一些关于这个entity的详细信息。"><a href="#前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件-来介绍一些关于这个entity的详细信息。" class="headerlink" title="前几天项目中有个需求是基于Vue框架使用CesiumJS库，需要创建里面gltf模型对应的Popup弹窗组件 来介绍一些关于这个entity的详细信息。"></a>前几天项目中有个需求是基于<code>Vue</code>框架使用<code>CesiumJS</code>库，需要创建里面<code>gltf</code>模型对应的<code>Popup</code>弹窗组件 来介绍一些关于这个<code>entity</code>的详细信息。<br/></h5><ul>
-<li>因为UI样式定制化较高，且可能多处需要调用，所以需要封装一个<code>Popup</code>组件。</li>
-<li>并且如果使用原生<code>html</code>文本来一点点编写组件的话，开发起来会很呆 - -| 所以，改用创建并挂载一个<code>Vue</code>页面组件来实现这个弹窗页面。</li>
-<li>接下来介绍一下实现步骤：<br/>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/03/07/Cesium%E8%87%AA%E5%AE%9A%E4%B9%89popup%E5%B0%81%E8%A3%85%E4%BD%BF%E7%94%A8/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-03-07</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/03/07/Cesium%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%BB%84%E4%BB%B6%E5%88%9B%E5%BB%BA/">Cesium基本地图组件创建</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cesium/" rel="tag">Cesium</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/03/07/Cesium%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%BB%84%E4%BB%B6%E5%88%9B%E5%BB%BA/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="最近的项目中用到了-CesiumJS-，目前基本使用的问题大体排清"><a href="#最近的项目中用到了-CesiumJS-，目前基本使用的问题大体排清" class="headerlink" title="最近的项目中用到了 CesiumJS ，目前基本使用的问题大体排清"></a>最近的项目中用到了 CesiumJS ，目前基本使用的问题大体排清</h5><ol>
-<li><p>官网下载 <code>Cesium</code> 源码程序包，解压</p>
-</li>
-<li><p>解压后的目录中进入 <code>Build</code> 文件夹，找到 <code>Cesium</code> 文件夹，复制 <code>Cesium</code> 整个文件夹到项目的 <code>public</code> 文件夹下</p>
-</li>
-<li><p>项目根组件 <code>index.html</code> 中引入 <code>public</code> 下的 <code>Cesium</code> (目录根据自己实际情况改写)：</p>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/03/07/Cesium%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%BB%84%E4%BB%B6%E5%88%9B%E5%BB%BA/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/03/07/Cesium%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%BB%84%E4%BB%B6%E5%88%9B%E5%BB%BA/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-03-06</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/">flvjs视频流播放组件封装(&amp;断线重连)</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flvjs/" rel="tag">Flvjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/" rel="tag">视频播放</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h5 id="最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用"><a href="#最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用" class="headerlink" title="最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用"></a>最近项目中遇到了视频流播放的相关业务处理，因为同时有断线重连的需求，所以为了减少业务页面的代码量，对组件进行封装使用</h5><hr>
-<p><strong>项目基于 Vue 框架进行开发</strong></p>
-<ul>
-<li>上代码
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/03/06/Flvjs%E8%A7%86%E9%A2%91%E6%B5%81%E6%92%AD%E6%94%BE%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85-%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-12-29</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">flex布局space-between最后一行展示问题</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Css/" rel="tag">Css</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="/img/flex%E9%97%AE%E9%A2%98.png" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h3 id="在使用-flex-进行布局时涉及多个元素遍历渲染，-要使用-space-between-时会发现：-最后一行元素数不满一行个数时会平均分布开，-而不会从左到右排列，-不符合一般样式要求"><a href="#在使用-flex-进行布局时涉及多个元素遍历渲染，-要使用-space-between-时会发现：-最后一行元素数不满一行个数时会平均分布开，-而不会从左到右排列，-不符合一般样式要求" class="headerlink" title="在使用 flex 进行布局时涉及多个元素遍历渲染， 要使用 space-between 时会发现： 最后一行元素数不满一行个数时会平均分布开， 而不会从左到右排列， 不符合一般样式要求"></a>在使用 <code>flex</code> 进行布局时涉及多个元素遍历渲染， 要使用 <code>space-between</code> 时会发现： 最后一行元素数不满一行个数时会平均分布开， 而不会从左到右排列， 不符合一般样式要求</h3><hr>
-<p><strong>可以使用下面的办法解决</strong>
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/12/29/flex%E5%B8%83%E5%B1%80space-between%E6%9C%80%E5%90%8E%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E9%97%AE%E9%A2%98/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="/img/flex%E9%97%AE%E9%A2%98.png" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2022-12-29</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">el-table-column数据过长多行省略处理</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElementUI/" rel="tag">ElementUI</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            <h3 id="场景：在使用-el-table-时会遇到表格某行数据过长的情况"><a href="#场景：在使用-el-table-时会遇到表格某行数据过长的情况" class="headerlink" title="场景：在使用 el-table 时会遇到表格某行数据过长的情况"></a>场景：在使用 el-table 时会遇到表格某行数据过长的情况</h3><ul>
-<li>一般的处理方式是直接使用 el-table-column 的 show-overflow-tooltip 来省略过长的内容</li>
-<li>还有一种是特殊需求：需要 <strong>多行展示后</strong> 再进行省略显示。 以下是处理方式：
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2022/12/29/ElementUI-el-table-column%E6%95%B0%E6%8D%AE%E8%BF%87%E9%95%BF%E5%A4%9A%E8%A1%8C%E7%9C%81%E7%95%A5%E5%A4%84%E7%90%86/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-</section>
-</div>
-<div class="w-70">
-  
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/categories/%E5%89%8D%E7%AB%AF/">上一页</a><a class="page-number" href="/categories/%E5%89%8D%E7%AB%AF/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/%E5%89%8D%E7%AB%AF/page/3/">3</a><a class="page-number" href="/categories/%E5%89%8D%E7%AB%AF/page/4/">4</a><a class="extend next" rel="next" href="/categories/%E5%89%8D%E7%AB%AF/page/3/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/categories/%E5%89%8D%E7%AB%AF/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">2 / 4</div>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Cesium场景优化思路整理
+      </span>
     </div>
     
-      <a href="/categories/%E5%89%8D%E7%AB%AF/page/3/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
-      </a>
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2025-10-28 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-detail-header_category">
+              前端
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 738 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 3分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script defer src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h3 id="在-Cesium-可视化开发中，当场景复杂度提升或有定制化或者较高的场景展示需求时，需要考虑的一些调整与优化点整理："><a href="#在-Cesium-可视化开发中，当场景复杂度提升或有定制化或者较高的场景展示需求时，需要考虑的一些调整与优化点整理：" class="headerlink" title="在 Cesium 可视化开发中，当场景复杂度提升或有定制化或者较高的场景展示需求时，需要考虑的一些调整与优化点整理："></a>在 Cesium 可视化开发中，当场景复杂度提升或有定制化或者较高的场景展示需求时，需要考虑的一些调整与优化点整理：</h3><ol>
+<li><p>如果是内网部署项目，首先在 <code>new Viewer</code> 时，设置 <code>imageryProvider: false</code> , 并使用 <code>viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString(&quot;#001d34&quot;)</code> 按需设置空地球颜色</p>
+</li>
+<li><p>本地影像通过 <code>nginx</code> 挂载后，通过 <code>UrlTemplateImageryProvider</code> 新建 <code>provider</code> 并添加到 <code>imageryLayers</code> 里</p>
+</li>
+<li><p><code>Cesium</code> 的鼠标操作个人不是很习惯，并且鼠标中键控制 <code>pitch</code> 有一些不符合直觉，可以通过以下代码按需改动操作方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下设置为了使cesium地图鼠标控制符合mapbox习惯</span></span><br><span class="line"><span class="comment">// 关闭双击事件</span></span><br><span class="line">viewer.<span class="property">cesiumWidget</span>.<span class="property">screenSpaceEventHandler</span>.<span class="title function_">removeInputAction</span>(</span><br><span class="line">  <span class="title class_">Cesium</span>.<span class="property">ScreenSpaceEventType</span>.<span class="property">LEFT_DOUBLE_CLICK</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">// 鼠标右键旋转</span></span><br><span class="line">viewer.<span class="property">scene</span>.<span class="property">screenSpaceCameraController</span>.<span class="property">tiltEventTypes</span> = [</span><br><span class="line">  <span class="title class_">Cesium</span>.<span class="property">CameraEventType</span>.<span class="property">RIGHT_DRAG</span>,</span><br><span class="line">];</span><br><span class="line"><span class="comment">// 中键滚动缩放</span></span><br><span class="line">viewer.<span class="property">scene</span>.<span class="property">screenSpaceCameraController</span>.<span class="property">zoomEventTypes</span> = [</span><br><span class="line">  <span class="title class_">Cesium</span>.<span class="property">CameraEventType</span>.<span class="property">WHEEL</span>,</span><br><span class="line">];</span><br><span class="line"><span class="comment">// 鼠标左键平移</span></span><br><span class="line">viewer.<span class="property">scene</span>.<span class="property">screenSpaceCameraController</span>.<span class="property">rotateEventTypes</span> = [</span><br><span class="line">  <span class="title class_">Cesium</span>.<span class="property">CameraEventType</span>.<span class="property">LEFT_DRAG</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></li>
+<li><p>有 <code>3dtile</code> 加载需求时，异步加载 <code>3dtile</code><br><code>const tileset = await Cesium.Cesium3DTileset.fromUrl(&#39;/Tileset/tileset.json&#39;);</code></p>
+<p>4.1. 在之前项目中，可能是建模问题导致的切出来 <code>3dtile</code> 默认加载高度不对，这时需要重新切或者前端处理一下：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> center = tileset.<span class="property">boundingSphere</span>.<span class="property">center</span>;</span><br><span class="line"><span class="keyword">const</span> heightOffset = -<span class="number">425.1</span>; <span class="comment">// 高度偏移量</span></span><br><span class="line"><span class="keyword">const</span> cartographic = <span class="title class_">Cesium</span>.<span class="property">Cartographic</span>.<span class="title function_">fromCartesian</span>(center);</span><br><span class="line"><span class="keyword">const</span> surface = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromRadians</span>(cartographic.<span class="property">longitude</span>, cartographic.<span class="property">latitude</span>, <span class="number">0.0</span>);</span><br><span class="line"><span class="keyword">const</span> offset = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromRadians</span>(cartographic.<span class="property">longitude</span>, cartographic.<span class="property">latitude</span>, heightOffset);</span><br><span class="line"><span class="keyword">const</span> translation = <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">subtract</span>(offset, surface, <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">Cartesian3</span>());</span><br><span class="line">tileset.<span class="property">modelMatrix</span> = <span class="title class_">Cesium</span>.<span class="property">Matrix4</span>.<span class="title function_">fromTranslation</span>(translation);</span><br></pre></td></tr></table></figure>
+
+<p>4.2. 当模型材质的金属度太高，粗糙度太低，可能会导致模型反光，且背光面太暗，这时需要手动修改材质，或者提升光强度。经过对比，最终还是添加一个 <code>3dtile</code> 全局的着色器效果比较好 - -</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> unlitShader = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">CustomShader</span>(&#123;</span><br><span class="line">  <span class="attr">lightingModel</span>: <span class="title class_">Cesium</span>.<span class="property">LightingModel</span>.<span class="property">UNLIT</span>,</span><br><span class="line">  <span class="attr">fragmentShaderText</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    void fragmentMain(FragmentInput fsInput, inout czm_modelMaterial material) &#123;</span></span><br><span class="line"><span class="string">        material.diffuse = material.diffuse * 1.5;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;);</span><br><span class="line">tileset.<span class="property">customShader</span> = unlitShader;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>Cesium</code> 场景加载后，为了提升展示效果，可以添加阴影和抗锯齿<br><code>viewer.scene.shadowMap.softShadows = true // 更好效果的抗锯齿（比较吃配置）</code><br><code>viewer.shadowMap.darkness = cesium_shadow_opacity // 透明度</code><br><code>viewer.scene.shadowMap.size = cesium_shadow_size // 阴影大小 类似分辨率的概念</code></p>
+<p><code>viewer.scene.postProcessStages.fxaa.enabled = true</code></p>
+</li>
+<li><p>需要实时调试参数看效果时，我个人一般在控制台操作 <code>viewer</code> , 修改可以实时生效</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">viewer.<span class="property">scene</span>.<span class="property">light</span> = <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">DirectionalLight</span>(&#123;</span><br><span class="line">  <span class="attr">direction</span>: <span class="keyword">new</span> <span class="title class_">Cesium</span>.<span class="title class_">Cartesian3</span>(<span class="number">0.2</span>, -<span class="number">1.2</span>, -<span class="number">0.5</span>),</span><br><span class="line">  <span class="attr">intensity</span>: <span class="number">7</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">viewer.<span class="property">scene</span>.<span class="property">camera</span>.<span class="title function_">flyTo</span>(&#123;</span><br><span class="line">    <span class="comment">// 经度 纬度 高度</span></span><br><span class="line">    <span class="attr">destination</span>: <span class="title class_">Cesium</span>.<span class="property">Cartesian3</span>.<span class="title function_">fromDegrees</span>(<span class="number">114.136356</span>, <span class="number">30.473618</span>, <span class="number">10000</span>),</span><br><span class="line">    <span class="comment">// 朝向 仰角 倾斜</span></span><br><span class="line">    <span class="attr">orientation</span>: &#123;</span><br><span class="line">        <span class="attr">heading</span>: <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toRadians</span>(-<span class="number">90</span>),</span><br><span class="line">        <span class="attr">pitch</span>: <span class="title class_">Cesium</span>.<span class="property">Math</span>.<span class="title function_">toRadians</span>(-<span class="number">90</span>),</span><br><span class="line">        <span class="attr">roll</span>: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>加载大量单体化模型 <code>entity</code> 时，仅仅设置 <br>模型 <code>distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, MAX_DISTANCE_FOR_MODELS)</code><br> point 点 <code>distanceDisplayCondition: new Cesium.DistanceDisplayCondition(MAX_DISTANCE_FOR_MODELS, Number.POSITIVE_INFINITY)</code><br> 是不够的<br><br>因为虽然视角拉远不展示模型只展示点，但是本质上它还是 <code>entity</code>; 还是需要根据 <code>level</code> 或者相机高度 删除掉全部实体，只添加 <code>PointPrimitiveCollection</code> 来替换 <code>entity</code> , 这样做以后，在较高的相机地面距离来看，性能一般不会有瓶颈</p>
+</li>
+</ol>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Cesium/" class="">
+              Cesium
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>Ning lx</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2025/10/28/Cesium场景优化思路整理/" target="_blank" title="Cesium场景优化思路整理">http://ninglx.github.io/2025/10/28/Cesium场景优化思路整理/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" src="" alt="">
+    </div>
+    <a href="/2025/10/28/mapbox%E6%B7%BB%E5%8A%A0threejs%E5%8E%9F%E7%94%9F%E5%AE%9E%E4%BD%93/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">mapbox添加threejs原生实体</div>
+      </div>
+      <!-- <div class="content">
+        在这里记录一下之前遇到的 threejs 融合 webgis 场景遇到的问题：
+问题：需要在 mapbox 地图中按提供
+      </div> -->
+    </a>
   </div>
 
 </div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script defer src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+
+<!-- 还需要在后面这个地址里设置script, comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box circle' href='/'>
+          <img src='/medias/logo.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>NingLx</h2>
+        
+        
+          <p>a web developer</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">NingLx</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/ninglx"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1181699158"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:n1181699158@gmail.com"
+              class="social fab fa-google flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Cesium-%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91%E4%B8%AD%EF%BC%8C%E5%BD%93%E5%9C%BA%E6%99%AF%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%8F%90%E5%8D%87%E6%88%96%E6%9C%89%E5%AE%9A%E5%88%B6%E5%8C%96%E6%88%96%E8%80%85%E8%BE%83%E9%AB%98%E7%9A%84%E5%9C%BA%E6%99%AF%E5%B1%95%E7%A4%BA%E9%9C%80%E6%B1%82%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B0%83%E6%95%B4%E4%B8%8E%E4%BC%98%E5%8C%96%E7%82%B9%E6%95%B4%E7%90%86%EF%BC%9A"><span class="toc-text">在 Cesium 可视化开发中，当场景复杂度提升或有定制化或者较高的场景展示需求时，需要考虑的一些调整与优化点整理：</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script defer src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('false') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
