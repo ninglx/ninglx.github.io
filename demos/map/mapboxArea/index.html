@@ -94,12 +94,71 @@
         .btnI {
             cursor: pointer;
         }
+
+        .switch {
+            font-size: 17px;
+            position: relative;
+            display: inline-block;
+            width: 3.5em;
+            height: 2em;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            transition: .4s;
+            border-radius: 30px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.4em;
+            width: 1.4em;
+            border-radius: 20px;
+            left: 0.3em;
+            bottom: 0.3em;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: rgb(0, 221, 80);
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px rgb(0, 221, 80);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(1.5em);
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
         <div id="map"></div>
+        <div style="display: flex;flex-direction: column;align-items: center;padding: 10px 0; width: 100px;position: absolute;right: 10px;top:135px;z-index: 3;background-color: rgba(255,255,255,.8);border-radius: 4px;">
+            <label class="switch" style="display: block;">
+                <input type="checkbox" @click="changeHeatType">
+                <span class="slider"></span>
+            </label>
+            {{isHeat?'传统热力图':'fill热力图层'}}
+        </div>
         <div style="width: 300px;height: calc(100% - 20px);position: absolute;left: 10px;top: 10px;">
             <el-input size="mini" v-model="searchI" placeholder="请输入名称" style="margin-bottom: 10px;"></el-input>
             <div style="width: 100%;height: 50%;overflow: auto;">
@@ -137,6 +196,7 @@
             el: '#app',
             data: function () {
                 return {
+                    isHeat: false,
                     searchI: '',
                     jsonOut: '',
                     fs: [],
@@ -146,6 +206,86 @@
             computed: {
             },
             methods: {
+                removeLayers(names) {
+                    let nameArr = names.split(',')
+                    for (let nameI of nameArr) {
+                        if (map.getLayer(nameI)) {
+                            map.removeLayer(nameI)
+                        }
+                        this.$nextTick(() => {
+                            if (map.getSource(nameI)) {
+                                map.removeSource(nameI)
+                            }
+                        })
+                    }
+                },
+                changeHeatType() {
+                    this.isHeat = !this.isHeat
+                    if (this.isHeat) {
+                        this.removeLayers('city,cityt')
+                        this.addHeat()
+                    } else {
+                        this.removeLayers('eventHeat')
+                        this.addFill()
+                    }
+                },
+                addFill() {
+                    this.updateCity()
+                },
+                addHeat() {
+                    console.log('fs', this.fs);
+                    let arr = []
+                    for (let item of this.fs) {
+                        let num = item.properties.mynum || 0
+                        if (num) {
+                            for (let i = 0; i < num; i++) {
+                                arr.push(turf.point(item.properties.center, item.properties))
+                            }
+                        }
+                    }
+                    let geo = {
+                        type: "FeatureCollection",
+                        features: arr
+                    }
+                    if (!map.getSource("eventHeat")) {
+                        map.addSource("eventHeat", {
+                            type: "geojson",
+                            data: geo,
+                        });
+                    } else {
+                        map.getSource("eventHeat").setData(geo);
+                    }
+                    if (!map.getLayer("eventHeat")) {
+                        map.addLayer({
+                            id: "eventHeat",
+                            type: "heatmap",
+                            source: "eventHeat",
+                            paint: {
+                                "heatmap-color": [
+                                    "interpolate",
+                                    ["linear"],
+                                    ["heatmap-density"],
+                                    0,
+                                    "rgba(38, 233, 251,0.0)",
+                                    0.1,
+                                    "rgba(38, 233, 251,0.2)",
+                                    0.2,
+                                    "rgba(36, 239, 219,0.7)",
+                                    0.4,
+                                    "rgba(83, 231, 169,0.8)",
+                                    0.6,
+                                    "rgba(190, 236, 68,0.9)",
+                                    0.8,
+                                    "rgba(252, 145, 3,0.9)",
+                                    1,
+                                    "rgba(253, 108, 3,1)",
+                                ],
+                            },
+                        });
+                    }
+
+                },
+
                 getProvince(adcode) {
                     let province = this.provinces.find(item => item.properties.adcode == adcode)
                     return province?.properties?.name || ''
@@ -156,7 +296,6 @@
                     map?.fitBounds(bbox, {
                         padding: { top: 10, bottom: 10, left: 10, right: 10 }
                     });
-
                 },
                 changeI(isAdd, indexI, nameI) {
                     this.fs[indexI].properties.mynum = isAdd ? (this.fs[indexI].properties.mynum || 0) + 1 : (this.fs[indexI].properties.mynum || 0) - 1
@@ -214,10 +353,12 @@
                                 source: name,
                                 layout: {
                                     "text-field": ["get", "name"],
-                                    "text-size": 10,
+                                    "text-size": 14,
                                 },
                                 paint: {
-                                    'text-color': '#fff'
+                                    'text-color': '#d4d4d4',
+                                    'text-halo-width': .5,
+                                    'text-halo-color': '#000'
                                 }
                             }
                         );
