@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Js异步改同步（按顺序执行） | NingLx</title>
+  <title>Js异步改类似同步（按顺序执行） | NingLx</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -594,14 +594,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Js异步改同步（按顺序执行）
+        Js异步改类似同步（按顺序执行）
       </span>
     </div>
     
@@ -626,7 +626,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 129 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 121 |
           </span>
   
           <span class="min2read">
@@ -658,7 +658,7 @@
     <article class="post post-detail">
       <div class="post-content">
         <h5 id="使用-asycn-x2F-await"><a href="#使用-asycn-x2F-await" class="headerlink" title="使用 asycn &#x2F; await"></a>使用 asycn &#x2F; await</h5><h5 id="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"><a href="#使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时" class="headerlink" title="使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时"></a>使用场景：当有耗时方法执行，想让另一段代码在这段耗时代码之后执行时</h5><span id="more"></span>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">val flag = <span class="string">&#x27;before&#x27;</span></span><br><span class="line">val slowFun = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; <span class="comment">// 返回一个 promise 对象</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      flag = <span class="string">&#x27;changed&#x27;</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;slowFun done&#x27;</span>)</span><br><span class="line">      <span class="title function_">resolve</span>() <span class="comment">// 标志此方法完成</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, <span class="number">2000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAll</span>(<span class="params"></span>)&#123; <span class="comment">// async 关键字指明是一个同步方法</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">slowFun</span>() <span class="comment">// await 即等待slowFun执行完成</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(flag)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;have waited slowFun for 2s&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">doAll</span>() <span class="comment">// 执行测试</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="string">&#x27;before&#x27;</span></span><br><span class="line"><span class="keyword">let</span> slowFun = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123; <span class="comment">// 返回一个 promise 对象</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      flag = <span class="string">&#x27;changed&#x27;</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;slowFun done&#x27;</span>)</span><br><span class="line">      <span class="title function_">resolve</span>() <span class="comment">// 标志此方法完成</span></span><br><span class="line">    &#125;, <span class="number">2000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAll</span>(<span class="params"></span>)&#123; <span class="comment">// async 声明异步</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">slowFun</span>() <span class="comment">// await 即等待slowFun执行完成</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(flag)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;have waited slowFun for 2s&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">doAll</span>() <span class="comment">// 执行测试</span></span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
@@ -684,7 +684,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2022/04/13/Js异步改同步（按顺序执行）/" target="_blank" title="Js异步改同步（按顺序执行）">http://ninglx.github.io/2022/04/13/Js异步改同步（按顺序执行）/</a>
+    <a href="/2022/04/13/Js异步改同步（按顺序执行）/" target="_blank" title="Js异步改类似同步（按顺序执行）">http://ninglx.github.io/2022/04/13/Js异步改同步（按顺序执行）/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
